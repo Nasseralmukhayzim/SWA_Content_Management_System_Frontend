@@ -1,0 +1,48 @@
+.picker {
+  min-width: 480px;
+  min-height: 320px;
+}
+
+.picker__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.picker__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  border: 1px solid var(--mat-sys-outline-variant);
+  border-radius: 8px;
+  padding: 8px;
+  background: none;
+  cursor: pointer;
+  font: inherit;
+
+  &:hover {
+    border-color: var(--mat-sys-primary);
+  }
+}
+
+.picker__placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
+  height: 90px;
+  background: var(--mat-sys-surface-container-high);
+  border-radius: 4px;
+  font-size: 11px;
+  text-align: center;
+  padding: 4px;
+  word-break: break-all;
+}
+
+.picker__name {
+  font-size: 11px;
+  text-align: center;
+  word-break: break-all;
+}

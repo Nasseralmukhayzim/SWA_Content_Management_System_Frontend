@@ -1,0 +1,7 @@
+<mat-tab-group [(selectedIndex)]="selectedIndex">
+  @for (lang of languages(); track lang.code) {
+    <mat-tab [label]="lang.label">
+      <ng-container *ngTemplateOutlet="templateFor(lang.code)" />
+    </mat-tab>
+  }
+</mat-tab-group>

@@ -1,0 +1,25 @@
+.lookup-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 700px;
+}
+
+.lookup-form__error {
+  color: var(--mat-sys-error);
+}
+
+.lookup-form__grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.lookup-form__field {
+  flex: 1 1 200px;
+}
+
+.lookup-form__field--wide {
+  flex-basis: 100%;
+}

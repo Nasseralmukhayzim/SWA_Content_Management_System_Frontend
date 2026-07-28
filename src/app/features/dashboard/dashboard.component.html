@@ -1,0 +1,15 @@
+<div class="dashboard">
+  <h1>Welcome, {{ auth.userEmail() }}</h1>
+  <p>Choose a section to manage.</p>
+
+  <div class="dashboard__grid">
+    @for (link of links(); track link.path) {
+      <a [routerLink]="link.path" class="dashboard__card-link">
+        <mat-card class="dashboard__card">
+          <mat-icon>{{ link.icon }}</mat-icon>
+          <span>{{ link.label }}</span>
+        </mat-card>
+      </a>
+    }
+  </div>
+</div>

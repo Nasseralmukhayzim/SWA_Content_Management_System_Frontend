@@ -1,0 +1,15 @@
+@if (actions().length) {
+  <div class="workflow-actions">
+    @for (action of actions(); track action.key) {
+      <button
+        mat-stroked-button
+        type="button"
+        [disabled]="!canRun(action) || pending()"
+        [matTooltip]="tooltipFor(action)"
+        (click)="run(action)"
+      >
+        {{ action.label }}
+      </button>
+    }
+  </div>
+}

@@ -1,0 +1,45 @@
+.content-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 900px;
+}
+
+.content-form__error {
+  color: var(--mat-sys-error);
+}
+
+.content-form__grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.content-form__field {
+  flex: 1 1 240px;
+}
+
+.content-form__field--wide {
+  flex-basis: 100%;
+}
+
+.content-form__media {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.content-form__media-label {
+  font-size: 13px;
+  color: var(--mat-sys-on-surface-variant);
+  min-width: 100px;
+}
+
+.content-form__media-preview {
+  font-size: 13px;
+  max-width: 160px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

@@ -1,0 +1,30 @@
+.media-list__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+
+  h1 {
+    margin: 0;
+    font-size: 22px;
+  }
+}
+
+.media-list__filters {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+
+  mat-form-field {
+    width: 220px;
+  }
+}
+
+.media-list__table {
+  width: 100%;
+}
+
+.media-list__thumb {
+  object-fit: cover;
+  border-radius: 4px;
+}

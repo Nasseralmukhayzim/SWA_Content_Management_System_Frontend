@@ -1,0 +1,89 @@
+<div class="lookup-form">
+  <a mat-button routerLink="..">
+    <mat-icon>arrow_back</mat-icon>
+    Back to {{ config.displayName }}
+  </a>
+
+  @if (loading()) {
+    <mat-progress-spinner mode="indeterminate" diameter="32" />
+  } @else {
+    @if (generalError()) {
+      <p class="lookup-form__error">{{ generalError() }}</p>
+    }
+
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Details</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <form [formGroup]="baseForm" class="lookup-form__grid">
+          <mat-form-field appearance="outline" class="lookup-form__field">
+            <mat-label>Slug</mat-label>
+            <input matInput [formControl]="fieldControl(baseForm, 'slug')" />
+            @if (fieldControl(baseForm, 'slug').hasError('server')) {
+              <mat-error>{{ fieldControl(baseForm, 'slug').getError('server') }}</mat-error>
+            }
+          </mat-form-field>
+          <mat-checkbox class="lookup-form__field" [formControl]="fieldControl(baseForm, 'isActive')">
+            Active
+          </mat-checkbox>
+          <mat-form-field appearance="outline" class="lookup-form__field">
+            <mat-label>Sort order</mat-label>
+            <input matInput type="number" [formControl]="fieldControl(baseForm, 'sortOrder')" />
+          </mat-form-field>
+          @for (field of config.extraFields ?? []; track field.key) {
+            @if (field.type === 'select') {
+              <mat-form-field appearance="outline" class="lookup-form__field">
+                <mat-label>{{ field.label }}</mat-label>
+                <mat-select [formControl]="fieldControl(baseForm, field.key)">
+                  @for (option of field.options ?? []; track option.value) {
+                    <mat-option [value]="option.value">{{ option.label }}</mat-option>
+                  }
+                </mat-select>
+              </mat-form-field>
+            }
+          }
+        </form>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-flat-button color="primary" [disabled]="saving()" (click)="saveBase()">
+          {{ isCreate ? 'Create' : 'Save' }}
+        </button>
+      </mat-card-actions>
+    </mat-card>
+
+    @if (!isCreate) {
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>Translations</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <app-language-tabs [languages]="languages">
+            <ng-template appLanguageTab="ar">
+              <form [formGroup]="translationForms['ar']" class="lookup-form__grid">
+                <mat-form-field appearance="outline" class="lookup-form__field lookup-form__field--wide">
+                  <mat-label>Name</mat-label>
+                  <input matInput [formControl]="fieldControl(translationForms['ar'], 'name')" />
+                </mat-form-field>
+              </form>
+              <button mat-flat-button [disabled]="savingTranslation() === 'ar'" (click)="saveTranslation('ar')">
+                Save Arabic
+              </button>
+            </ng-template>
+            <ng-template appLanguageTab="en">
+              <form [formGroup]="translationForms['en']" class="lookup-form__grid">
+                <mat-form-field appearance="outline" class="lookup-form__field lookup-form__field--wide">
+                  <mat-label>Name</mat-label>
+                  <input matInput [formControl]="fieldControl(translationForms['en'], 'name')" />
+                </mat-form-field>
+              </form>
+              <button mat-flat-button [disabled]="savingTranslation() === 'en'" (click)="saveTranslation('en')">
+                Save English
+              </button>
+            </ng-template>
+          </app-language-tabs>
+        </mat-card-content>
+      </mat-card>
+    }
+  }
+</div>

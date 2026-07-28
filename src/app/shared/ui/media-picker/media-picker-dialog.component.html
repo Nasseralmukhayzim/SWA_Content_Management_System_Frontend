@@ -1,0 +1,29 @@
+<h2 mat-dialog-title>Select media</h2>
+<mat-dialog-content class="picker">
+  @if (loading()) {
+    <mat-progress-spinner mode="indeterminate" diameter="32" />
+  } @else {
+    <div class="picker__grid">
+      @for (asset of assets(); track asset.id) {
+        <button type="button" class="picker__item" (click)="select(asset)">
+          @if (asset.kind === MediaKind.Image) {
+            <img [ngSrc]="asset.url" width="120" height="90" alt="" />
+          } @else {
+            <div class="picker__placeholder">{{ asset.originalFileName }}</div>
+          }
+          <span class="picker__name">{{ asset.originalFileName }}</span>
+        </button>
+      }
+    </div>
+    <mat-paginator
+      [length]="totalCount()"
+      [pageIndex]="pageIndex()"
+      [pageSize]="pageSize()"
+      [pageSizeOptions]="[12, 24, 48]"
+      (page)="onPage($event)"
+    />
+  }
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button (click)="cancel()">Cancel</button>
+</mat-dialog-actions>

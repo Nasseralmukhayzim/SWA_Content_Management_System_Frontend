@@ -1,0 +1,4 @@
+[     572ms] [LOG] Angular is running in development mode. @ http://localhost:4200/@fs/C:/Users/GACA-IT/SWA_Content_Management_System/.angular/cache/21.2.19/SWA_Content_Management_System/vite/deps/chunk-LNTDLBUC.js?v=083ee8f8:14478
+[ 1312762ms] [LOG] Angular is running in development mode. @ http://localhost:4200/@fs/C:/Users/GACA-IT/SWA_Content_Management_System/.angular/cache/21.2.19/SWA_Content_Management_System/vite/deps/chunk-LNTDLBUC.js?v=083ee8f8:14478
+[ 1327940ms] [LOG] Angular is running in development mode. @ http://localhost:4200/@fs/C:/Users/GACA-IT/SWA_Content_Management_System/.angular/cache/21.2.19/SWA_Content_Management_System/vite/deps/chunk-LNTDLBUC.js?v=083ee8f8:14478
+[ 1343280ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:5202/api/auth/login:0

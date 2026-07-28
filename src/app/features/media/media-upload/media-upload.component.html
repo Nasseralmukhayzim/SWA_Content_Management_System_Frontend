@@ -1,0 +1,54 @@
+<div class="media-upload">
+  <a mat-button routerLink="..">
+    <mat-icon>arrow_back</mat-icon>
+    Back to Media
+  </a>
+
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Upload media</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div
+        class="media-upload__dropzone"
+        [class.media-upload__dropzone--active]="dragOver()"
+        (drop)="onDrop($event)"
+        (dragover)="onDragOver($event)"
+        (dragleave)="onDragLeave()"
+      >
+        @if (selectedFile(); as file) {
+          <p>{{ file.name }} ({{ (file.size / 1024).toFixed(0) }} KB)</p>
+        } @else {
+          <p>Drag a file here, or</p>
+        }
+        <input #fileInput type="file" (change)="onFileSelected($event)" hidden />
+        <button mat-stroked-button type="button" (click)="fileInput.click()">Choose file</button>
+      </div>
+      @if (fileError()) {
+        <p class="media-upload__error">{{ fileError() }}</p>
+      }
+
+      <form [formGroup]="form" class="media-upload__grid">
+        <mat-form-field appearance="outline">
+          <mat-label>Title (Arabic)</mat-label>
+          <input matInput formControlName="titleAr" />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Title (English)</mat-label>
+          <input matInput formControlName="titleEn" />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Alt text (Arabic)</mat-label>
+          <input matInput formControlName="altTextAr" />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Alt text (English)</mat-label>
+          <input matInput formControlName="altTextEn" />
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-flat-button color="primary" [disabled]="uploading()" (click)="upload()">Upload</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

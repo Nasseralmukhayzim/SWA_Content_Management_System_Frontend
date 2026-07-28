@@ -1,0 +1,38 @@
+:host {
+  display: inline-flex;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 20px;
+  white-space: nowrap;
+
+  &--draft {
+    background: #ececec;
+    color: #555555;
+  }
+
+  &--in-review {
+    background: #fff3cd;
+    color: #7a5b00;
+  }
+
+  &--approved {
+    background: #d7ecff;
+    color: #084a8f;
+  }
+
+  &--published {
+    background: #d7f5df;
+    color: #0d6b2a;
+  }
+
+  &--archived {
+    background: #f1e0e0;
+    color: #8a2c2c;
+  }
+}
