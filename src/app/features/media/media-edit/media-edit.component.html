@@ -13,7 +13,7 @@
       </mat-card-header>
       <mat-card-content>
         @if (a.kind === MediaKind.Image) {
-          <img [ngSrc]="a.url" width="240" height="160" alt="" class="media-edit__preview" />
+          <img [src]="a.url" alt="" class="media-edit__preview" />
         }
         <form [formGroup]="form" class="media-edit__grid">
           <mat-form-field appearance="outline">

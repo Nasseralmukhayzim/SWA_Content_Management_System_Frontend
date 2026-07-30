@@ -1,4 +1,3 @@
-import { NgOptimizedImage } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -17,13 +16,12 @@ import { MediaApiService } from '../../../shared/media/services/media-api.servic
   imports: [
     ReactiveFormsModule,
     RouterLink,
-    NgOptimizedImage,
     MatButtonModule,
     MatCardModule,
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
-    MatProgressSpinnerModule,
+    MatProgressSpinnerModule
   ],
   templateUrl: './media-edit.component.html',
   styleUrl: './media-edit.component.scss',

@@ -27,6 +27,7 @@ import {
 } from '../../models/content-type-config';
 import { ContentApiService } from '../../services/content-api.service';
 import { WorkflowActionsComponent } from '../workflow-actions/workflow-actions.component';
+import { RichTextEditorComponent } from '../../../ui/rich-text-editor/rich-text-editor.component';
 
 const LANGUAGES: LanguageOption[] = [
   { code: 'ar', label: 'العربية' },
@@ -50,6 +51,7 @@ const LANGUAGES: LanguageOption[] = [
     LanguageTabsComponent,
     LanguageTabDirective,
     WorkflowActionsComponent,
+    RichTextEditorComponent,
   ],
   templateUrl: './content-form.component.html',
   styleUrl: './content-form.component.scss',
@@ -288,10 +290,35 @@ export class ContentFormComponent implements OnInit {
         this.status.set(detail['status'] as ContentStatus);
 
         const translations = (detail['translations'] as Record<string, unknown>[]) ?? [];
-        this.translationLanguages.set(translations.map((t) => String(t['language'])));
-        for (const translation of translations) {
-          const language = String(translation['language']);
-          this.translationForms[language]?.patchValue(translation);
+        if (translations.length > 0) {
+          this.translationLanguages.set(translations.map((t) => String(t['language'])));
+          for (const translation of translations) {
+            const language = String(translation['language']);
+            this.translationForms[language]?.patchValue(translation);
+          }
+        } else {
+          const activeLangs: string[] = [];
+          for (const lang of this.languages) {
+            const suffix = lang.code === 'ar' ? 'Ar' : 'En';
+            const translationData: Record<string, unknown> = {};
+            let hasAnyValue = false;
+
+            for (const field of this.config.translationFieldControls) {
+              const keyPascal = field.key.charAt(0).toUpperCase() + field.key.slice(1) + suffix;
+              const keyCamel = field.key + suffix;
+              const val = detail[keyPascal] ?? detail[keyCamel] ?? detail[field.key];
+              if (val !== undefined && val !== null && val !== '') {
+                translationData[field.key] = val;
+                hasAnyValue = true;
+              }
+            }
+
+            if (hasAnyValue) {
+              activeLangs.push(lang.code);
+              this.translationForms[lang.code]?.patchValue(translationData);
+            }
+          }
+          this.translationLanguages.set(activeLangs);
         }
 
         for (const action of this.config.extraActions ?? []) {

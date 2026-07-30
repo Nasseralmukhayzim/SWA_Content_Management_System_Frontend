@@ -41,6 +41,7 @@ export class MediaUploadComponent {
   });
 
   protected readonly selectedFile = signal<File | null>(null);
+  protected readonly previewUrl = signal<string | null>(null);
   protected readonly fileError = signal<string | null>(null);
   protected readonly uploading = signal(false);
   protected readonly dragOver = signal(false);
@@ -92,9 +93,16 @@ export class MediaUploadComponent {
     if (file.size > MAX_MEDIA_UPLOAD_BYTES) {
       this.fileError.set('File exceeds the 50MB upload limit.');
       this.selectedFile.set(null);
+      this.previewUrl.set(null);
       return;
     }
     this.fileError.set(null);
     this.selectedFile.set(file);
+    if (file.type.startsWith('image/')) {
+      const url = URL.createObjectURL(file);
+      this.previewUrl.set(url);
+    } else {
+      this.previewUrl.set(null);
+    }
   }
 }

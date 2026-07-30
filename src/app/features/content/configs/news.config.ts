@@ -10,9 +10,11 @@ export const newsConfig: ContentTypeConfig = {
   basePath: 'news',
   displayName: 'News Article',
   listColumns: [
-    { key: 'title', label: 'Title', value: (item) => (item['titleAr'] as string) || (item['titleEn'] as string) || '' },
+    { key: 'title', label: 'Title', value: (item) => (item['titleAr'] as string) || (item['titleEn'] as string) || (item['slug'] as string) || '' },
+    { key: 'slug', label: 'Slug', value: (item) => (item['slug'] as string) || '' },
     { key: 'status', label: 'Status' },
     { key: 'isFeatured', label: 'Featured', value: (item) => (item['isFeatured'] ? 'Yes' : 'No') },
+    { key: 'createdAt', label: 'Created', value: (item) => (item['createdAt'] ? new Date(item['createdAt'] as string).toLocaleDateString() : '') },
   ],
   filterFields: [
     { key: 'search', label: 'Search', type: 'text' },
@@ -27,8 +29,8 @@ export const newsConfig: ContentTypeConfig = {
   ],
   translationFieldControls: [
     { key: 'title', label: 'Title', type: 'text', validators: [Validators.required, Validators.maxLength(400)] },
-    { key: 'summary', label: 'Summary', type: 'textarea', validators: [Validators.maxLength(1000)] },
-    { key: 'body', label: 'Body', type: 'textarea', validators: [Validators.required] },
+    { key: 'summary', label: 'Summary', type: 'rich-text', validators: [Validators.maxLength(1000)] },
+    { key: 'body', label: 'Body', type: 'rich-text', validators: [Validators.required] },
     { key: 'heroImageCaption', label: 'Hero image caption', type: 'text', validators: [Validators.maxLength(500)] },
     { key: 'seoTitle', label: 'SEO title', type: 'text', validators: [Validators.maxLength(400)] },
     { key: 'seoDescription', label: 'SEO description', type: 'textarea', validators: [Validators.maxLength(1000)] },

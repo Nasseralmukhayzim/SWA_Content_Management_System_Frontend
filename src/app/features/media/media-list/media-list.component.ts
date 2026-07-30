@@ -1,4 +1,3 @@
-import { NgOptimizedImage } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -20,7 +19,6 @@ import { MediaApiService } from '../../../shared/media/services/media-api.servic
   imports: [
     ReactiveFormsModule,
     RouterLink,
-    NgOptimizedImage,
     MatTableModule,
     MatPaginatorModule,
     MatFormFieldModule,
@@ -75,6 +73,15 @@ export class MediaListComponent implements OnInit {
 
   protected kindLabel(item: MediaAssetResponse): string {
     return this.kindLabels[item.kind];
+  }
+
+  protected formatDate(value?: string): string {
+    if (!value) return '-';
+    try {
+      return new Date(value).toLocaleDateString();
+    } catch {
+      return '-';
+    }
   }
 
   remove(item: MediaAssetResponse): void {
