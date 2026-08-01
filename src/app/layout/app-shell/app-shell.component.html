@@ -1,8 +1,18 @@
 <mat-sidenav-container class="shell">
-  <mat-sidenav #sidenav mode="side" opened class="shell__sidenav">
+  <mat-sidenav
+    #sidenav
+    [mode]="isHandset() ? 'over' : 'side'"
+    [opened]="!isHandset()"
+    class="shell__sidenav"
+  >
     <mat-nav-list>
       @for (item of navItems(); track item.path) {
-        <a mat-list-item [routerLink]="item.path" routerLinkActive="active-link">
+        <a
+          mat-list-item
+          [routerLink]="item.path"
+          routerLinkActive="active-link"
+          (click)="isHandset() && sidenav.close()"
+        >
           <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
           <span matListItemTitle>{{ item.label }}</span>
         </a>

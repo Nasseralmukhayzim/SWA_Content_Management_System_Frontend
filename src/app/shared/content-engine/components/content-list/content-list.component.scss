@@ -1,8 +1,12 @@
+@use 'breakpoints' as bp;
+
 .content-list__header {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 12px;
   margin-bottom: 16px;
+  flex-wrap: wrap;
 
   h1 {
     margin: 0;
@@ -18,9 +22,22 @@
 
   mat-form-field {
     width: 220px;
+    flex: 1 1 180px;
+
+    @include bp.mobile {
+      flex-basis: 100%;
+    }
   }
+}
+
+.content-list__table-scroll {
+  overflow-x: auto;
 }
 
 .content-list__table {
   width: 100%;
+
+  @include bp.mobile {
+    min-width: 560px;
+  }
 }

@@ -10,6 +10,7 @@
   @if (loading()) {
     <mat-progress-spinner mode="indeterminate" diameter="32" />
   } @else {
+    <div class="user-list__table-scroll">
     <table mat-table [dataSource]="users()" class="user-list__table">
       <ng-container matColumnDef="email">
         <th mat-header-cell *matHeaderCellDef>Email</th>
@@ -47,5 +48,6 @@
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
     </table>
+    </div>
   }
 </div>

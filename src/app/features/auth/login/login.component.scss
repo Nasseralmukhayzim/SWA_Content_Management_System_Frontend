@@ -1,13 +1,18 @@
+@use 'breakpoints' as bp;
+
 .login {
   display: flex;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
   background: var(--mat-sys-surface-container-low);
+  padding: 16px;
+  box-sizing: border-box;
 }
 
 .login__card {
   width: 360px;
+  max-width: 100%;
 }
 
 .login__field {
