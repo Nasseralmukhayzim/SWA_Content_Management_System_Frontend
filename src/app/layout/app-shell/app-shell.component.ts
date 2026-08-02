@@ -1,10 +1,12 @@
-import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
+import { DecimalPipe } from '@angular/common';
+import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
+import { MatMenuModule } from '@angular/material/menu';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { map } from 'rxjs';
@@ -33,6 +35,7 @@ const NAV_ITEMS: NavItem[] = [
 @Component({
   selector: 'app-shell',
   imports: [
+    DecimalPipe,
     RouterOutlet,
     RouterLink,
     RouterLinkActive,
@@ -41,6 +44,7 @@ const NAV_ITEMS: NavItem[] = [
     MatListModule,
     MatIconModule,
     MatButtonModule,
+    MatMenuModule,
   ],
   templateUrl: './app-shell.component.html',
   styleUrl: './app-shell.component.scss',
@@ -60,6 +64,29 @@ export class AppShellComponent {
       .pipe(map((result) => result.matches)),
     { initialValue: false },
   );
+
+  protected readonly displayName = computed(() => {
+    const email = this.auth.userEmail();
+    const localPart = email?.split('@')[0] ?? 'Admin';
+    return localPart.charAt(0).toUpperCase() + localPart.slice(1);
+  });
+
+  protected readonly initial = computed(() => this.displayName().charAt(0).toUpperCase());
+
+  protected readonly greeting = computed(() => {
+    const hour = new Date().getHours();
+    if (hour < 12) return 'Good morning';
+    if (hour < 18) return 'Good afternoon';
+    return 'Good evening';
+  });
+
+  protected readonly today = signal(
+    new Date().toLocaleDateString('en-US', { weekday: 'long', day: 'numeric', month: 'short', year: 'numeric' }),
+  );
+
+  // Placeholder — no live-visitor endpoint exists yet; swap for a real feed when the
+  // backend exposes one.
+  protected readonly liveVisitors = signal(1247);
 
   logout(): void {
     this.auth.logout();

@@ -5,7 +5,11 @@
     [opened]="!isHandset()"
     class="shell__sidenav"
   >
-    <mat-nav-list>
+    <div class="shell__brand">
+      <img src="logo.png" alt="Saudi Water Authority" class="shell__brand-logo" />
+    </div>
+
+    <mat-nav-list class="shell__nav">
       @for (item of navItems(); track item.path) {
         <a
           mat-list-item
@@ -13,7 +17,9 @@
           routerLinkActive="active-link"
           (click)="isHandset() && sidenav.close()"
         >
-          <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
+          <span matListItemIcon class="shell__nav-icon">
+            <mat-icon>{{ item.icon }}</mat-icon>
+          </span>
           <span matListItemTitle>{{ item.label }}</span>
         </a>
       }
@@ -21,17 +27,52 @@
   </mat-sidenav>
 
   <mat-sidenav-content>
-    <mat-toolbar color="primary" class="shell__toolbar">
-      <button mat-icon-button (click)="sidenav.toggle()" aria-label="Toggle navigation">
+    <header class="shell__header">
+      <button
+        mat-icon-button
+        class="shell__menu-toggle"
+        (click)="sidenav.toggle()"
+        aria-label="Toggle navigation"
+      >
         <mat-icon>menu</mat-icon>
       </button>
-      <span class="shell__title">SWA Content Management System</span>
+
+      <div class="shell__greeting">
+        <h1>{{ greeting() }}, <span class="shell__greeting-name">{{ displayName() }}</span></h1>
+        <p>SWA Content Management &middot; {{ today() }}</p>
+      </div>
+
       <span class="shell__spacer"></span>
-      <span class="shell__user">{{ auth.userEmail() }}</span>
-      <button mat-icon-button (click)="logout()" aria-label="Log out">
-        <mat-icon>logout</mat-icon>
+
+      <div class="shell__live" aria-hidden="true">
+        <span class="shell__live-dot"></span>
+        Live &middot; {{ liveVisitors() | number }} on site
+      </div>
+
+      <button mat-button class="shell__user" [matMenuTriggerFor]="userMenu">
+        <span class="shell__user-email">{{ auth.userEmail() }}</span>
+        <span class="shell__user-avatar">{{ initial() }}</span>
       </button>
-    </mat-toolbar>
+      <mat-menu #userMenu="matMenu" xPosition="before">
+        <div class="shell__user-menu-header">
+          <span class="shell__user-menu-title">Administrator</span>
+          <span class="shell__user-menu-email">{{ auth.userEmail() }}</span>
+        </div>
+        <button mat-menu-item>
+          <mat-icon>person</mat-icon>
+          <span>My profile</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>settings</mat-icon>
+          <span>Settings</span>
+        </button>
+        <button mat-menu-item class="shell__user-menu-signout" (click)="logout()">
+          <mat-icon>logout</mat-icon>
+          <span>Sign out</span>
+        </button>
+      </mat-menu>
+    </header>
+
     <main class="shell__content">
       <router-outlet />
     </main>
