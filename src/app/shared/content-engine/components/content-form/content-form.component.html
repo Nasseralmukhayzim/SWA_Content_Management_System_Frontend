@@ -54,7 +54,7 @@
                 @for (field of config.translationFieldControls; track field.key) {
                   <ng-container
                     [ngTemplateOutlet]="fieldTemplate"
-                    [ngTemplateOutletContext]="{ $implicit: field, group: translationForms['ar'] }"
+                    [ngTemplateOutletContext]="{ $implicit: field, group: translationForms['ar'], lang: 'ar' }"
                   />
                 }
               </form>
@@ -67,7 +67,7 @@
                 @for (field of config.translationFieldControls; track field.key) {
                   <ng-container
                     [ngTemplateOutlet]="fieldTemplate"
-                    [ngTemplateOutletContext]="{ $implicit: field, group: translationForms['en'] }"
+                    [ngTemplateOutletContext]="{ $implicit: field, group: translationForms['en'], lang: 'en' }"
                   />
                 }
               </form>
@@ -110,7 +110,7 @@
   }
 </div>
 
-<ng-template #fieldTemplate let-field let-group="group">
+<ng-template #fieldTemplate let-field let-group="group" let-lang="lang">
   @switch (field.type) {
     @case ('textarea') {
       <mat-form-field appearance="outline" class="content-form__field content-form__field--wide">
@@ -120,6 +120,15 @@
           <mat-error>{{ fieldControl(group, field.key).getError('server') }}</mat-error>
         }
       </mat-form-field>
+    }
+    @case ('rich-text') {
+      <div class="content-form__field content-form__field--wide" style="margin-bottom: 16px;">
+        <label style="font-weight: 500; font-size: 14px; color: rgba(0,0,0,0.7); display: block; margin-bottom: 4px;">{{ field.label }}</label>
+        <app-rich-text-editor [formControl]="fieldControl(group, field.key)" [dir]="lang === 'en' ? 'ltr' : 'rtl'" />
+        @if (fieldControl(group, field.key).hasError('server')) {
+          <mat-error>{{ fieldControl(group, field.key).getError('server') }}</mat-error>
+        }
+      </div>
     }
     @case ('checkbox') {
       <mat-checkbox class="content-form__field" [formControl]="fieldControl(group, field.key)">

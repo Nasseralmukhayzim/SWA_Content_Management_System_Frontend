@@ -1,0 +1,557 @@
+{
+  "Pages": {
+    "items": [
+      {
+        "id": "a1111111-1111-1111-1111-111111111111",
+        "slug": "about-us",
+        "parentId": null,
+        "heroImageId": null,
+        "showInNavigation": true,
+        "sortOrder": 1,
+        "status": "Published",
+        "titleAr": "من نحن - عن المؤسسة",
+        "titleEn": "About Us - Public Authority",
+        "summaryAr": "نبذة عن تأسيس المؤسسة ورسالتها وأهدافها الاستراتيجية.",
+        "summaryEn": "Overview of authority establishment, mission, and strategic goals.",
+        "bodyAr": "تأسست المؤسسة العامة للمياه والصرف الصحي بهدف إدارات وتطوير البنية التحتية واستدامة الموارد المائية وتلبية احتياجات المواطنين بأعلى معايير الجودة.",
+        "bodyEn": "The Public Water Authority was established to develop infrastructure, ensure water resources sustainability, and meet citizen needs with highest quality.",
+        "seoTitleAr": null,
+        "seoTitleEn": null,
+        "seoDescriptionAr": null,
+        "seoDescriptionEn": null,
+        "createdAt": "2026-07-20T10:16:01.6249589Z",
+        "updatedAt": null
+      },
+      {
+        "id": "a2222222-2222-2222-2222-222222222222",
+        "slug": "vision-and-mission",
+        "parentId": null,
+        "heroImageId": null,
+        "showInNavigation": true,
+        "sortOrder": 2,
+        "status": "Published",
+        "titleAr": "الرؤية والرسالة",
+        "titleEn": "Vision and Mission",
+        "summaryAr": "الرؤية الاستراتيجية والقيم الجوهرية للمؤسسة.",
+        "summaryEn": "Strategic vision and core institutional values.",
+        "bodyAr": "رؤيتنا: الريادة في تقديم خدمات مياه مستدامة وآمنة للجميع. رسالتنا: توفير خدمات متكاملة بكفاءة عالية وبناء مستقبل بيئي مستدام.",
+        "bodyEn": "Vision: Leadership in providing sustainable and safe water services for all. Mission: Delivering integrated services efficiently.",
+        "seoTitleAr": null,
+        "seoTitleEn": null,
+        "seoDescriptionAr": null,
+        "seoDescriptionEn": null,
+        "createdAt": "2026-07-22T10:16:01.6250517Z",
+        "updatedAt": null
+      }
+    ],
+    "page": 1,
+    "pageSize": 20,
+    "totalCount": 2,
+    "totalPages": 1,
+    "hasPreviousPage": false,
+    "hasNextPage": false
+  },
+  "News": {
+    "items": [
+      {
+        "id": "11111111-1111-1111-1111-111111111111",
+        "slug": "swa-cms-v2-launch",
+        "heroImageId": null,
+        "isFeatured": true,
+        "sortOrder": 1,
+        "status": "Published",
+        "titleAr": "إطلاق التحديث الجديد لنظام إدارة المحتوى SWA CMS v2.0",
+        "titleEn": "Official Launch of SWA CMS v2.0 Platform",
+        "summaryAr": "تم إطلاق التحديث الرئسي لنظام إدارة المحتوى مع دعم كامل لإدارة الأخبار والوثائق والخدمات والوسائط.",
+        "summaryEn": "Major platform update launched featuring full content management capabilities for news, documents, services, and media.",
+        "bodyAr": "تعلن المؤسسة العامة للمياه والصرف الصحي عن تدشين النسخة الجديدة من نظام إدارة المحتوى SWA CMS v2.0 والتي تهدف إلى تحسين جودة تقديم الخدمات الرقمية وتسهيل إدارة الأخبار والفعاليات والوثائق الرسمية.",
+        "bodyEn": "The Public Water and Sanitation Authority announces the official deployment of SWA CMS v2.0 aimed at enhancing digital services and managing news, events, and official documents.",
+        "heroImageCaptionAr": null,
+        "heroImageCaptionEn": null,
+        "seoTitleAr": null,
+        "seoTitleEn": null,
+        "seoDescriptionAr": null,
+        "seoDescriptionEn": null,
+        "createdAt": "2026-07-25T10:15:58.8528024Z",
+        "updatedAt": null
+      },
+      {
+        "id": "22222222-2222-2222-2222-222222222222",
+        "slug": "digital-transformation-workshop",
+        "heroImageId": null,
+        "isFeatured": true,
+        "sortOrder": 2,
+        "status": "Published",
+        "titleAr": "تدشين ورشة عمل التحول الرقمي والأمان السايبراني",
+        "titleEn": "Cybersecurity and Digital Transformation Workshop",
+        "summaryAr": "ورشة عمل متخصصة لكوادر المؤسسة لتعزيز معايير الأمان الرقمي وتطوير آليات إدارة المحتوى.",
+        "summaryEn": "A specialized workshop for authority personnel focusing on digital security standards and content workflow optimization.",
+        "bodyAr": "انطلقت صباح اليوم ورشة العمل التدريبية الخاصة بالأمان الرقمي والتحول المؤسسي بحضور عدد من الخبراء والاستشاريين في مجال تكنولوجيا المعلومات.",
+        "bodyEn": "The institutional digital transformation and security training workshop launched today with participation from IT experts and consultants.",
+        "heroImageCaptionAr": null,
+        "heroImageCaptionEn": null,
+        "seoTitleAr": null,
+        "seoTitleEn": null,
+        "seoDescriptionAr": null,
+        "seoDescriptionEn": null,
+        "createdAt": "2026-07-27T10:15:58.8530843Z",
+        "updatedAt": null
+      },
+      {
+        "id": "33333333-3333-3333-3333-333333333333",
+        "slug": "sustainable-projects-plan-2026",
+        "heroImageId": null,
+        "isFeatured": false,
+        "sortOrder": 3,
+        "status": "InReview",
+        "titleAr": "البدء في تنفيذ خطة المشاريع المستدامة لعام 2026",
+        "titleEn": "Initiation of the 2026 Sustainable Projects Plan",
+        "summaryAr": "مراجعة الخطة التنفيذية للمشاريع المستدامة وتحديث شبكات الإمداد والتطوير.",
+        "summaryEn": "Executive plan review for sustainable infrastructure projects and network modernization.",
+        "bodyAr": "تجري حالياً مراجعة الخطة الشاملة لتطوير وتوسعة شبكات الإمداد والمشاريع المستدامة للعام 2026 بما يلبي تطلعات المواطنين ويضمن أعلى مستويات الكفاءة.",
+        "bodyEn": "Review of the 2026 comprehensive sustainable project development plan is currently underway to meet citizen expectations.",
+        "heroImageCaptionAr": null,
+        "heroImageCaptionEn": null,
+        "seoTitleAr": null,
+        "seoTitleEn": null,
+        "seoDescriptionAr": null,
+        "seoDescriptionEn": null,
+        "createdAt": "2026-07-29T10:15:58.8556099Z",
+        "updatedAt": null
+      },
+      {
+        "id": "44444444-4444-4444-4444-444444444444",
+        "slug": "annual-performance-report-2025",
+        "heroImageId": null,
+        "isFeatured": false,
+        "sortOrder": 4,
+        "status": "Draft",
+        "titleAr": "مسودة تقرير الأداء السنوي ومؤشرات الكفاءة التشغيلية",
+        "titleEn": "Draft Annual Performance and Operational Efficiency Report",
+        "summaryAr": "إعداد تقرير الأداء العام والمؤشرات الخاصة بالخدمات الإلكترونية.",
+        "summaryEn": "Preparation of the general performance and electronic services indicators report.",
+        "bodyAr": "يعمل الفريق المختص على إعداد الصياغة النهائية لتقرير الأداء السنوي الذي يرصد نسبة الإنجاز في التحول الرقمي وإدارة المحتوى.",
+        "bodyEn": "The specialized team is preparing the final draft of the annual performance report monitoring digital transformation progress.",
+        "heroImageCaptionAr": null,
+        "heroImageCaptionEn": null,
+        "seoTitleAr": null,
+        "seoTitleEn": null,
+        "seoDescriptionAr": null,
+        "seoDescriptionEn": null,
+        "createdAt": "2026-07-30T10:15:58.8556184Z",
+        "updatedAt": null
+      }
+    ],
+    "page": 1,
+    "pageSize": 20,
+    "totalCount": 4,
+    "totalPages": 1,
+    "hasPreviousPage": false,
+    "hasNextPage": false
+  },
+  "Events": {
+    "items": [
+      {
+        "id": "b1111111-1111-1111-1111-111111111111",
+        "slug": "annual-water-conference-2026",
+        "startsAtUtc": "2026-08-14T10:17:21.7017662Z",
+        "endsAtUtc": "2026-08-16T10:17:21.7017867Z",
+        "eventTypeId": null,
+        "imageId": null,
+        "registrationUrl": "https://example.com/register",
+        "sortOrder": 1,
+        "status": "Published",
+        "titleAr": "المؤتمر السنوي لإدارة المياه والاستدامة 2026",
+        "titleEn": "Annual Water Management & Sustainability Conference 2026",
+        "descriptionAr": "مؤتمر دولي يجمع بين الخبراء وصناع القرار لمناقشة أحدث تقنيات تحلية وإدارة المياه.",
+        "descriptionEn": "International conference bringing experts together to discuss advanced water desalination technologies.",
+        "locationAr": "قاعة المؤتمرات الرئيسية - صنعاء",
+        "locationEn": "Main Conference Hall - Sana'a",
+        "createdAt": "2026-07-28T10:17:21.7020208Z",
+        "updatedAt": null
+      }
+    ],
+    "page": 1,
+    "pageSize": 20,
+    "totalCount": 1,
+    "totalPages": 1,
+    "hasPreviousPage": false,
+    "hasNextPage": false
+  },
+  "FAQs": {
+    "items": [
+      {
+        "id": "c1111111-1111-1111-1111-111111111111",
+        "slug": "how-to-apply-water-subscription",
+        "categoryId": null,
+        "sortOrder": 1,
+        "status": "Published",
+        "questionAr": "كيف يمكنني التقديم على طلب اشتراك عداد مياه جديد؟",
+        "questionEn": "How can I apply for a new water meter subscription?",
+        "answerAr": "يمكنك التقديم إلكترونياً عبر بوابة الخدمات الإلكترونية بإرفاق وثائق الهوية واشتراطات الموقع الرسمية.",
+        "answerEn": "You can apply online through the electronic services portal by submitting identity documents and site requirements.",
+        "createdAt": "2026-07-24T10:17:21.7102302Z",
+        "updatedAt": null
+      },
+      {
+        "id": "c2222222-2222-2222-2222-222222222222",
+        "slug": "electronic-bill-payment-methods",
+        "categoryId": null,
+        "sortOrder": 2,
+        "status": "Published",
+        "questionAr": "ما هي طرق سداد الفواتير المتاحة عبر النظام؟",
+        "questionEn": "What are the available electronic bill payment methods?",
+        "answerAr": "تتوفر طرق السداد عبر البنوك المحلية المحفظة الإلكترونية وبطاقات الدفع المباشر.",
+        "answerEn": "Payment can be completed via local banks, e-wallets, and debit/credit cards.",
+        "createdAt": "2026-07-26T10:17:21.7102551Z",
+        "updatedAt": null
+      }
+    ],
+    "page": 1,
+    "pageSize": 20,
+    "totalCount": 2,
+    "totalPages": 1,
+    "hasPreviousPage": false,
+    "hasNextPage": false
+  },
+  "Documents": {
+    "items": [
+      {
+        "id": "d2222222-2222-2222-2222-222222222222",
+        "slug": "water-subscription-regulations",
+        "section": 1,
+        "categoryId": null,
+        "year": 2026,
+        "coverImageId": null,
+        "sortOrder": 2,
+        "status": "Published",
+        "titleAr": "لائحة الاشتراطات والتعرفات التنظيمية لخدمات المياه",
+        "titleEn": "Regulatory Water Services Terms and Tariffs Guide",
+        "descriptionAr": "دليل الشروط التنظيمية واللوائح الخاصة بخدمات وتمديدات المياه والصرف الصحي.",
+        "descriptionEn": "Regulatory rules and terms guide for water and sanitation services.",
+        "fileIdAr": null,
+        "fileIdEn": null,
+        "externalFileUrlAr": "https://example.com/docs/regulations-2026.pdf",
+        "externalFileUrlEn": null,
+        "createdAt": "2026-07-23T10:17:21.7168055Z",
+        "updatedAt": null
+      },
+      {
+        "id": "d1111111-1111-1111-1111-111111111111",
+        "slug": "annual-water-quality-report-2025",
+        "section": 0,
+        "categoryId": null,
+        "year": 2025,
+        "coverImageId": null,
+        "sortOrder": 1,
+        "status": "Published",
+        "titleAr": "التقرير السنوي لمؤشرات جودة وتنقيتها 2025",
+        "titleEn": "Annual Water Quality and Purification Indicators Report 2025",
+        "descriptionAr": "التقرير الرسمي الذي يرصد تحاليل وفحوصات جودة المياه المطابقة للمواصفات القياسية.",
+        "descriptionEn": "Official report monitoring water quality analysis complying with international standards.",
+        "fileIdAr": null,
+        "fileIdEn": null,
+        "externalFileUrlAr": "https://example.com/reports/water-quality-2025.pdf",
+        "externalFileUrlEn": null,
+        "createdAt": "2026-07-18T10:17:21.716777Z",
+        "updatedAt": null
+      }
+    ],
+    "page": 1,
+    "pageSize": 20,
+    "totalCount": 2,
+    "totalPages": 1,
+    "hasPreviousPage": false,
+    "hasNextPage": false
+  },
+  "Services": {
+    "items": [
+      {
+        "id": "e1111111-1111-1111-1111-111111111111",
+        "slug": "new-water-connection",
+        "deliveryType": 0,
+        "iconId": null,
+        "supportPhone": "800-12345",
+        "faqCategoryId": null,
+        "isFeatured": true,
+        "sortOrder": 1,
+        "status": "Published",
+        "nameAr": "طلب توصيل عداد مياه جديد",
+        "nameEn": "New Water Meter Connection Request",
+        "descriptionAr": "خدمة تتيح للمواطنين والمؤسسات التقديم على طلب توصيل شبكة المياه للقطع والمنشآت السكنية والتجارية.",
+        "descriptionEn": "A service allowing citizens and entities to apply for a new water connection.",
+        "feeAr": "حسب الفئة والقطاع المعين",
+        "feeEn": null,
+        "deliveryTimeAr": "3 إلى 5 أيام عمل",
+        "deliveryTimeEn": null,
+        "requiredDocumentsAr": null,
+        "requiredDocumentsEn": null,
+        "stepsAr": null,
+        "stepsEn": null,
+        "startServiceUrlAr": "https://example.com/services/apply-connection",
+        "startServiceUrlEn": null,
+        "audienceIds": [],
+        "channelIds": [],
+        "createdAt": "2026-07-16T10:17:21.7288264Z",
+        "updatedAt": null
+      },
+      {
+        "id": "e2222222-2222-2222-2222-222222222222",
+        "slug": "bill-inquiry-and-payment",
+        "deliveryType": 3,
+        "iconId": null,
+        "supportPhone": "800-12345",
+        "faqCategoryId": null,
+        "isFeatured": true,
+        "sortOrder": 2,
+        "status": "Published",
+        "nameAr": "استعلام وسداد فواتير المياه",
+        "nameEn": "Water Bill Inquiry and Payment",
+        "descriptionAr": "خدمة إلكترونية فورية للاستعلام عن قيمة الاشتراك الفصلي وسداد الفواتير إلكترونياً.",
+        "descriptionEn": "Instant online service to check subscription balance and pay bills securely.",
+        "feeAr": "مجاناً (رسوم الاستهلاك فقط)",
+        "feeEn": null,
+        "deliveryTimeAr": "فوري",
+        "deliveryTimeEn": null,
+        "requiredDocumentsAr": null,
+        "requiredDocumentsEn": null,
+        "stepsAr": null,
+        "stepsEn": null,
+        "startServiceUrlAr": "https://example.com/services/pay-bill",
+        "startServiceUrlEn": null,
+        "audienceIds": [],
+        "channelIds": [],
+        "createdAt": "2026-07-21T10:17:21.7288522Z",
+        "updatedAt": null
+      }
+    ],
+    "page": 1,
+    "pageSize": 20,
+    "totalCount": 2,
+    "totalPages": 1,
+    "hasPreviousPage": false,
+    "hasNextPage": false
+  },
+  "Media": {
+    "items": [
+      {
+        "id": "f2222222-2222-2222-2222-222222222222",
+        "kind": 1,
+        "originalFileName": "water_quality_2025.pdf",
+        "contentType": "application/pdf",
+        "sizeBytes": 2400000,
+        "fileUrl": "https://example.com/files/water_quality_2025.pdf",
+        "titleAr": "ملف التقرير السنوي للجودة",
+        "titleEn": "Annual Quality Report Document",
+        "altTextAr": null,
+        "altTextEn": null,
+        "uploadedAt": "2026-07-20T10:17:21.7374774Z"
+      },
+      {
+        "id": "f1111111-1111-1111-1111-111111111111",
+        "kind": 0,
+        "originalFileName": "water_header_banner.jpg",
+        "contentType": "image/jpeg",
+        "sizeBytes": 450000,
+        "fileUrl": "https://picsum.photos/1200/400?random=1",
+        "titleAr": "صورة الغلاف الرئيسي للمؤسسة",
+        "titleEn": "Main Authority Banner Image",
+        "altTextAr": "شعار وغلاف المؤسسة العامة للمياه",
+        "altTextEn": "Public Water Authority banner logo",
+        "uploadedAt": "2026-07-15T10:17:21.7374534Z"
+      }
+    ],
+    "page": 1,
+    "pageSize": 20,
+    "totalCount": 2,
+    "totalPages": 1,
+    "hasPreviousPage": false,
+    "hasNextPage": false
+  },
+  "Event Types (Category)": {
+    "items": [
+      {
+        "id": "et-1",
+        "slug": "conferences",
+        "nameAr": "مؤتمرات ورعايات",
+        "nameEn": "Conferences & Sponsorships",
+        "isActive": true,
+        "sortOrder": 1
+      },
+      {
+        "id": "et-2",
+        "slug": "workshops",
+        "nameAr": "ورَش عمل وتدريب",
+        "nameEn": "Workshops & Training",
+        "isActive": true,
+        "sortOrder": 2
+      }
+    ],
+    "page": 1,
+    "pageSize": 100,
+    "totalCount": 2,
+    "totalPages": 1,
+    "hasPreviousPage": false,
+    "hasNextPage": false
+  },
+  "FAQ Categories": {
+    "items": [
+      {
+        "id": "fc-1",
+        "slug": "subscriptions",
+        "nameAr": "الاشتراكات والتوصيلات",
+        "nameEn": "Subscriptions & Connections",
+        "isActive": true,
+        "sortOrder": 1
+      },
+      {
+        "id": "fc-2",
+        "slug": "billing",
+        "nameAr": "الفواتير والتعرفات",
+        "nameEn": "Billing & Tariffs",
+        "isActive": true,
+        "sortOrder": 2
+      }
+    ],
+    "page": 1,
+    "pageSize": 100,
+    "totalCount": 2,
+    "totalPages": 1,
+    "hasPreviousPage": false,
+    "hasNextPage": false
+  },
+  "Document Categories": {
+    "items": [
+      {
+        "id": "dc-1",
+        "slug": "annual-reports",
+        "nameAr": "التقارير السنوية",
+        "nameEn": "Annual Reports",
+        "isActive": true,
+        "sortOrder": 1
+      },
+      {
+        "id": "dc-2",
+        "slug": "regulations",
+        "nameAr": "اللوائح والتراخيص",
+        "nameEn": "Regulations & Licenses",
+        "isActive": true,
+        "sortOrder": 2
+      }
+    ],
+    "page": 1,
+    "pageSize": 100,
+    "totalCount": 2,
+    "totalPages": 1,
+    "hasPreviousPage": false,
+    "hasNextPage": false
+  },
+  "Service Audiences": {
+    "items": [
+      {
+        "id": "sa-1",
+        "slug": "citizens",
+        "nameAr": "الأفراد والمواطنون",
+        "nameEn": "Citizens & Individuals",
+        "isActive": true,
+        "sortOrder": 1
+      },
+      {
+        "id": "sa-2",
+        "slug": "business",
+        "nameAr": "قطاع الأعمال والشركات",
+        "nameEn": "Business & Commercial",
+        "isActive": true,
+        "sortOrder": 2
+      }
+    ],
+    "page": 1,
+    "pageSize": 100,
+    "totalCount": 2,
+    "totalPages": 1,
+    "hasPreviousPage": false,
+    "hasNextPage": false
+  },
+  "Service Channels": {
+    "items": [
+      {
+        "id": "sc-1",
+        "slug": "online-portal",
+        "nameAr": "البوابة الإلكترونية",
+        "nameEn": "Online Portal",
+        "isActive": true,
+        "sortOrder": 1
+      },
+      {
+        "id": "sc-2",
+        "slug": "mobile-app",
+        "nameAr": "تطبيق الهواتف الذكية",
+        "nameEn": "Mobile Application",
+        "isActive": true,
+        "sortOrder": 2
+      }
+    ],
+    "page": 1,
+    "pageSize": 100,
+    "totalCount": 2,
+    "totalPages": 1,
+    "hasPreviousPage": false,
+    "hasNextPage": false
+  },
+  "Users": [
+    {
+      "id": "3e94aee8-49a3-46bd-9c32-f7c3808896e9",
+      "email": "nasser.almu5@gmail.com",
+      "firstName": "Nasser",
+      "lastName": "Almukhayzim",
+      "roles": [
+        "Admin"
+      ]
+    },
+    {
+      "id": "5eed0000-0000-4000-8000-000000000001",
+      "email": "seeder@swa.gov.sa",
+      "firstName": "Content",
+      "lastName": "Seeder",
+      "roles": [
+        "Admin"
+      ]
+    },
+    {
+      "id": "e717a3df-5e29-4e7a-8783-bf03a91a0bc9",
+      "email": "alice@example.com",
+      "firstName": "Alice",
+      "lastName": "Admin",
+      "roles": [
+        "Admin"
+      ]
+    },
+    {
+      "id": "99999999-9999-9999-9999-999999999999",
+      "email": "admin@example.com",
+      "firstName": "Admin",
+      "lastName": "System",
+      "roles": [
+        "Admin"
+      ]
+    },
+    {
+      "id": "88888888-8888-8888-8888-888888888888",
+      "email": "admin@swa.gov.sa",
+      "firstName": "Admin",
+      "lastName": "SWA",
+      "roles": [
+        "Admin"
+      ]
+    },
+    {
+      "id": "53420f7b-28d3-450a-a221-cd1ccc908d27",
+      "email": "bobby@example.com",
+      "firstName": "Bobby",
+      "lastName": "Builder",
+      "roles": [
+        "Writer"
+      ]
+    }
+  ]
+}

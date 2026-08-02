@@ -22,7 +22,8 @@ export const documentsConfig: ContentTypeConfig = {
   basePath: 'documents',
   displayName: 'Document',
   listColumns: [
-    { key: 'title', label: 'Title', value: (item) => (item['titleAr'] as string) || (item['titleEn'] as string) || '' },
+    { key: 'title', label: 'Title', value: (item) => (item['titleAr'] as string) || (item['titleEn'] as string) || (item['slug'] as string) || '' },
+    { key: 'slug', label: 'Slug', value: (item) => (item['slug'] as string) || '' },
     { key: 'status', label: 'Status' },
     {
       key: 'section',
@@ -30,6 +31,7 @@ export const documentsConfig: ContentTypeConfig = {
       value: (item) => SECTION_OPTIONS.find((o) => o.value === item['section'])?.label ?? '',
     },
     { key: 'year', label: 'Year', value: (item) => (item['year'] ? String(item['year']) : '') },
+    { key: 'createdAt', label: 'Created', value: (item) => (item['createdAt'] ? new Date(item['createdAt'] as string).toLocaleDateString() : '') },
   ],
   filterFields: [
     { key: 'search', label: 'Search', type: 'text' },
@@ -48,7 +50,9 @@ export const documentsConfig: ContentTypeConfig = {
   ],
   translationFieldControls: [
     { key: 'title', label: 'Title', type: 'text', validators: [Validators.required, Validators.maxLength(400)] },
-    { key: 'description', label: 'Description', type: 'textarea', validators: [Validators.maxLength(2000)] },
+    { key: 'description', label: 'Description', type: 'rich-text' },
+    { key: 'seoTitle', label: 'SEO title', type: 'text', validators: [Validators.maxLength(400)] },
+    { key: 'seoDescription', label: 'SEO description', type: 'textarea', validators: [Validators.maxLength(1000)] },
     { key: 'fileId', label: 'File', type: 'media-picker', mediaKindFilter: MediaKind.Document },
     { key: 'externalFileUrl', label: 'External file URL', type: 'text', validators: [Validators.maxLength(2000)] },
   ],

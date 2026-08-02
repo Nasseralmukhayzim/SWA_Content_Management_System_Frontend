@@ -6,6 +6,7 @@ import { ContentApiService } from '../services/content-api.service';
 export type FieldControlType =
   | 'text'
   | 'textarea'
+  | 'rich-text'
   | 'number'
   | 'checkbox'
   | 'select'

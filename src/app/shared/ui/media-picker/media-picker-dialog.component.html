@@ -7,7 +7,7 @@
       @for (asset of assets(); track asset.id) {
         <button type="button" class="picker__item" (click)="select(asset)">
           @if (asset.kind === MediaKind.Image) {
-            <img [ngSrc]="asset.url" width="120" height="90" alt="" />
+            <img [src]="asset.url" width="120" height="90" alt="" />
           } @else {
             <div class="picker__placeholder">{{ asset.originalFileName }}</div>
           }

@@ -9,23 +9,18 @@
       <mat-card-title>Upload media</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <div
-        class="media-upload__dropzone"
-        [class.media-upload__dropzone--active]="dragOver()"
-        (drop)="onDrop($event)"
-        (dragover)="onDragOver($event)"
-        (dragleave)="onDragLeave()"
-      >
+      <div class="media-upload__dropzone" [class.media-upload__dropzone--active]="dragOver()" (drop)="onDrop($event)"
+        (dragover)="onDragOver($event)" (dragleave)="onDragLeave()">
         @if (selectedFile(); as file) {
-          <p>{{ file.name }} ({{ (file.size / 1024).toFixed(0) }} KB)</p>
+        <p>{{ file.name }} ({{ (file.size / 1024).toFixed(0) }} KB)</p>
         } @else {
-          <p>Drag a file here, or</p>
+        <p>Drag a file here, or</p>
         }
         <input #fileInput type="file" (change)="onFileSelected($event)" hidden />
         <button mat-stroked-button type="button" (click)="fileInput.click()">Choose file</button>
       </div>
       @if (fileError()) {
-        <p class="media-upload__error">{{ fileError() }}</p>
+      <p class="media-upload__error">{{ fileError() }}</p>
       }
 
       <form [formGroup]="form" class="media-upload__grid">

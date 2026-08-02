@@ -1,4 +1,3 @@
-import { NgOptimizedImage } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit, inject, signal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
@@ -13,7 +12,7 @@ export interface MediaPickerDialogData {
 
 @Component({
   selector: 'app-media-picker-dialog',
-  imports: [MatDialogModule, MatButtonModule, MatPaginatorModule, MatProgressSpinnerModule, NgOptimizedImage],
+  imports: [MatDialogModule, MatButtonModule, MatPaginatorModule, MatProgressSpinnerModule],
   templateUrl: './media-picker-dialog.component.html',
   styleUrl: './media-picker-dialog.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
