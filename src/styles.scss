@@ -4,6 +4,7 @@
 // Learn more about theming and how to use it for your application's
 // custom components at https://material.angular.dev/guide/theming
 @use '@angular/material' as mat;
+@use 'styles/brand' as brand;
 
 html {
   height: 100%;
@@ -17,6 +18,23 @@ html {
       density: 0,
     )
   );
+
+  // Overlay the exact SWA brand hex values on top of Material's generated tonal
+  // palette so components stay pixel-accurate to the identity guide instead of
+  // Material's auto-derived shades.
+  --mat-sys-primary: #{brand.$swa-bright-navy};
+  --mat-sys-on-primary: #ffffff;
+  --mat-sys-primary-container: #{brand.$swa-surface-wash-strong};
+  --mat-sys-on-primary-container: #{brand.$swa-cobalt-blue};
+  --mat-sys-secondary-container: #{brand.$swa-surface-wash-strong};
+  --mat-sys-on-secondary-container: #{brand.$swa-cobalt-blue};
+  --mat-sys-tertiary: #{brand.$swa-robin-egg};
+  --mat-sys-surface: #ffffff;
+  --mat-sys-on-surface: #{brand.$swa-text-primary};
+  --mat-sys-on-surface-variant: #{brand.$swa-text-secondary};
+  --mat-sys-surface-container-low: #{brand.$swa-surface-wash};
+  --mat-sys-surface-container: #{brand.$swa-bright-gray};
+  --mat-sys-outline-variant: #e2e8f0;
 }
 
 body {
@@ -28,7 +46,7 @@ body {
   // Set a default background, font and text colors for the application using
   // Angular Material's system-level CSS variables. Learn more about these
   // variables at https://material.angular.dev/guide/system-variables
-  background-color: var(--mat-sys-surface);
+  background-color: var(--mat-sys-surface-container-low);
   color: var(--mat-sys-on-surface);
   font: var(--mat-sys-body-medium);
 

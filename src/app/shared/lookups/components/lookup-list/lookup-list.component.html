@@ -19,6 +19,7 @@
   @if (loading()) {
   <mat-progress-spinner mode="indeterminate" diameter="32" />
   } @else {
+  <div class="lookup-list__card">
   <div class="lookup-list__table-scroll">
   <table mat-table [dataSource]="items()" class="lookup-list__table">
     <ng-container matColumnDef="name">
@@ -52,5 +53,6 @@
 
   <mat-paginator [length]="totalCount()" [pageIndex]="pageIndex()" [pageSize]="pageSize()"
     [pageSizeOptions]="[10, 20, 50]" (page)="onPage($event)" />
+  </div>
   }
 </div>

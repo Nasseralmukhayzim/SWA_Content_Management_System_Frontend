@@ -1,15 +1,43 @@
 <div class="dashboard">
-  <h1>Welcome, {{ auth.userEmail() }}</h1>
-  <p>Choose a section to manage.</p>
+  <div class="dashboard__section-title">
+    <span class="dashboard__bullet"></span>
+    <h2>Manage sections</h2>
+  </div>
 
   <div class="dashboard__grid">
     @for (link of links(); track link.path) {
-      <a [routerLink]="link.path" class="dashboard__card-link">
-        <mat-card class="dashboard__card">
-          <mat-icon>{{ link.icon }}</mat-icon>
-          <span>{{ link.label }}</span>
-        </mat-card>
+      <a [routerLink]="link.path" class="dashboard__card">
+        <div class="dashboard__card-top">
+          <span class="dashboard__card-icon">
+            <mat-icon>{{ link.icon }}</mat-icon>
+          </span>
+          @if (countFor(link) !== null) {
+            <span class="dashboard__card-count">{{ countFor(link) }}</span>
+          }
+        </div>
+        <span class="dashboard__card-label">{{ link.label }}</span>
+        <span class="dashboard__card-description">{{ link.description }}</span>
       </a>
+    }
+  </div>
+
+  <div class="dashboard__section-title">
+    <span class="dashboard__bullet"></span>
+    <h2>Recent activity</h2>
+  </div>
+
+  <div class="dashboard__activity">
+    @for (item of recentActivity; track item.title) {
+      <div class="dashboard__activity-row">
+        <span class="dashboard__activity-icon" [class]="item.iconClass">
+          <mat-icon>{{ item.icon }}</mat-icon>
+        </span>
+        <div class="dashboard__activity-text">
+          <span class="dashboard__activity-title">{{ item.title }}</span>
+          <span class="dashboard__activity-meta">{{ item.section }} &middot; {{ item.date }}</span>
+        </div>
+        <app-status-badge [status]="item.status" />
+      </div>
     }
   </div>
 </div>

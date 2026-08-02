@@ -1,0 +1,25 @@
+// Saudi Water Authority brand palette (SWA_Identity_file.pdf).
+$swa-navy-blue: #000066;
+$swa-cobalt-blue: #003eb1;
+$swa-bright-navy: #1971e5;
+$swa-robin-egg: #1ad9c7;
+$swa-bright-gray: #ededed;
+
+$swa-surface-wash: #eef4fd;
+$swa-surface-wash-strong: #e3edfc;
+$swa-text-primary: #10203a;
+$swa-text-secondary: #64748b;
+$swa-success: #16a34a;
+$swa-success-bg: #dcfce7;
+$swa-warning: #b45309;
+$swa-warning-bg: #fef3c7;
+$swa-nav-inactive: #003eb1; // swa-cobalt-blue
+
+// Layered water-wave texture (filled swells, not thin contour lines) used inside
+// cards/rows across the branded surfaces — pools toward the bottom edge like water.
+@mixin wave-texture {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='100' viewBox='0 0 400 100'%3E%3Cpath d='M0 55 C 33 35 67 35 100 55 C 133 75 167 75 200 55 C 233 35 267 35 300 55 C 333 75 367 75 400 55 V100 H0 Z' fill='%231971E5' fill-opacity='0.07'/%3E%3Cpath d='M0 68 C 33 90 67 90 100 68 C 133 46 167 46 200 68 C 233 90 267 90 300 68 C 333 46 367 46 400 68 V100 H0 Z' fill='%231AD9C7' fill-opacity='0.1'/%3E%3Cpath d='M0 82 C 33 64 67 64 100 82 C 133 100 167 100 200 82 C 233 64 267 64 300 82 C 333 100 367 100 400 82 V100 H0 Z' fill='%231971E5' fill-opacity='0.06'/%3E%3C/svg%3E");
+  background-repeat: repeat-x;
+  background-position: left bottom;
+  background-size: 220px auto;
+}
