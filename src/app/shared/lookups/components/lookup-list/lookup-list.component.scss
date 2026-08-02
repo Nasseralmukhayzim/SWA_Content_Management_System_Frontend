@@ -1,8 +1,12 @@
+@use 'breakpoints' as bp;
+
 .lookup-list__header {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 12px;
   margin-bottom: 16px;
+  flex-wrap: wrap;
 
   h1 {
     margin: 0;
@@ -13,8 +17,20 @@
 .lookup-list__filter {
   width: 160px;
   margin-bottom: 16px;
+
+  @include bp.mobile {
+    width: 100%;
+  }
+}
+
+.lookup-list__table-scroll {
+  overflow-x: auto;
 }
 
 .lookup-list__table {
   width: 100%;
+
+  @include bp.mobile {
+    min-width: 480px;
+  }
 }

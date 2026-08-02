@@ -47,6 +47,7 @@
   @if (loading()) {
     <mat-progress-spinner mode="indeterminate" diameter="32" />
   } @else {
+    <div class="content-list__table-scroll">
     <table mat-table [dataSource]="items()" class="content-list__table">
       @for (col of config.listColumns; track col.key) {
         <ng-container [matColumnDef]="col.key">
@@ -76,6 +77,7 @@
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
     </table>
+    </div>
 
     <mat-paginator
       [length]="totalCount()"

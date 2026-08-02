@@ -1,8 +1,15 @@
+@use 'breakpoints' as bp;
+
 .dashboard__grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
   gap: 16px;
   margin-top: 16px;
+
+  @include bp.mobile {
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 12px;
+  }
 }
 
 .dashboard__card-link {

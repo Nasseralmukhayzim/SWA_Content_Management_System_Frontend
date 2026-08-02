@@ -1,10 +1,13 @@
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { map } from 'rxjs';
 import { AuthService } from '../../core/services/auth.service';
 
 interface NavItem {
@@ -45,9 +48,17 @@ const NAV_ITEMS: NavItem[] = [
 })
 export class AppShellComponent {
   protected readonly auth = inject(AuthService);
+  private readonly breakpointObserver = inject(BreakpointObserver);
 
   protected readonly navItems = computed(() =>
     NAV_ITEMS.filter((item) => !item.roles || item.roles.some((role) => this.auth.hasRole(role))),
+  );
+
+  protected readonly isHandset = toSignal(
+    this.breakpointObserver
+      .observe([Breakpoints.Handset, Breakpoints.TabletPortrait])
+      .pipe(map((result) => result.matches)),
+    { initialValue: false },
   );
 
   logout(): void {

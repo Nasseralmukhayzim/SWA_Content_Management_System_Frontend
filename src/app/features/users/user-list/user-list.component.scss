@@ -1,8 +1,12 @@
+@use 'breakpoints' as bp;
+
 .user-list__header {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 12px;
   margin-bottom: 16px;
+  flex-wrap: wrap;
 
   h1 {
     margin: 0;
@@ -10,6 +14,14 @@
   }
 }
 
+.user-list__table-scroll {
+  overflow-x: auto;
+}
+
 .user-list__table {
   width: 100%;
+
+  @include bp.mobile {
+    min-width: 560px;
+  }
 }
