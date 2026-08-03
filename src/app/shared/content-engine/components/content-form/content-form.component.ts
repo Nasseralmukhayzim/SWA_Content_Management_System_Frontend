@@ -28,6 +28,7 @@ import {
 import { ContentApiService } from '../../services/content-api.service';
 import { WorkflowActionsComponent } from '../workflow-actions/workflow-actions.component';
 import { RichTextEditorComponent } from '../../../ui/rich-text-editor/rich-text-editor.component';
+import { SectionListFieldComponent } from '../section-list-field/section-list-field.component';
 
 const LANGUAGES: LanguageOption[] = [
   { code: 'ar', label: 'العربية' },
@@ -52,6 +53,7 @@ const LANGUAGES: LanguageOption[] = [
     LanguageTabDirective,
     WorkflowActionsComponent,
     RichTextEditorComponent,
+    SectionListFieldComponent,
   ],
   templateUrl: './content-form.component.html',
   styleUrl: './content-form.component.scss',

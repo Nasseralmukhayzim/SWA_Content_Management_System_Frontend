@@ -1,0 +1,101 @@
+<div class="section-list" [dir]="dir">
+  @for (section of sections(); track section.id ?? $index; let sectionIndex = $index; let first = $first; let last = $last) {
+    <mat-card class="section-list__card">
+      <div class="section-list__card-header">
+        <mat-form-field appearance="outline" class="section-list__kind">
+          <mat-label>Kind</mat-label>
+          <mat-select [value]="section.kind" (selectionChange)="updateSection(sectionIndex, { kind: $event.value })">
+            @for (option of kindOptions; track option.value) {
+              <mat-option [value]="option.value">{{ option.label }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+
+        <div class="section-list__card-actions">
+          <button mat-icon-button type="button" [disabled]="first" (click)="moveSection(sectionIndex, -1)" aria-label="Move section up">
+            <mat-icon>arrow_upward</mat-icon>
+          </button>
+          <button mat-icon-button type="button" [disabled]="last" (click)="moveSection(sectionIndex, 1)" aria-label="Move section down">
+            <mat-icon>arrow_downward</mat-icon>
+          </button>
+          <button mat-icon-button type="button" (click)="removeSection(sectionIndex)" aria-label="Remove section">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </div>
+
+      <mat-form-field appearance="outline" class="section-list__field section-list__field--wide">
+        <mat-label>Heading</mat-label>
+        <input matInput [ngModel]="section.heading" (ngModelChange)="updateSection(sectionIndex, { heading: $event })" />
+      </mat-form-field>
+
+      @if (section.kind !== 'Text') {
+        <mat-form-field appearance="outline" class="section-list__field section-list__field--wide">
+          <mat-label>Intro (optional)</mat-label>
+          <textarea matInput rows="2" [ngModel]="section.intro" (ngModelChange)="updateSection(sectionIndex, { intro: $event })"></textarea>
+        </mat-form-field>
+      }
+
+      @if (section.kind === 'Text') {
+        <mat-form-field appearance="outline" class="section-list__field section-list__field--wide">
+          <mat-label>Body</mat-label>
+          <textarea matInput rows="4" [ngModel]="section.body" (ngModelChange)="updateSection(sectionIndex, { body: $event })"></textarea>
+        </mat-form-field>
+      } @else {
+        <div class="section-list__items">
+          @for (item of section.items; track item.id ?? $index; let itemIndex = $index; let itemFirst = $first; let itemLast = $last) {
+            <div class="section-list__item">
+              <mat-form-field appearance="outline" class="section-list__field">
+                <mat-label>{{ labelsFor(section.kind).title }}</mat-label>
+                <input
+                  matInput
+                  [ngModel]="item.title"
+                  (ngModelChange)="updateItem(sectionIndex, itemIndex, { title: $event })"
+                />
+              </mat-form-field>
+              <mat-form-field appearance="outline" class="section-list__field section-list__field--wide">
+                <mat-label>{{ labelsFor(section.kind).description }}</mat-label>
+                <textarea
+                  matInput
+                  rows="2"
+                  [ngModel]="item.description"
+                  (ngModelChange)="updateItem(sectionIndex, itemIndex, { description: $event })"
+                ></textarea>
+              </mat-form-field>
+              <div class="section-list__item-actions">
+                <button mat-icon-button type="button" [disabled]="itemFirst" (click)="moveItem(sectionIndex, itemIndex, -1)" aria-label="Move item up">
+                  <mat-icon>arrow_upward</mat-icon>
+                </button>
+                <button mat-icon-button type="button" [disabled]="itemLast" (click)="moveItem(sectionIndex, itemIndex, 1)" aria-label="Move item down">
+                  <mat-icon>arrow_downward</mat-icon>
+                </button>
+                <button mat-icon-button type="button" (click)="removeItem(sectionIndex, itemIndex)" aria-label="Remove item">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </div>
+            </div>
+          }
+          <button mat-stroked-button type="button" (click)="addItem(sectionIndex)">
+            <mat-icon>add</mat-icon>
+            Add {{ labelsFor(section.kind).title.toLowerCase() }}
+          </button>
+        </div>
+      }
+    </mat-card>
+  }
+
+  <div class="section-list__add">
+    <mat-form-field appearance="outline" class="section-list__kind">
+      <mat-label>New section kind</mat-label>
+      <mat-select [ngModel]="newSectionKind()" (ngModelChange)="newSectionKind.set($event)">
+        @for (option of kindOptions; track option.value) {
+          <mat-option [value]="option.value">{{ option.label }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+    <button mat-stroked-button type="button" (click)="addSection()">
+      <mat-icon>add</mat-icon>
+      Add section
+    </button>
+  </div>
+</div>
