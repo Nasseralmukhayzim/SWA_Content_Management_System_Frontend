@@ -1,29 +1,77 @@
 <div class="login">
-  <mat-card class="login__card">
-    <mat-card-header>
-      <mat-card-title>SWA Content Management System</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <form [formGroup]="form" (ngSubmit)="submit()">
-        <mat-form-field appearance="outline" class="login__field">
-          <mat-label>Email</mat-label>
-          <input matInput formControlName="email" autocomplete="username" />
-        </mat-form-field>
-        <mat-form-field appearance="outline" class="login__field">
-          <mat-label>Password</mat-label>
-          <input matInput type="password" formControlName="password" autocomplete="current-password" />
-        </mat-form-field>
-        @if (error()) {
-          <p class="login__error">{{ error() }}</p>
-        }
-        <button mat-flat-button color="primary" class="login__submit" type="submit" [disabled]="submitting()">
-          @if (submitting()) {
-            <mat-progress-spinner mode="indeterminate" diameter="20" />
-          } @else {
-            Sign in
-          }
+  <div class="login__brand">
+    <div class="login__brand-decor" aria-hidden="true">
+      <span class="login__brand-dot login__brand-dot--1"></span>
+      <span class="login__brand-dot login__brand-dot--2"></span>
+      <span class="login__brand-ring"></span>
+    </div>
+
+    <div class="login__brand-content">
+      <div class="login__logo-badge">
+        <img src="logo.png" alt="Saudi Water Authority" class="login__logo" />
+      </div>
+      <h1 class="login__brand-title">SWA Content Management System</h1>
+      <p class="login__brand-subtitle">
+        One secure gateway to publish, review and organize every page, story and service of the Saudi Water
+        Authority.
+      </p>
+    </div>
+
+    <div class="login__brand-wave" aria-hidden="true"></div>
+  </div>
+
+  <div class="login__panel">
+    <form class="login__form" [formGroup]="form" (ngSubmit)="submit()">
+      <h2 class="login__form-title">Welcome back &middot; Sign in</h2>
+      <p class="login__form-subtitle">Use your Authority account to continue</p>
+
+      <mat-form-field appearance="outline" class="login__field">
+        <mat-label>Email</mat-label>
+        <mat-icon matPrefix>mail</mat-icon>
+        <input matInput formControlName="email" autocomplete="username" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="login__field">
+        <mat-label>Password</mat-label>
+        <mat-icon matPrefix>lock</mat-icon>
+        <input
+          matInput
+          [type]="passwordVisible() ? 'text' : 'password'"
+          formControlName="password"
+          autocomplete="current-password"
+        />
+        <button
+          mat-icon-button
+          matSuffix
+          type="button"
+          (click)="togglePasswordVisibility()"
+          [attr.aria-label]="passwordVisible() ? 'Hide password' : 'Show password'"
+        >
+          <mat-icon>{{ passwordVisible() ? 'visibility_off' : 'visibility' }}</mat-icon>
         </button>
-      </form>
-    </mat-card-content>
-  </mat-card>
+      </mat-form-field>
+
+      <div class="login__row">
+        <mat-checkbox formControlName="rememberMe" class="login__remember">Remember me</mat-checkbox>
+        <button type="button" class="login__forgot">Forgot password?</button>
+      </div>
+
+      @if (error()) {
+        <p class="login__error">{{ error() }}</p>
+      }
+
+      <button mat-flat-button color="primary" class="login__submit" type="submit" [disabled]="submitting()">
+        @if (submitting()) {
+          <mat-progress-spinner mode="indeterminate" diameter="20" />
+        } @else {
+          Sign in
+        }
+      </button>
+
+      <p class="login__footer">
+        <img src="logo.png" alt="" class="login__footer-logo" />
+        Saudi Water Authority &mdash; CMS
+      </p>
+    </form>
+  </div>
 </div>
