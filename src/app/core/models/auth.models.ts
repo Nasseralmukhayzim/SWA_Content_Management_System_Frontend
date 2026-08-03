@@ -22,4 +22,6 @@ export interface DecodedClaims {
   email: string;
   roles: string[];
   exp: number;
+  firstName?: string;
+  lastName?: string;
 }

@@ -23,6 +23,8 @@ export function decodeJwt(token: string | null): DecodedClaims | null {
       email: String(payload['email'] ?? ''),
       roles: normalizeRoles(payload[ROLE_CLAIM_TYPE]),
       exp: Number(payload['exp'] ?? 0),
+      firstName: payload['given_name'] ? String(payload['given_name']) : undefined,
+      lastName: payload['family_name'] ? String(payload['family_name']) : undefined,
     };
   } catch {
     return null;

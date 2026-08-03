@@ -25,6 +25,8 @@ export class AuthService {
 
   readonly roles = computed(() => this._claims()?.roles ?? []);
   readonly userEmail = computed(() => this._claims()?.email ?? null);
+  readonly firstName = computed(() => this._claims()?.firstName ?? null);
+  readonly lastName = computed(() => this._claims()?.lastName ?? null);
 
   hasRole(role: string): boolean {
     return this.roles().includes(role);
