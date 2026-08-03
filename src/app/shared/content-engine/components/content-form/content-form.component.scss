@@ -12,16 +12,22 @@
 .content-form__grid {
   display: flex;
   flex-wrap: wrap;
-  gap: 16px;
+  column-gap: 24px;
+  row-gap: 28px;
   align-items: flex-start;
+  margin-bottom: 24px;
 }
 
 .content-form__field {
-  flex: 1 1 240px;
+  flex: 1 1 300px;
 }
 
 .content-form__field--wide {
   flex-basis: 100%;
+}
+
+mat-checkbox.content-form__field {
+  flex: 0 0 auto;
 }
 
 .content-form__field textarea {
