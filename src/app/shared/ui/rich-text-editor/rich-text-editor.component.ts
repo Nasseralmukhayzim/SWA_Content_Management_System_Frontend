@@ -137,7 +137,11 @@ export class RichTextEditorComponent implements OnInit, OnDestroy, ControlValueA
             editor.mode.set('readonly');
           }
         });
-        editor.on('change keyup undo redo input ExecCommand SetContent', () => {
+        // Deliberately NOT listening to 'SetContent' here: TinyMCE fires it internally during
+        // its own bootstrap (before 'init', with an empty document), and listening to it would
+        // overwrite the value buffered by writeValue() with that empty bootstrap content before
+        // the 'init' handler above ever gets a chance to apply it.
+        editor.on('change keyup undo redo input ExecCommand', () => {
           const content = editor.getContent();
           this.value = content;
           this.onChange(content);

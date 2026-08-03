@@ -28,7 +28,7 @@ export const faqsConfig: ContentTypeConfig = {
   ],
   translationFieldControls: [
     { key: 'question', label: 'Question', type: 'text', validators: [Validators.required, Validators.maxLength(1000)] },
-    { key: 'answer', label: 'Answer', type: 'textarea', validators: [Validators.required] },
+    { key: 'answer', label: 'Answer', type: 'rich-text', validators: [Validators.required] },
   ],
   lookups: [{ key: 'faq-categories', basePath: 'faq-categories' }],
   buildCreatePayload: (value) => pickFields(value, BASE_FIELD_KEYS),

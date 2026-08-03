@@ -44,11 +44,6 @@
 
       <span class="shell__spacer"></span>
 
-      <div class="shell__live" aria-hidden="true">
-        <span class="shell__live-dot"></span>
-        Live &middot; {{ liveVisitors() | number }} on site
-      </div>
-
       <button mat-button class="shell__user" [matMenuTriggerFor]="userMenu">
         <span class="shell__user-email">{{ auth.userEmail() }}</span>
         <span class="shell__user-avatar">{{ initial() }}</span>

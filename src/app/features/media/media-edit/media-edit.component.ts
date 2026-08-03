@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, computed, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -7,6 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { MediaAssetResponse, MediaKind } from '../../../shared/media/models/media-asset.model';
 import { MediaApiService } from '../../../shared/media/services/media-api.service';
@@ -32,12 +33,23 @@ export class MediaEditComponent implements OnInit {
   private readonly api = inject(MediaApiService);
   private readonly fb = inject(FormBuilder);
   private readonly snackBar = inject(MatSnackBar);
+  private readonly sanitizer = inject(DomSanitizer);
 
   protected readonly MediaKind = MediaKind;
   protected readonly id = this.route.snapshot.paramMap.get('id')!;
   protected readonly asset = signal<MediaAssetResponse | null>(null);
   protected readonly loading = signal(true);
   protected readonly saving = signal(false);
+
+  protected readonly isPdf = computed(() => {
+    const a = this.asset();
+    return !!a && (a.contentType === 'application/pdf' || a.originalFileName.toLowerCase().endsWith('.pdf'));
+  });
+
+  protected readonly pdfPreviewUrl = computed<SafeResourceUrl | null>(() => {
+    const a = this.asset();
+    return a && this.isPdf() ? this.sanitizer.bypassSecurityTrustResourceUrl(a.url) : null;
+  });
 
   protected readonly form = this.fb.group({
     titleAr: this.fb.control(''),
