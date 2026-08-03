@@ -1,4 +1,3 @@
-import { DecimalPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
@@ -35,7 +34,6 @@ const NAV_ITEMS: NavItem[] = [
 @Component({
   selector: 'app-shell',
   imports: [
-    DecimalPipe,
     RouterOutlet,
     RouterLink,
     RouterLinkActive,
@@ -83,10 +81,6 @@ export class AppShellComponent {
   protected readonly today = signal(
     new Date().toLocaleDateString('en-US', { weekday: 'long', day: 'numeric', month: 'short', year: 'numeric' }),
   );
-
-  // Placeholder — no live-visitor endpoint exists yet; swap for a real feed when the
-  // backend exposes one.
-  protected readonly liveVisitors = signal(1247);
 
   logout(): void {
     this.auth.logout();

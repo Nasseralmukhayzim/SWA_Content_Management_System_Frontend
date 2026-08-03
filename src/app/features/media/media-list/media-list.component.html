@@ -30,17 +30,21 @@
     <ng-container matColumnDef="preview">
       <th mat-header-cell *matHeaderCellDef></th>
       <td mat-cell *matCellDef="let row">
-        @if (row.kind === MediaKind.Image) {
-        <img [src]="row.url" width="64" height="48" alt="" class="media-list__thumb" />
-        } @else {
-        <mat-icon>insert_drive_file</mat-icon>
-        }
+        <a [href]="row.url" target="_blank" rel="noopener noreferrer" [attr.aria-label]="'Open ' + row.originalFileName">
+          @if (row.kind === MediaKind.Image) {
+          <img [src]="row.url" width="64" height="48" alt="" class="media-list__thumb" />
+          } @else {
+          <mat-icon>insert_drive_file</mat-icon>
+          }
+        </a>
       </td>
     </ng-container>
 
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef>File</th>
-      <td mat-cell *matCellDef="let row">{{ row.originalFileName }}</td>
+      <td mat-cell *matCellDef="let row">
+        <a [href]="row.url" target="_blank" rel="noopener noreferrer" class="media-list__name-link">{{ row.originalFileName }}</a>
+      </td>
     </ng-container>
 
     <ng-container matColumnDef="kind">

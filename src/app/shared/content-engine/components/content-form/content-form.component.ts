@@ -195,7 +195,8 @@ export class ContentFormComponent implements OnInit {
     }
     this.generalError.set(null);
     this.savingTranslation.set(language);
-    this.api.setTranslation(this.config.basePath, this.id()!, language, emptyToNull(group.value)).subscribe({
+    const payload = emptyToNull(group.value);
+    this.api.setTranslation(this.config.basePath, this.id()!, language, payload).subscribe({
       next: () => {
         this.savingTranslation.set(null);
         this.snackBar.open('Translation saved', 'Dismiss', { duration: 3000 });

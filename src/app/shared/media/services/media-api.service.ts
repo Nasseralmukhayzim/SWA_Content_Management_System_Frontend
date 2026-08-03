@@ -19,8 +19,24 @@ export interface UploadMediaFields {
   altTextEn?: string | null;
 }
 
+/**
+ * The API can return either an absolute URL (external storage/CDN) or a path relative to the
+ * backend (e.g. `/uploads/x.pdf`). A relative path must resolve against the backend's own origin
+ * — resolving it unchanged in the browser instead binds against the Angular app's origin (a
+ * different port in dev), producing a broken image / a file that won't open.
+ */
+function resolveMediaUrl(url: string): string {
+  if (!url || /^(https?:)?\/\//i.test(url) || url.startsWith('data:') || url.startsWith('blob:')) {
+    return url;
+  }
+  const base = environment.apiBaseUrl.replace(/\/$/, '');
+  const path = url.startsWith('/') ? url : `/${url}`;
+  return `${base}${path}`;
+}
+
 function mapMediaAsset(raw: Record<string, unknown>): MediaAssetResponse {
-  const url = (raw['fileUrl'] as string) || (raw['url'] as string) || '';
+  const rawUrl = (raw['fileUrl'] as string) || (raw['url'] as string) || '';
+  const url = resolveMediaUrl(rawUrl);
   const sizeInBytes = (raw['sizeBytes'] as number) ?? (raw['sizeInBytes'] as number) ?? 0;
   const createdAtUtc = (raw['uploadedAt'] as string) || (raw['createdAtUtc'] as string) || '';
   return {

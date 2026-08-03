@@ -14,7 +14,15 @@
       <mat-card-content>
         @if (a.kind === MediaKind.Image) {
           <img [src]="a.url" alt="" class="media-edit__preview" />
+        } @else if (isPdf()) {
+          <iframe [src]="pdfPreviewUrl()" class="media-edit__pdf-preview" title="PDF preview"></iframe>
         }
+
+        <a mat-stroked-button [href]="a.url" target="_blank" rel="noopener noreferrer" class="media-edit__download">
+          <mat-icon>download</mat-icon>
+          Download {{ a.originalFileName }}
+        </a>
+
         <form [formGroup]="form" class="media-edit__grid">
           <mat-form-field appearance="outline">
             <mat-label>Title (Arabic)</mat-label>
