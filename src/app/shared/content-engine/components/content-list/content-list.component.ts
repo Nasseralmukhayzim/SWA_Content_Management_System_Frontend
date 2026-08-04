@@ -9,7 +9,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { debounceTime, distinctUntilChanged } from 'rxjs';
+import { debounceTime, distinctUntilChanged, map } from 'rxjs';
 import { LookupApiService } from '../../../lookups/services/lookup-api.service';
 import { ConfirmDialogService } from '../../../ui/confirm-dialog/confirm-dialog.service';
 import { StatusBadgeComponent } from '../../../ui/status-badge/status-badge.component';
@@ -117,15 +117,33 @@ export class ContentListComponent implements OnInit {
 
   private loadLookups(): void {
     for (const lookup of this.config.lookups ?? []) {
-      this.lookupApi
-        .list(lookup.basePath, { pageSize: 100, isActive: true, ...lookup.extraQueryParams })
-        .subscribe((result) => {
-          const options: FieldOption[] = result.items.map((item) => ({
-            value: item.id,
-            label: item.nameAr || item.nameEn || item.slug,
-          }));
-          this.lookupOptions.update((current) => ({ ...current, [lookup.key]: options }));
-        });
+      const options$ =
+        lookup.source === 'content'
+          ? this.api
+              .list<Record<string, unknown>>(lookup.basePath, { page: 1, pageSize: 200, ...lookup.extraQueryParams })
+              .pipe(
+                map((result) =>
+                  result.items.map(
+                    (item): FieldOption => ({
+                      value: item['id'] as string,
+                      label: (item['titleAr'] as string) || (item['titleEn'] as string) || (item['slug'] as string) || '',
+                    }),
+                  ),
+                ),
+              )
+          : this.lookupApi
+              .list(lookup.basePath, { pageSize: 100, isActive: true, ...lookup.extraQueryParams })
+              .pipe(
+                map((result) =>
+                  result.items.map(
+                    (item): FieldOption => ({ value: item.id, label: item.nameAr || item.nameEn || item.slug }),
+                  ),
+                ),
+              );
+
+      options$.subscribe((options) => {
+        this.lookupOptions.update((current) => ({ ...current, [lookup.key]: options }));
+      });
     }
   }
 

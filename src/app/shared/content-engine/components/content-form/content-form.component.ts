@@ -1,6 +1,6 @@
 import { NgTemplateOutlet } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit, computed, inject, signal } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -11,6 +11,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { map } from 'rxjs';
 import { AppError } from '../../../../core/models/problem-details.models';
 import { LookupApiService } from '../../../lookups/services/lookup-api.service';
 import { LanguageTabDirective } from '../../../ui/language-tabs/language-tab.directive';
@@ -127,6 +128,11 @@ export class ContentFormComponent implements OnInit {
       return this.lookupOptions()[field.lookupKey] ?? [];
     }
     return [];
+  }
+
+  /** Optional selects (no Validators.required) get a "None" option so a prior choice can be cleared. */
+  protected isOptionalSelect(field: FieldDef): boolean {
+    return !(field.validators ?? []).includes(Validators.required);
   }
 
   protected mediaPreviewFor(field: FieldDef, group: FormGroup): string | null {
@@ -265,15 +271,36 @@ export class ContentFormComponent implements OnInit {
 
   private loadLookups(): void {
     for (const lookup of this.config.lookups ?? []) {
-      this.lookupApi
-        .list(lookup.basePath, { pageSize: 100, isActive: true, ...lookup.extraQueryParams })
-        .subscribe((result) => {
-          const options: FieldOption[] = result.items.map((item) => ({
-            value: item.id,
-            label: item.nameAr || item.nameEn || item.slug,
-          }));
-          this.lookupOptions.update((current) => ({ ...current, [lookup.key]: options }));
-        });
+      const options$ =
+        lookup.source === 'content'
+          ? this.api
+              .list<Record<string, unknown>>(lookup.basePath, { page: 1, pageSize: 200, ...lookup.extraQueryParams })
+              .pipe(
+                map((result) =>
+                  result.items
+                    // Exclude the item being edited so it can't be picked as its own parent.
+                    .filter((item) => item['id'] !== this.id())
+                    .map(
+                      (item): FieldOption => ({
+                        value: item['id'] as string,
+                        label: (item['titleAr'] as string) || (item['titleEn'] as string) || (item['slug'] as string) || '',
+                      }),
+                    ),
+                ),
+              )
+          : this.lookupApi
+              .list(lookup.basePath, { pageSize: 100, isActive: true, ...lookup.extraQueryParams })
+              .pipe(
+                map((result) =>
+                  result.items.map(
+                    (item): FieldOption => ({ value: item.id, label: item.nameAr || item.nameEn || item.slug }),
+                  ),
+                ),
+              );
+
+      options$.subscribe((options) => {
+        this.lookupOptions.update((current) => ({ ...current, [lookup.key]: options }));
+      });
     }
   }
 
