@@ -3,6 +3,12 @@
   flex-direction: column;
   gap: 16px;
   max-width: 900px;
+
+  // The page background and Material's default card surface are both a pale blue wash,
+  // so cards barely stand out. Force a crisp white to make each form clearly readable.
+  mat-card {
+    background: #fff;
+  }
 }
 
 .content-form__error {

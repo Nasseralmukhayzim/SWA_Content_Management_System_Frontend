@@ -12,6 +12,7 @@ export interface LanguageOption {
   selector: 'app-language-tabs',
   imports: [MatTabsModule, NgTemplateOutlet],
   templateUrl: './language-tabs.component.html',
+  styleUrl: './language-tabs.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LanguageTabsComponent {

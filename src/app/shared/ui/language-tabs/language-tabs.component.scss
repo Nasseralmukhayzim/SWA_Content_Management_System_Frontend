@@ -1,0 +1,5 @@
+// Material's tab body carries no default padding, so content dropped straight into a tab
+// (like a form's floating field label) sits flush against the tab bar's underline.
+:host ::ng-deep .mat-mdc-tab-body-content {
+  padding-top: 20px;
+}
