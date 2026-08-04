@@ -21,7 +21,7 @@ export const pagesConfig: ContentTypeConfig = {
   ],
   baseFieldControls: [
     slugField(),
-    { key: 'parentId', label: 'Parent page ID', type: 'text', hint: 'Optional — the GUID of a parent page' },
+    { key: 'parentId', label: 'Parent page', type: 'select', lookupKey: 'parent-page', hint: 'Optional — nests this page under another page' },
     { key: 'heroImageId', label: 'Hero image', type: 'media-picker', mediaKindFilter: MediaKind.Image },
     { key: 'showInNavigation', label: 'Show in navigation', type: 'checkbox' },
     sortOrderField(),
@@ -34,6 +34,7 @@ export const pagesConfig: ContentTypeConfig = {
     { key: 'seoDescription', label: 'SEO description', type: 'textarea', validators: [Validators.maxLength(1000)] },
     { key: 'sections', label: 'Page sections', type: 'section-list' },
   ],
+  lookups: [{ key: 'parent-page', basePath: 'pages', source: 'content' }],
   buildCreatePayload: (value) => pickFields(value, BASE_FIELD_KEYS),
   buildUpdatePayload: (value) => pickFields(value, BASE_FIELD_KEYS),
 };

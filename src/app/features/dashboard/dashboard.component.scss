@@ -26,6 +26,33 @@
   border: 2px solid var(--mat-sys-tertiary);
 }
 
+.dashboard__live-indicator {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: auto;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--mat-sys-on-surface-variant);
+}
+
+.dashboard__live-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: brand.$swa-success;
+  animation: dashboard-pulse 2s ease-in-out infinite;
+}
+
+@keyframes dashboard-pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
 // ---- section cards -------------------------------------------------------
 
 .dashboard__grid {
@@ -121,6 +148,15 @@
   background-color: #fff;
   @include brand.wave-texture;
   box-shadow: 0 1px 2px rgba(16, 32, 58, 0.05);
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
+
+  &:hover {
+    box-shadow: 0 4px 12px rgba(16, 32, 58, 0.1);
+    transform: translateY(-1px);
+  }
 }
 
 .dashboard__activity-icon {

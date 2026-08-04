@@ -60,6 +60,12 @@ export interface LookupDependency {
   key: string;
   basePath: string;
   extraQueryParams?: Record<string, string | number | boolean>;
+  /**
+   * 'lookup' (default) reads from LookupApiService — small named reference lists (categories,
+   * types). 'content' reads from ContentApiService.list — real content items (e.g. Pages, for a
+   * parent-page picker), labeled by title instead of name.
+   */
+  source?: 'lookup' | 'content';
 }
 
 export interface ExtraActionDef {

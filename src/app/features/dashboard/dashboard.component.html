@@ -24,11 +24,15 @@
   <div class="dashboard__section-title">
     <span class="dashboard__bullet"></span>
     <h2>Recent activity</h2>
+    <span class="dashboard__live-indicator">
+      <span class="dashboard__live-dot"></span>
+      Updated {{ secondsSinceUpdate() }}s ago
+    </span>
   </div>
 
   <div class="dashboard__activity">
-    @for (item of recentActivity; track item.title) {
-      <div class="dashboard__activity-row">
+    @for (item of recentActivity(); track item.title) {
+      <a [routerLink]="item.path" class="dashboard__activity-row">
         <span class="dashboard__activity-icon" [class]="item.iconClass">
           <mat-icon>{{ item.icon }}</mat-icon>
         </span>
@@ -37,7 +41,7 @@
           <span class="dashboard__activity-meta">{{ item.section }} &middot; {{ item.date }}</span>
         </div>
         <app-status-badge [status]="item.status" />
-      </div>
+      </a>
     }
   </div>
 </div>
