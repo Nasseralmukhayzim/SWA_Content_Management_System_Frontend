@@ -116,11 +116,7 @@
 }
 
 .shell__menu-toggle {
-  display: none;
-
-  @include bp.mobile {
-    display: inline-flex;
-  }
+  display: inline-flex;
 }
 
 .shell__greeting {

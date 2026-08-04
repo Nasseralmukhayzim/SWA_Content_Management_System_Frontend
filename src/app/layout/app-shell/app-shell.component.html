@@ -28,14 +28,16 @@
 
   <mat-sidenav-content>
     <header class="shell__header">
-      <button
-        mat-icon-button
-        class="shell__menu-toggle"
-        (click)="sidenav.toggle()"
-        aria-label="Toggle navigation"
-      >
-        <mat-icon>menu</mat-icon>
-      </button>
+      @if (isHandset()) {
+        <button
+          mat-icon-button
+          class="shell__menu-toggle"
+          (click)="sidenav.toggle()"
+          aria-label="Toggle navigation"
+        >
+          <mat-icon>menu</mat-icon>
+        </button>
+      }
 
       <div class="shell__greeting">
         <h1>{{ greeting() }}, <span class="shell__greeting-name">{{ displayName() }}</span></h1>
