@@ -1,10 +1,12 @@
 <div class="lookup-list">
   <div class="lookup-list__header">
     <h1>{{ config.displayName }}</h1>
-    <a mat-flat-button color="primary" routerLink="new">
-      <mat-icon>add</mat-icon>
-      New {{ config.displayName }}
-    </a>
+    @if (canCreate) {
+      <a mat-flat-button color="primary" routerLink="new">
+        <mat-icon>add</mat-icon>
+        New {{ config.displayName }}
+      </a>
+    }
   </div>
 
   <mat-form-field appearance="outline" subscriptSizing="dynamic" class="lookup-list__filter">
@@ -40,9 +42,11 @@
         <a mat-icon-button [routerLink]="[row.id]" aria-label="Edit">
           <mat-icon>edit</mat-icon>
         </a>
-        <button mat-icon-button (click)="remove(row)" aria-label="Delete">
-          <mat-icon>delete</mat-icon>
-        </button>
+        @if (canDelete) {
+          <button mat-icon-button (click)="remove(row)" aria-label="Delete">
+            <mat-icon>delete</mat-icon>
+          </button>
+        }
       </td>
     </ng-container>
 

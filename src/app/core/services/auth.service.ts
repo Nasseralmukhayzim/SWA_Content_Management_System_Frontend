@@ -32,6 +32,10 @@ export class AuthService {
     return this.roles().includes(role);
   }
 
+  hasAnyRole(...roles: string[]): boolean {
+    return roles.some((role) => this.hasRole(role));
+  }
+
   login(request: LoginRequest): Observable<AuthenticationResponse> {
     return this.http
       .post<AuthenticationResponse>(`${environment.apiBaseUrl}/api/auth/login`, request)

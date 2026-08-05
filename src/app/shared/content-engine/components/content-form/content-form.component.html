@@ -11,7 +11,7 @@
       <p class="content-form__error">{{ generalError() }}</p>
     }
 
-    @if (!isCreate) {
+    @if (!isCreate()) {
       <app-workflow-actions
         [status]="status()"
         [hasAllTranslations]="hasAllTranslations()"
@@ -35,14 +35,16 @@
           }
         </form>
       </mat-card-content>
-      <mat-card-actions>
-        <button mat-flat-button color="primary" [disabled]="savingBase()" (click)="saveBase()">
-          {{ isCreate ? 'Create' : 'Save' }}
-        </button>
-      </mat-card-actions>
+      @if (canWrite) {
+        <mat-card-actions>
+          <button mat-flat-button color="primary" [disabled]="savingBase()" (click)="saveBase()">
+            {{ isCreate() ? 'Create' : 'Save' }}
+          </button>
+        </mat-card-actions>
+      }
     </mat-card>
 
-    @if (!isCreate) {
+    @if (!isCreate()) {
       <mat-card class="content-form__translations">
         <mat-card-header>
           <mat-card-title>Translations</mat-card-title>
@@ -58,9 +60,11 @@
                   />
                 }
               </form>
-              <button mat-flat-button [disabled]="savingTranslation() === 'ar'" (click)="saveTranslation('ar')">
-                Save Arabic
-              </button>
+              @if (canWrite) {
+                <button mat-flat-button [disabled]="savingTranslation() === 'ar'" (click)="saveTranslation('ar')">
+                  Save Arabic
+                </button>
+              }
             </ng-template>
             <ng-template appLanguageTab="en">
               <form [formGroup]="translationForms['en']" class="content-form__grid">
@@ -71,9 +75,11 @@
                   />
                 }
               </form>
-              <button mat-flat-button [disabled]="savingTranslation() === 'en'" (click)="saveTranslation('en')">
-                Save English
-              </button>
+              @if (canWrite) {
+                <button mat-flat-button [disabled]="savingTranslation() === 'en'" (click)="saveTranslation('en')">
+                  Save English
+                </button>
+              }
             </ng-template>
           </app-language-tabs>
         </mat-card-content>
@@ -94,16 +100,18 @@
               }
             </form>
           </mat-card-content>
-          <mat-card-actions>
-            <button
-              mat-flat-button
-              color="primary"
-              [disabled]="savingExtraAction() === action.key"
-              (click)="saveExtraAction(action.key)"
-            >
-              Save {{ action.label }}
-            </button>
-          </mat-card-actions>
+          @if (canWrite) {
+            <mat-card-actions>
+              <button
+                mat-flat-button
+                color="primary"
+                [disabled]="savingExtraAction() === action.key"
+                (click)="saveExtraAction(action.key)"
+              >
+                Save {{ action.label }}
+              </button>
+            </mat-card-actions>
+          }
         </mat-card>
       }
     }

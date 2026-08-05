@@ -63,9 +63,11 @@
         <a mat-icon-button [routerLink]="[row.id]" aria-label="Edit">
           <mat-icon>edit</mat-icon>
         </a>
-        <button mat-icon-button (click)="remove(row)" aria-label="Delete">
-          <mat-icon>delete</mat-icon>
-        </button>
+        @if (canDelete) {
+          <button mat-icon-button (click)="remove(row)" aria-label="Delete">
+            <mat-icon>delete</mat-icon>
+          </button>
+        }
       </td>
     </ng-container>
 

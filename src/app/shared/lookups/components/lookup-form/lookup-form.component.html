@@ -45,11 +45,13 @@
           }
         </form>
       </mat-card-content>
-      <mat-card-actions>
-        <button mat-flat-button color="primary" [disabled]="saving()" (click)="saveBase()">
-          {{ isCreate ? 'Create' : 'Save' }}
-        </button>
-      </mat-card-actions>
+      @if (canWrite) {
+        <mat-card-actions>
+          <button mat-flat-button color="primary" [disabled]="saving()" (click)="saveBase()">
+            {{ isCreate ? 'Create' : 'Save' }}
+          </button>
+        </mat-card-actions>
+      }
     </mat-card>
 
     @if (!isCreate) {
@@ -66,9 +68,11 @@
                   <input matInput [formControl]="fieldControl(translationForms['ar'], 'name')" />
                 </mat-form-field>
               </form>
-              <button mat-flat-button [disabled]="savingTranslation() === 'ar'" (click)="saveTranslation('ar')">
-                Save Arabic
-              </button>
+              @if (canWrite) {
+                <button mat-flat-button [disabled]="savingTranslation() === 'ar'" (click)="saveTranslation('ar')">
+                  Save Arabic
+                </button>
+              }
             </ng-template>
             <ng-template appLanguageTab="en">
               <form [formGroup]="translationForms['en']" class="lookup-form__grid">
@@ -77,9 +81,11 @@
                   <input matInput [formControl]="fieldControl(translationForms['en'], 'name')" />
                 </mat-form-field>
               </form>
-              <button mat-flat-button [disabled]="savingTranslation() === 'en'" (click)="saveTranslation('en')">
-                Save English
-              </button>
+              @if (canWrite) {
+                <button mat-flat-button [disabled]="savingTranslation() === 'en'" (click)="saveTranslation('en')">
+                  Save English
+                </button>
+              }
             </ng-template>
           </app-language-tabs>
         </mat-card-content>

@@ -1,4 +1,4 @@
-import { NgTemplateOutlet } from '@angular/common';
+import { Location, NgTemplateOutlet } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit, computed, inject, signal } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -13,6 +13,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { map } from 'rxjs';
 import { AppError } from '../../../../core/models/problem-details.models';
+import { AuthService } from '../../../../core/services/auth.service';
 import { LookupApiService } from '../../../lookups/services/lookup-api.service';
 import { LanguageTabDirective } from '../../../ui/language-tabs/language-tab.directive';
 import { LanguageOption, LanguageTabsComponent } from '../../../ui/language-tabs/language-tabs.component';
@@ -63,17 +64,24 @@ const LANGUAGES: LanguageOption[] = [
 export class ContentFormComponent implements OnInit {
   private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);
+  private readonly location = inject(Location);
   private readonly api = inject(ContentApiService);
   private readonly lookupApi = inject(LookupApiService);
   private readonly mediaPicker = inject(MediaPickerService);
   private readonly fb = inject(FormBuilder);
   private readonly snackBar = inject(MatSnackBar);
+  private readonly auth = inject(AuthService);
 
   protected readonly config = this.route.snapshot.data['config'] as ContentTypeConfig;
   protected readonly languages = LANGUAGES;
+  // Mirrors the backend's [Authorize] split: Create/Update/SetTranslation all need Writer.
+  protected readonly canWrite = this.auth.hasAnyRole('Admin', 'Writer');
 
   private readonly routeId = this.route.snapshot.paramMap.get('id');
-  protected readonly isCreate = this.routeId === null;
+  // A signal, not a plain boolean: once the base fields are saved on the create route, the form
+  // flips in place to "editing" (workflow actions, translations, ...) rather than navigating to
+  // a separate edit URL and re-instantiating the whole component from scratch.
+  protected readonly isCreate = signal(this.routeId === null);
   protected readonly id = signal<string | null>(this.routeId);
 
   protected readonly loading = signal(this.routeId !== null);
@@ -168,12 +176,17 @@ export class ContentFormComponent implements OnInit {
     this.savingBase.set(true);
     const payload = this.toIsoPayload(emptyToNull(this.baseForm.value));
 
-    if (this.isCreate) {
+    if (this.isCreate()) {
       this.api.create(this.config.basePath, this.config.buildCreatePayload(payload)).subscribe({
         next: (result) => {
           this.savingBase.set(false);
           this.snackBar.open(`${this.config.displayName} created`, 'Dismiss', { duration: 3000 });
-          this.router.navigate(['..', result.id], { relativeTo: this.route });
+          // Reveal translations/workflow actions in place instead of navigating to a fresh
+          // edit route — that would tear down and rebuild this whole component for no reason.
+          this.id.set(result.id);
+          this.status.set(ContentStatus.Draft);
+          this.isCreate.set(false);
+          this.location.replaceState(this.router.url.replace(/\/new$/, `/${result.id}`));
         },
         error: (error: AppError) => {
           this.savingBase.set(false);

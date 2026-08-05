@@ -6,8 +6,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSelectModule } from '@angular/material/select';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
 import { ActivatedRoute, RouterLink } from '@angular/router';
+import { AppError } from '../../../../core/models/problem-details.models';
+import { AuthService } from '../../../../core/services/auth.service';
 import { ConfirmDialogService } from '../../../ui/confirm-dialog/confirm-dialog.service';
 import { LookupListItem } from '../../models/lookup.model';
 import { LookupTypeConfig } from '../../models/lookup-type-config';
@@ -35,9 +38,14 @@ export class LookupListComponent implements OnInit {
   private readonly api = inject(LookupApiService);
   private readonly confirmDialog = inject(ConfirmDialogService);
   private readonly fb = inject(FormBuilder);
+  private readonly snackBar = inject(MatSnackBar);
+  protected readonly auth = inject(AuthService);
 
   protected readonly config = this.route.snapshot.data['config'] as LookupTypeConfig;
   protected readonly displayedColumns = ['name', 'isActive', 'sortOrder', 'actions'];
+  // Mirrors the backend's [Authorize] split: Create/Update need Writer, Delete needs Publisher.
+  protected readonly canCreate = this.auth.hasAnyRole('Admin', 'Writer');
+  protected readonly canDelete = this.auth.hasAnyRole('Admin', 'Publisher');
 
   protected readonly items = signal<LookupListItem[]>([]);
   protected readonly totalCount = signal(0);
@@ -72,7 +80,10 @@ export class LookupListComponent implements OnInit {
         if (!confirmed) {
           return;
         }
-        this.api.remove(this.config.basePath, item.id).subscribe(() => this.fetch());
+        this.api.remove(this.config.basePath, item.id).subscribe({
+          next: () => this.fetch(),
+          error: (error: AppError) => this.snackBar.open(error.title, 'Dismiss', { duration: 5000 }),
+        });
       });
   }
 

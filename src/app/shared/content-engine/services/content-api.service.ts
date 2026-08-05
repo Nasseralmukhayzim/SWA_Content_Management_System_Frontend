@@ -24,10 +24,15 @@ export class ContentApiService {
     return this.http.get<PagedResult<TListItem>>(`${this.baseUrl}/${basePath}`, { params: toHttpParams(params) });
   }
 
-  recentActivity(take: number): Observable<RecentActivityApiItem[]> {
-    return this.http.get<RecentActivityApiItem[]>(`${this.baseUrl}/activity/recent`, {
-      params: toHttpParams({ take }),
-    });
+  /** `statuses` restricts the feed to the given ContentStatus values (e.g. the ones a role can act on). */
+  recentActivity(take: number, statuses?: ContentStatus[]): Observable<RecentActivityApiItem[]> {
+    // ASP.NET Core's default query-string array binder expects the key repeated per value
+    // (?statuses=1&statuses=2), not a single comma-joined value — HttpParams.append does that.
+    let params = toHttpParams({ take });
+    for (const status of statuses ?? []) {
+      params = params.append('statuses', String(status));
+    }
+    return this.http.get<RecentActivityApiItem[]>(`${this.baseUrl}/activity/recent`, { params });
   }
 
   getById<TDetail>(basePath: string, id: string): Observable<TDetail> {

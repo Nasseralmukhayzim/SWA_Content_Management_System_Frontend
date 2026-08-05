@@ -45,15 +45,6 @@
             <input matInput formControlName="lastName" />
           </mat-form-field>
         </form>
-
-        @if (isCreate) {
-          <div class="user-form__roles">
-            <span class="user-form__roles-label">Initial roles</span>
-            @for (role of availableRoles(); track role) {
-              <mat-checkbox (change)="toggleInitialRole(role, $event)">{{ role }}</mat-checkbox>
-            }
-          </div>
-        }
       </mat-card-content>
       <mat-card-actions>
         <button mat-flat-button color="primary" [disabled]="saving()" (click)="save()">
@@ -62,19 +53,21 @@
       </mat-card-actions>
     </mat-card>
 
-    @if (!isCreate) {
-      <mat-card>
-        <mat-card-header>
-          <mat-card-title>Roles</mat-card-title>
-        </mat-card-header>
-        <mat-card-content class="user-form__roles">
-          @for (role of availableRoles(); track role) {
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Roles</mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="user-form__roles">
+        @for (role of availableRoles(); track role) {
+          @if (isCreate) {
+            <mat-checkbox (change)="toggleInitialRole(role, $event)">{{ role }}</mat-checkbox>
+          } @else {
             <mat-checkbox [checked]="hasRole(role)" (change)="toggleUserRole(role, $event)">
               {{ role }}
             </mat-checkbox>
           }
-        </mat-card-content>
-      </mat-card>
-    }
+        }
+      </mat-card-content>
+    </mat-card>
   }
 </div>

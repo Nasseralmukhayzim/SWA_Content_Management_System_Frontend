@@ -48,3 +48,19 @@ export const WORKFLOW_ACTIONS: WorkflowActionDef[] = [
 export function allowedActionsFor(status: ContentStatus): WorkflowActionDef[] {
   return WORKFLOW_ACTIONS.filter((action) => action.fromStatuses.includes(status));
 }
+
+/** Every status a role can run at least one workflow action from — e.g. a Reviewer's actions
+ *  (approve, request-changes) only ever apply to InReview/Approved items, so that's their
+ *  actionable slice of the world. Admin isn't itself an action-owning role here (it's granted
+ *  admission to every action via `canRun`'s Admin bypass), so callers should skip filtering for it. */
+export function statusesActionableByRole(role: string): ContentStatus[] {
+  const statuses = new Set<ContentStatus>();
+  for (const action of WORKFLOW_ACTIONS) {
+    if (action.role === role) {
+      for (const status of action.fromStatuses) {
+        statuses.add(status);
+      }
+    }
+  }
+  return [...statuses];
+}
