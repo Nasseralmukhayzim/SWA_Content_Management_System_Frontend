@@ -17,3 +17,16 @@ export const CONTENT_STATUS_LABELS: Record<ContentStatus, string> = {
 export const CONTENT_STATUS_OPTIONS: { value: ContentStatus; label: string }[] = Object.entries(
   CONTENT_STATUS_LABELS,
 ).map(([value, label]) => ({ value: Number(value), label }));
+
+/** Mirrors SWA.Domain/Content/ContentStatus.cs's DeletionRequestStatus — independent of ContentStatus. */
+export enum DeletionRequestStatus {
+  None = 0,
+  Requested = 1,
+  Approved = 2,
+}
+
+export const DELETION_STATUS_LABELS: Record<DeletionRequestStatus, string> = {
+  [DeletionRequestStatus.None]: 'None',
+  [DeletionRequestStatus.Requested]: 'Deletion requested',
+  [DeletionRequestStatus.Approved]: 'Deletion approved — awaiting removal',
+};

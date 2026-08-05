@@ -13,3 +13,26 @@
     }
   </div>
 }
+
+@if (isDeletionPending()) {
+  <div class="workflow-actions__deletion-banner">
+    <mat-icon aria-hidden="true">warning</mat-icon>
+    <span>{{ deletionStatusLabel() }}</span>
+  </div>
+}
+
+@if (deletionActions().length) {
+  <div class="workflow-actions workflow-actions--deletion">
+    @for (action of deletionActions(); track action.key) {
+      <button
+        mat-stroked-button
+        type="button"
+        color="warn"
+        [disabled]="!canRunDeletion(action) || pending()"
+        (click)="runDeletion(action)"
+      >
+        {{ action.label }}
+      </button>
+    }
+  </div>
+}

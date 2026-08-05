@@ -172,7 +172,10 @@ export class ContentListComponent implements OnInit {
           this.totalCount.set(result.totalCount);
           this.loading.set(false);
         },
-        error: () => this.loading.set(false),
+        error: (error: AppError) => {
+          this.loading.set(false);
+          this.snackBar.open(error.title || 'Failed to load list.', 'Dismiss', { duration: 5000 });
+        },
       });
   }
 }

@@ -19,7 +19,7 @@ import { LanguageTabDirective } from '../../../ui/language-tabs/language-tab.dir
 import { LanguageOption, LanguageTabsComponent } from '../../../ui/language-tabs/language-tabs.component';
 import { MediaPickerService } from '../../../ui/media-picker/media-picker.service';
 import { isoToLocalInput, localInputToIso } from '../../datetime.util';
-import { ContentStatus } from '../../models/content-status.model';
+import { ContentStatus, DeletionRequestStatus } from '../../models/content-status.model';
 import {
   ContentTypeConfig,
   FieldDef,
@@ -88,6 +88,7 @@ export class ContentFormComponent implements OnInit {
   protected readonly savingBase = signal(false);
   protected readonly savingTranslation = signal<string | null>(null);
   protected readonly status = signal<ContentStatus>(ContentStatus.Draft);
+  protected readonly deletionStatus = signal<DeletionRequestStatus>(DeletionRequestStatus.None);
   protected readonly translationLanguages = signal<string[]>([]);
   protected readonly hasAllTranslations = computed(() => this.translationLanguages().length >= this.languages.length);
   protected readonly generalError = signal<string | null>(null);
@@ -331,6 +332,7 @@ export class ContentFormComponent implements OnInit {
         }
         this.baseForm.patchValue(patched);
         this.status.set(detail['status'] as ContentStatus);
+        this.deletionStatus.set((detail['deletionStatus'] as DeletionRequestStatus) ?? DeletionRequestStatus.None);
 
         const translations = (detail['translations'] as Record<string, unknown>[]) ?? [];
         if (translations.length > 0) {

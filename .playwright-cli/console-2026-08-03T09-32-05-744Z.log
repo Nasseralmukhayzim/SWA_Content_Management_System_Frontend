@@ -1,0 +1,7 @@
+[     639ms] [LOG] Angular is running in development mode. @ http://localhost:4200/@fs/C:/Users/GACA-IT/SWA_Content_Management_System/.angular/cache/21.2.19/SWA_Content_Management_System/vite/deps/chunk-XH63QI6N.js?v=29c3591f:11244
+[   95565ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:5205/api/auth/login:0
+[ 4567942ms] [LOG] Angular is running in development mode. @ http://localhost:4200/@fs/C:/Users/GACA-IT/SWA_Content_Management_System/.angular/cache/21.2.19/SWA_Content_Management_System/vite/deps/chunk-XH63QI6N.js?v=29c3591f:11244
+[ 4589561ms] [LOG] Angular is running in development mode. @ http://localhost:4200/@fs/C:/Users/GACA-IT/SWA_Content_Management_System/.angular/cache/21.2.19/SWA_Content_Management_System/vite/deps/chunk-XH63QI6N.js?v=29c3591f:11244
+[ 4623920ms] [LOG] Angular is running in development mode. @ http://localhost:4200/@fs/C:/Users/GACA-IT/SWA_Content_Management_System/.angular/cache/21.2.19/SWA_Content_Management_System/vite/deps/chunk-XH63QI6N.js?v=29c3591f:11244
+[ 4714494ms] [LOG] Angular is running in development mode. @ http://localhost:4200/@fs/C:/Users/GACA-IT/SWA_Content_Management_System/.angular/cache/21.2.19/SWA_Content_Management_System/vite/deps/chunk-XH63QI6N.js?v=29c3591f:11244
+[ 4724145ms] [LOG] Angular is running in development mode. @ http://localhost:4200/@fs/C:/Users/GACA-IT/SWA_Content_Management_System/.angular/cache/21.2.19/SWA_Content_Management_System/vite/deps/chunk-XH63QI6N.js?v=29c3591f:11244
