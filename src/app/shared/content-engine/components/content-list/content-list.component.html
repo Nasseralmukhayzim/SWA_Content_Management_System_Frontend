@@ -1,10 +1,12 @@
 <div class="content-list">
   <div class="content-list__header">
     <h1>{{ config.displayName }}</h1>
-    <a mat-flat-button color="primary" routerLink="new">
-      <mat-icon>add</mat-icon>
-      New {{ config.displayName }}
-    </a>
+    @if (canCreate) {
+      <a mat-flat-button color="primary" routerLink="new">
+        <mat-icon>add</mat-icon>
+        New {{ config.displayName }}
+      </a>
+    }
   </div>
 
   <form [formGroup]="filterForm" class="content-list__filters">
@@ -69,9 +71,11 @@
           <a mat-icon-button [routerLink]="[idOf(row)]" aria-label="Edit">
             <mat-icon>edit</mat-icon>
           </a>
-          <button mat-icon-button (click)="remove(row)" aria-label="Delete">
-            <mat-icon>delete</mat-icon>
-          </button>
+          @if (canDelete) {
+            <button mat-icon-button (click)="remove(row)" aria-label="Delete">
+              <mat-icon>delete</mat-icon>
+            </button>
+          }
         </td>
       </ng-container>
 

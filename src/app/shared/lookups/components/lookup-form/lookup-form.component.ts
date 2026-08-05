@@ -11,6 +11,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { AppError } from '../../../../core/models/problem-details.models';
+import { AuthService } from '../../../../core/services/auth.service';
 import { SLUG_MAX_LENGTH, SLUG_PATTERN } from '../../../content-engine/models/content-type-config';
 import { LanguageTabDirective } from '../../../ui/language-tabs/language-tab.directive';
 import { LanguageOption, LanguageTabsComponent } from '../../../ui/language-tabs/language-tabs.component';
@@ -48,9 +49,12 @@ export class LookupFormComponent implements OnInit {
   private readonly api = inject(LookupApiService);
   private readonly fb = inject(FormBuilder);
   private readonly snackBar = inject(MatSnackBar);
+  private readonly auth = inject(AuthService);
 
   protected readonly config = this.route.snapshot.data['config'] as LookupTypeConfig;
   protected readonly languages = LANGUAGES;
+  // Mirrors the backend's [Authorize] split: Create/Update/SetTranslation all need Writer.
+  protected readonly canWrite = this.auth.hasAnyRole('Admin', 'Writer');
 
   private readonly routeId = this.route.snapshot.paramMap.get('id');
   protected readonly isCreate = this.routeId === null;

@@ -1,7 +1,9 @@
 import { ChangeDetectionStrategy, Component, computed, inject, input, output, signal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { AuthService } from '../../../../core/services/auth.service';
+import { AppError } from '../../../../core/models/problem-details.models';
 import { ContentStatus } from '../../models/content-status.model';
 import { WorkflowActionDef, allowedActionsFor } from '../../models/workflow-status.util';
 import { ContentApiService } from '../../services/content-api.service';
@@ -16,6 +18,7 @@ import { ContentApiService } from '../../services/content-api.service';
 export class WorkflowActionsComponent {
   private readonly auth = inject(AuthService);
   private readonly api = inject(ContentApiService);
+  private readonly snackBar = inject(MatSnackBar);
 
   readonly status = input.required<ContentStatus>();
   readonly hasAllTranslations = input(false);
@@ -31,7 +34,7 @@ export class WorkflowActionsComponent {
     if (action.key === 'publish' && !this.hasAllTranslations()) {
       return false;
     }
-    return this.auth.hasRole('Admin') || this.auth.hasRole(action.role);
+    return this.auth.hasAnyRole('Admin', action.role);
   }
 
   protected tooltipFor(action: WorkflowActionDef): string {
@@ -51,7 +54,10 @@ export class WorkflowActionsComponent {
         this.pending.set(false);
         this.actionCompleted.emit();
       },
-      error: () => this.pending.set(false),
+      error: (error: AppError) => {
+        this.pending.set(false);
+        this.snackBar.open(error.title, 'Dismiss', { duration: 5000 });
+      },
     });
   }
 }

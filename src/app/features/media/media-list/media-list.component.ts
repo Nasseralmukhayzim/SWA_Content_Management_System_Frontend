@@ -7,9 +7,12 @@ import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSelectModule } from '@angular/material/select';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
 import { RouterLink } from '@angular/router';
 import { debounceTime, distinctUntilChanged } from 'rxjs';
+import { AppError } from '../../../core/models/problem-details.models';
+import { AuthService } from '../../../core/services/auth.service';
 import { ConfirmDialogService } from '../../../shared/ui/confirm-dialog/confirm-dialog.service';
 import { MEDIA_KIND_LABELS, MediaAssetResponse, MediaKind } from '../../../shared/media/models/media-asset.model';
 import { MediaApiService } from '../../../shared/media/services/media-api.service';
@@ -36,6 +39,11 @@ export class MediaListComponent implements OnInit {
   private readonly api = inject(MediaApiService);
   private readonly confirmDialog = inject(ConfirmDialogService);
   private readonly fb = inject(FormBuilder);
+  private readonly auth = inject(AuthService);
+  private readonly snackBar = inject(MatSnackBar);
+
+  // Mirrors the backend's [Authorize]: deleting media needs Publisher (upload/edit don't).
+  protected readonly canDelete = this.auth.hasAnyRole('Admin', 'Publisher');
 
   protected readonly MediaKind = MediaKind;
   protected readonly kindLabels = MEDIA_KIND_LABELS;
@@ -95,7 +103,10 @@ export class MediaListComponent implements OnInit {
         if (!confirmed) {
           return;
         }
-        this.api.remove(item.id).subscribe(() => this.fetch());
+        this.api.remove(item.id).subscribe({
+          next: () => this.fetch(),
+          error: (error: AppError) => this.snackBar.open(error.title, 'Dismiss', { duration: 5000 }),
+        });
       });
   }
 

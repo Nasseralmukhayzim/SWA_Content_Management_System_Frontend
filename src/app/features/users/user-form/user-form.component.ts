@@ -84,8 +84,14 @@ export class UserFormComponent implements OnInit {
   toggleUserRole(role: string, event: MatCheckboxChange): void {
     const userId = this.routeId!;
     const request = event.checked ? this.api.assignRole(userId, role) : this.api.removeRole(userId, role);
-    request.subscribe(() => {
-      this.api.getById(userId).subscribe((user) => this.user.set(user));
+    request.subscribe({
+      next: () => this.api.getById(userId).subscribe((user) => this.user.set(user)),
+      error: (error: AppError) => {
+        // The checkbox already flipped visually on click; re-read the real server state so it
+        // doesn't keep showing a role change that never actually happened.
+        this.api.getById(userId).subscribe((user) => this.user.set(user));
+        this.snackBar.open(error.title, 'Dismiss', { duration: 5000 });
+      },
     });
   }
 

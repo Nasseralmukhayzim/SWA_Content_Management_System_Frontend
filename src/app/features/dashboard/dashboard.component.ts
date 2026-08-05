@@ -6,6 +6,7 @@ import { switchMap, timer } from 'rxjs';
 import { AuthService } from '../../core/services/auth.service';
 import { ContentStatus } from '../../shared/content-engine/models/content-status.model';
 import { ContentApiService, RecentActivityApiItem } from '../../shared/content-engine/services/content-api.service';
+import { statusesActionableByRole } from '../../shared/content-engine/models/workflow-status.util';
 import { StatusBadgeComponent } from '../../shared/ui/status-badge/status-badge.component';
 
 const REFRESH_INTERVAL_MS = 30_000;
@@ -66,6 +67,13 @@ export class DashboardComponent implements OnInit {
   protected readonly counts = signal<Record<string, number | null>>({});
   protected readonly recentActivity = signal<ActivityItem[]>([]);
 
+  /** Admin acts on everything, so it gets the unfiltered feed. Every other role only ever runs
+   *  actions on a subset of statuses (see WORKFLOW_ACTIONS) — restrict "Recent activity" to
+   *  that subset so each role's widget reflects what they can actually do something about. */
+  private readonly relevantStatuses: ContentStatus[] | undefined = this.auth.hasRole('Admin')
+    ? undefined
+    : [...new Set(this.auth.roles().flatMap((role) => statusesActionableByRole(role)))];
+
   /** Ticks every second so "Updated Xs ago" visibly counts up — proof the poll is alive even
    *  on refreshes where the underlying data happens not to have changed. */
   protected readonly secondsSinceUpdate = signal(0);
@@ -79,7 +87,7 @@ export class DashboardComponent implements OnInit {
     // see activity that happened elsewhere while this dashboard is open.
     timer(0, REFRESH_INTERVAL_MS)
       .pipe(
-        switchMap(() => this.contentApi.recentActivity(6)),
+        switchMap(() => this.contentApi.recentActivity(6, this.relevantStatuses)),
         takeUntilDestroyed(this.destroyRef),
       )
       .subscribe({

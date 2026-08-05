@@ -7,9 +7,12 @@ import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSelectModule } from '@angular/material/select';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs';
+import { AppError } from '../../../../core/models/problem-details.models';
+import { AuthService } from '../../../../core/services/auth.service';
 import { LookupApiService } from '../../../lookups/services/lookup-api.service';
 import { ConfirmDialogService } from '../../../ui/confirm-dialog/confirm-dialog.service';
 import { StatusBadgeComponent } from '../../../ui/status-badge/status-badge.component';
@@ -42,8 +45,13 @@ export class ContentListComponent implements OnInit {
   private readonly lookupApi = inject(LookupApiService);
   private readonly confirmDialog = inject(ConfirmDialogService);
   private readonly fb = inject(FormBuilder);
+  private readonly snackBar = inject(MatSnackBar);
+  protected readonly auth = inject(AuthService);
 
   protected readonly config = this.route.snapshot.data['config'] as ContentTypeConfig;
+  // Mirrors the backend's [Authorize] split: Create/Update need Writer, Delete needs Publisher.
+  protected readonly canCreate = this.auth.hasAnyRole('Admin', 'Writer');
+  protected readonly canDelete = this.auth.hasAnyRole('Admin', 'Publisher');
 
   protected readonly items = signal<Record<string, unknown>[]>([]);
   protected readonly totalCount = signal(0);
@@ -111,7 +119,10 @@ export class ContentListComponent implements OnInit {
         if (!confirmed) {
           return;
         }
-        this.api.remove(this.config.basePath, this.idOf(item)).subscribe(() => this.fetch());
+        this.api.remove(this.config.basePath, this.idOf(item)).subscribe({
+          next: () => this.fetch(),
+          error: (error: AppError) => this.snackBar.open(error.title, 'Dismiss', { duration: 5000 }),
+        });
       });
   }
 
