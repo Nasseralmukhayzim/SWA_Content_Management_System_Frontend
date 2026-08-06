@@ -1,16 +1,22 @@
 import { ChangeDetectionStrategy, Component, computed, inject, input, output, signal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { AuthService } from '../../../../core/services/auth.service';
 import { AppError } from '../../../../core/models/problem-details.models';
-import { ContentStatus } from '../../models/content-status.model';
-import { WorkflowActionDef, allowedActionsFor } from '../../models/workflow-status.util';
+import { ContentStatus, DELETION_STATUS_LABELS, DeletionRequestStatus } from '../../models/content-status.model';
+import {
+  DeletionActionDef,
+  WorkflowActionDef,
+  allowedActionsFor,
+  allowedDeletionActionsFor,
+} from '../../models/workflow-status.util';
 import { ContentApiService } from '../../services/content-api.service';
 
 @Component({
   selector: 'app-workflow-actions',
-  imports: [MatButtonModule, MatTooltipModule],
+  imports: [MatButtonModule, MatIconModule, MatTooltipModule],
   templateUrl: './workflow-actions.component.html',
   styleUrl: './workflow-actions.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -24,11 +30,16 @@ export class WorkflowActionsComponent {
   readonly hasAllTranslations = input(false);
   readonly basePath = input.required<string>();
   readonly id = input.required<string>();
+  readonly deletionStatus = input<DeletionRequestStatus>(DeletionRequestStatus.None);
 
   readonly actionCompleted = output<void>();
 
+  protected readonly DeletionRequestStatus = DeletionRequestStatus;
   protected readonly pending = signal(false);
   protected readonly actions = computed(() => allowedActionsFor(this.status()));
+  protected readonly deletionActions = computed(() => allowedDeletionActionsFor(this.deletionStatus()));
+  protected readonly deletionStatusLabel = computed(() => DELETION_STATUS_LABELS[this.deletionStatus()]);
+  protected readonly isDeletionPending = computed(() => this.deletionStatus() !== DeletionRequestStatus.None);
 
   protected canRun(action: WorkflowActionDef): boolean {
     if (action.key === 'publish' && !this.hasAllTranslations()) {
@@ -44,7 +55,31 @@ export class WorkflowActionsComponent {
     return '';
   }
 
+  protected canRunDeletion(action: DeletionActionDef): boolean {
+    if (action.role === 'Any') {
+      return this.auth.hasAnyRole('Admin', 'Writer', 'Reviewer', 'Publisher');
+    }
+    return this.auth.hasAnyRole('Admin', action.role);
+  }
+
   run(action: WorkflowActionDef): void {
+    if (this.pending()) {
+      return;
+    }
+    this.pending.set(true);
+    this.api.runWorkflowAction(this.basePath(), this.id(), action.key).subscribe({
+      next: () => {
+        this.pending.set(false);
+        this.actionCompleted.emit();
+      },
+      error: (error: AppError) => {
+        this.pending.set(false);
+        this.snackBar.open(error.title, 'Dismiss', { duration: 5000 });
+      },
+    });
+  }
+
+  runDeletion(action: DeletionActionDef): void {
     if (this.pending()) {
       return;
     }

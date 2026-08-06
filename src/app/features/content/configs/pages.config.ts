@@ -32,6 +32,7 @@ export const pagesConfig: ContentTypeConfig = {
     { key: 'body', label: 'Body', type: 'textarea', validators: [Validators.required] },
     { key: 'seoTitle', label: 'SEO title', type: 'text', validators: [Validators.maxLength(400)] },
     { key: 'seoDescription', label: 'SEO description', type: 'textarea', validators: [Validators.maxLength(1000)] },
+    { key: 'sections', label: 'Page sections', type: 'section-list' },
   ],
   lookups: [{ key: 'parent-page', basePath: 'pages', source: 'content' }],
   buildCreatePayload: (value) => pickFields(value, BASE_FIELD_KEYS),

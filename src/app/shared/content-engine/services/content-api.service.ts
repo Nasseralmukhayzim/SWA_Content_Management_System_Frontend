@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from '../../../../environments/environment';
 import { PagedResult } from '../../../core/models/paged-result.model';
 import { ContentStatus } from '../models/content-status.model';
-import { WorkflowActionKey } from '../models/workflow-status.util';
+import { DeletionActionKey, WorkflowActionKey } from '../models/workflow-status.util';
 
 export interface RecentActivityApiItem {
   id: string;
@@ -59,7 +59,7 @@ export class ContentApiService {
     return this.http.delete<void>(`${this.baseUrl}/${basePath}/${id}`);
   }
 
-  runWorkflowAction(basePath: string, id: string, action: WorkflowActionKey): Observable<void> {
+  runWorkflowAction(basePath: string, id: string, action: WorkflowActionKey | DeletionActionKey): Observable<void> {
     return this.http.post<void>(`${this.baseUrl}/${basePath}/${id}/${action}`, {});
   }
 

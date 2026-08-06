@@ -17,6 +17,7 @@
         [hasAllTranslations]="hasAllTranslations()"
         [basePath]="config.basePath"
         [id]="id()!"
+        [deletionStatus]="deletionStatus()"
         (actionCompleted)="onWorkflowActionCompleted()"
       />
     }
@@ -136,6 +137,12 @@
         @if (fieldControl(group, field.key).hasError('server')) {
           <mat-error>{{ fieldControl(group, field.key).getError('server') }}</mat-error>
         }
+      </div>
+    }
+    @case ('section-list') {
+      <div class="content-form__field content-form__field--wide">
+        <label class="content-form__section-list-label">{{ field.label }}</label>
+        <app-section-list-field [formControl]="fieldControl(group, field.key)" [dir]="lang === 'en' ? 'ltr' : 'rtl'" />
       </div>
     }
     @case ('checkbox') {

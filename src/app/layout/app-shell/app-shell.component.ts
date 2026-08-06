@@ -64,6 +64,9 @@ export class AppShellComponent {
   );
 
   protected readonly displayName = computed(() => {
+    const fullName = [this.auth.firstName(), this.auth.lastName()].filter(Boolean).join(' ');
+    if (fullName) return fullName;
+
     const email = this.auth.userEmail();
     const localPart = email?.split('@')[0] ?? 'Admin';
     return localPart.charAt(0).toUpperCase() + localPart.slice(1);

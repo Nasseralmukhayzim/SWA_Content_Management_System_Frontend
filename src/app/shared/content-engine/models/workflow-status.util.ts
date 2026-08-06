@@ -1,4 +1,4 @@
-import { ContentStatus } from './content-status.model';
+import { ContentStatus, DeletionRequestStatus } from './content-status.model';
 
 /**
  * Matches the route segments ContentControllerBase<TStatusCommand> declares
@@ -64,4 +64,44 @@ export function statusesActionableByRole(role: string): ContentStatus[] {
     }
   }
   return [...statuses];
+}
+
+/**
+ * Deletion is a small workflow of its own, independent of ContentStatus — a Published item can
+ * have a deletion pending without stopping being Published in the meantime (mirrors
+ * LocalizedContent.RequestDeletion/ApproveDeletion/CancelDeletionRequest in the domain).
+ */
+export type DeletionActionKey = 'request-deletion' | 'approve-deletion' | 'cancel-deletion';
+
+export interface DeletionActionDef {
+  key: DeletionActionKey;
+  label: string;
+  /** 'Any' means all four content roles (Admin/Writer/Reviewer/Publisher) may run it. */
+  role: string | 'Any';
+  fromDeletionStatuses: DeletionRequestStatus[];
+}
+
+export const DELETION_ACTIONS: DeletionActionDef[] = [
+  {
+    key: 'request-deletion',
+    label: 'Request deletion',
+    role: 'Writer',
+    fromDeletionStatuses: [DeletionRequestStatus.None],
+  },
+  {
+    key: 'approve-deletion',
+    label: 'Approve deletion',
+    role: 'Reviewer',
+    fromDeletionStatuses: [DeletionRequestStatus.Requested],
+  },
+  {
+    key: 'cancel-deletion',
+    label: 'Cancel deletion request',
+    role: 'Any',
+    fromDeletionStatuses: [DeletionRequestStatus.Requested, DeletionRequestStatus.Approved],
+  },
+];
+
+export function allowedDeletionActionsFor(status: DeletionRequestStatus): DeletionActionDef[] {
+  return DELETION_ACTIONS.filter((action) => action.fromDeletionStatuses.includes(status));
 }

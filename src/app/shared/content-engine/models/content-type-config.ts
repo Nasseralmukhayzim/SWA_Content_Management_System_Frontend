@@ -12,7 +12,8 @@ export type FieldControlType =
   | 'select'
   | 'multiselect'
   | 'datetime'
-  | 'media-picker';
+  | 'media-picker'
+  | 'section-list';
 
 export interface FieldOption {
   value: string | number;
@@ -97,7 +98,7 @@ export function defaultValueFor(field: FieldDef): unknown {
   if (field.type === 'checkbox') {
     return false;
   }
-  if (field.type === 'multiselect') {
+  if (field.type === 'multiselect' || field.type === 'section-list') {
     return [];
   }
   return null;

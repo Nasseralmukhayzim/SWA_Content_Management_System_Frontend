@@ -19,7 +19,7 @@ import { LanguageTabDirective } from '../../../ui/language-tabs/language-tab.dir
 import { LanguageOption, LanguageTabsComponent } from '../../../ui/language-tabs/language-tabs.component';
 import { MediaPickerService } from '../../../ui/media-picker/media-picker.service';
 import { isoToLocalInput, localInputToIso } from '../../datetime.util';
-import { ContentStatus } from '../../models/content-status.model';
+import { ContentStatus, DeletionRequestStatus } from '../../models/content-status.model';
 import {
   ContentTypeConfig,
   FieldDef,
@@ -30,6 +30,7 @@ import {
 import { ContentApiService } from '../../services/content-api.service';
 import { WorkflowActionsComponent } from '../workflow-actions/workflow-actions.component';
 import { RichTextEditorComponent } from '../../../ui/rich-text-editor/rich-text-editor.component';
+import { SectionListFieldComponent } from '../section-list-field/section-list-field.component';
 
 const LANGUAGES: LanguageOption[] = [
   { code: 'ar', label: 'العربية' },
@@ -54,6 +55,7 @@ const LANGUAGES: LanguageOption[] = [
     LanguageTabDirective,
     WorkflowActionsComponent,
     RichTextEditorComponent,
+    SectionListFieldComponent,
   ],
   templateUrl: './content-form.component.html',
   styleUrl: './content-form.component.scss',
@@ -86,6 +88,7 @@ export class ContentFormComponent implements OnInit {
   protected readonly savingBase = signal(false);
   protected readonly savingTranslation = signal<string | null>(null);
   protected readonly status = signal<ContentStatus>(ContentStatus.Draft);
+  protected readonly deletionStatus = signal<DeletionRequestStatus>(DeletionRequestStatus.None);
   protected readonly translationLanguages = signal<string[]>([]);
   protected readonly hasAllTranslations = computed(() => this.translationLanguages().length >= this.languages.length);
   protected readonly generalError = signal<string | null>(null);
@@ -198,6 +201,10 @@ export class ContentFormComponent implements OnInit {
       next: () => {
         this.savingBase.set(false);
         this.snackBar.open('Saved', 'Dismiss', { duration: 3000 });
+        // Mirrors LocalizedContent.MarkEdited(): editing anything past Draft drops it back to
+        // Draft server-side, so the workflow buttons must reflect that immediately, not just
+        // after the next full reload.
+        this.status.set(ContentStatus.Draft);
       },
       error: (error: AppError) => {
         this.savingBase.set(false);
@@ -222,6 +229,9 @@ export class ContentFormComponent implements OnInit {
         if (!this.translationLanguages().includes(language)) {
           this.translationLanguages.update((langs) => [...langs, language]);
         }
+        // Mirrors LocalizedContent.MarkEdited(): editing a translation past Draft drops it back
+        // to Draft server-side, so the workflow buttons must reflect that immediately.
+        this.status.set(ContentStatus.Draft);
       },
       error: (error: AppError) => {
         this.savingTranslation.set(null);
@@ -329,6 +339,7 @@ export class ContentFormComponent implements OnInit {
         }
         this.baseForm.patchValue(patched);
         this.status.set(detail['status'] as ContentStatus);
+        this.deletionStatus.set((detail['deletionStatus'] as DeletionRequestStatus) ?? DeletionRequestStatus.None);
 
         const translations = (detail['translations'] as Record<string, unknown>[]) ?? [];
         if (translations.length > 0) {
