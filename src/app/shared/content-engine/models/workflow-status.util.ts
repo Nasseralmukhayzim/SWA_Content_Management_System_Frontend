@@ -16,7 +16,7 @@ export type WorkflowActionKey =
 export interface WorkflowActionDef {
   key: WorkflowActionKey;
   label: string;
-  role: string;
+  roles: string[];
   fromStatuses: ContentStatus[];
 }
 
@@ -26,23 +26,24 @@ export interface WorkflowActionDef {
  * Publish additionally requires HasAllTranslations, checked separately by the caller.
  */
 export const WORKFLOW_ACTIONS: WorkflowActionDef[] = [
-  { key: 'submit', label: 'Submit for review', role: 'Writer', fromStatuses: [ContentStatus.Draft] },
-  { key: 'approve', label: 'Approve', role: 'Reviewer', fromStatuses: [ContentStatus.InReview] },
+  { key: 'submit', label: 'Submit for review', roles: ['Writer'], fromStatuses: [ContentStatus.Draft] },
+  // Publisher can approve too, alongside Reviewer — not just Reviewer alone.
+  { key: 'approve', label: 'Approve', roles: ['Reviewer', 'Publisher'], fromStatuses: [ContentStatus.InReview] },
   {
     key: 'request-changes',
     label: 'Request changes',
-    role: 'Reviewer',
+    roles: ['Reviewer'],
     fromStatuses: [ContentStatus.InReview, ContentStatus.Approved],
   },
-  { key: 'publish', label: 'Publish', role: 'Publisher', fromStatuses: [ContentStatus.Approved] },
-  { key: 'unpublish', label: 'Unpublish', role: 'Publisher', fromStatuses: [ContentStatus.Published] },
+  { key: 'publish', label: 'Publish', roles: ['Publisher'], fromStatuses: [ContentStatus.Approved] },
+  { key: 'unpublish', label: 'Unpublish', roles: ['Publisher'], fromStatuses: [ContentStatus.Published] },
   {
     key: 'archive',
     label: 'Archive',
-    role: 'Publisher',
+    roles: ['Publisher'],
     fromStatuses: [ContentStatus.Published, ContentStatus.Approved, ContentStatus.Draft],
   },
-  { key: 'restore', label: 'Restore', role: 'Publisher', fromStatuses: [ContentStatus.Archived] },
+  { key: 'restore', label: 'Restore', roles: ['Publisher'], fromStatuses: [ContentStatus.Archived] },
 ];
 
 export function allowedActionsFor(status: ContentStatus): WorkflowActionDef[] {
@@ -56,7 +57,7 @@ export function allowedActionsFor(status: ContentStatus): WorkflowActionDef[] {
 export function statusesActionableByRole(role: string): ContentStatus[] {
   const statuses = new Set<ContentStatus>();
   for (const action of WORKFLOW_ACTIONS) {
-    if (action.role === role) {
+    if (action.roles.includes(role)) {
       for (const status of action.fromStatuses) {
         statuses.add(status);
       }
