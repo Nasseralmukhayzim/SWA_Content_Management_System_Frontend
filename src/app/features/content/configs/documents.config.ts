@@ -50,7 +50,7 @@ export const documentsConfig: ContentTypeConfig = {
   ],
   translationFieldControls: [
     { key: 'title', label: 'Title', type: 'text', validators: [Validators.required, Validators.maxLength(400)] },
-    { key: 'description', label: 'Description', type: 'rich-text' },
+    { key: 'description', label: 'Description', type: 'rich-text', validators: [Validators.required] },
     { key: 'seoTitle', label: 'SEO title', type: 'text', validators: [Validators.maxLength(400)] },
     { key: 'seoDescription', label: 'SEO description', type: 'textarea', validators: [Validators.maxLength(1000)] },
     { key: 'fileId', label: 'File', type: 'media-picker', mediaKindFilter: MediaKind.Document },

@@ -18,7 +18,13 @@ function setup(
       provideZonelessChangeDetection(),
       provideHttpClient(),
       provideHttpClientTesting(),
-      { provide: AuthService, useValue: { hasRole: (role: string) => roles.includes(role) } },
+      {
+        provide: AuthService,
+        useValue: {
+          hasRole: (role: string) => roles.includes(role),
+          hasAnyRole: (...candidates: string[]) => candidates.some((role) => roles.includes(role)),
+        },
+      },
     ],
   });
 

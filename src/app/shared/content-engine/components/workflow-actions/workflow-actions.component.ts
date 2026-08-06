@@ -45,7 +45,7 @@ export class WorkflowActionsComponent {
     if (action.key === 'publish' && !this.hasAllTranslations()) {
       return false;
     }
-    return this.auth.hasAnyRole('Admin', action.role);
+    return this.auth.hasAnyRole('Admin', ...action.roles);
   }
 
   protected tooltipFor(action: WorkflowActionDef): string {

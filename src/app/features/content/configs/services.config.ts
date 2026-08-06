@@ -59,7 +59,7 @@ export const servicesConfig: ContentTypeConfig = {
   ],
   translationFieldControls: [
     { key: 'name', label: 'Name', type: 'text', validators: [Validators.required, Validators.maxLength(400)] },
-    { key: 'description', label: 'Description', type: 'textarea' },
+    { key: 'description', label: 'Description', type: 'textarea', validators: [Validators.required] },
     { key: 'fee', label: 'Fee', type: 'text', validators: [Validators.maxLength(300)] },
     { key: 'deliveryTime', label: 'Delivery time', type: 'text', validators: [Validators.maxLength(300)] },
     { key: 'requiredDocuments', label: 'Required documents', type: 'textarea' },
