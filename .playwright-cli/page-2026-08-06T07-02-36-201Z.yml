@@ -1,0 +1,154 @@
+- generic [ref=e4]:
+  - generic [ref=e7]:
+    - img "Saudi Water Authority" [ref=e9]
+    - navigation [ref=e10]:
+      - link "Dashboard" [ref=e11] [cursor=pointer]:
+        - /url: /dashboard
+        - img [ref=e13]: dashboard
+        - generic [ref=e14]: Dashboard
+      - link "Pages" [ref=e15] [cursor=pointer]:
+        - /url: /pages
+        - img [ref=e17]: description
+        - generic [ref=e18]: Pages
+      - link "News" [ref=e19] [cursor=pointer]:
+        - /url: /news
+        - img [ref=e21]: article
+        - generic [ref=e22]: News
+      - link "Events" [ref=e23] [cursor=pointer]:
+        - /url: /events
+        - img [ref=e25]: event
+        - generic [ref=e26]: Events
+      - link "FAQs" [ref=e27] [cursor=pointer]:
+        - /url: /faqs
+        - img [ref=e29]: help
+        - generic [ref=e30]: FAQs
+      - link "Documents" [ref=e31] [cursor=pointer]:
+        - /url: /documents
+        - img [ref=e33]: folder
+        - generic [ref=e34]: Documents
+      - link "Services" [ref=e35] [cursor=pointer]:
+        - /url: /services
+        - img [ref=e37]: design_services
+        - generic [ref=e38]: Services
+      - link "Media" [ref=e39] [cursor=pointer]:
+        - /url: /media
+        - img [ref=e41]: perm_media
+        - generic [ref=e42]: Media
+      - link "Categories" [ref=e43] [cursor=pointer]:
+        - /url: /categories
+        - img [ref=e45]: sell
+        - generic [ref=e46]: Categories
+      - link "Users" [ref=e47] [cursor=pointer]:
+        - /url: /users
+        - img [ref=e49]: group
+        - generic [ref=e50]: Users
+  - generic [ref=e52]:
+    - banner [ref=e53]:
+      - generic [ref=e54]:
+        - heading "Good morning, Seeder" [level=1] [ref=e55]
+        - paragraph [ref=e56]: SWA Content Management · Thursday, Aug 6, 2026
+      - button "seeder@swa.gov.sa S" [ref=e57]:
+        - generic [ref=e58]:
+          - generic [ref=e59]: seeder@swa.gov.sa
+          - generic [ref=e60]: S
+    - main [ref=e63]:
+      - generic [ref=e65]:
+        - link "Back to FAQ" [ref=e66] [cursor=pointer]:
+          - /url: /faqs
+          - img [ref=e67]: arrow_back
+          - generic [ref=e68]: Back to FAQ
+        - generic [ref=e445]:
+          - generic [ref=e446]:
+            - button "Request changes" [ref=e447] [cursor=pointer]:
+              - generic [ref=e448]: Request changes
+            - button "Publish" [ref=e451]:
+              - generic [ref=e452]: Publish
+            - button "Archive" [ref=e455]:
+              - generic [ref=e456]: Archive
+          - button "Request deletion" [ref=e460]:
+            - generic [ref=e461]: Request deletion
+        - generic [ref=e464]:
+          - generic [ref=e467]: Details
+          - generic [ref=e469]:
+            - generic [ref=e470]:
+              - generic [ref=e472]:
+                - generic [ref=e473]:
+                  - text: Slug
+                  - generic [ref=e474]: "*"
+                - textbox "Slug" [ref=e476]: what-is-freedom-of-information
+              - generic [ref=e479]: Lowercase letters, numbers, and hyphens only
+            - generic [ref=e483] [cursor=pointer]:
+              - generic [ref=e484]: Category
+              - combobox "Category" [ref=e486]:
+                - img [ref=e492]
+            - generic [ref=e497]:
+              - generic [ref=e498]:
+                - text: Sort order
+                - generic [ref=e499]: "*"
+              - spinbutton "Sort order" [ref=e501]: "6"
+          - button "Save" [ref=e504]:
+            - generic [ref=e505]: Save
+        - generic [ref=e508]:
+          - generic [ref=e511]: Translations
+          - generic [ref=e514]:
+            - tablist [ref=e517]:
+              - generic [ref=e518]:
+                - tab "العربية" [selected] [ref=e519] [cursor=pointer]:
+                  - generic [ref=e521]: العربية
+                - tab "English" [ref=e522] [cursor=pointer]:
+                  - generic [ref=e524]: English
+            - generic [ref=e525]:
+              - tabpanel "العربية" [ref=e526]:
+                - generic [ref=e527]:
+                  - generic [ref=e528]:
+                    - generic [ref=e531]:
+                      - generic [ref=e532]:
+                        - text: Question
+                        - generic [ref=e533]: "*"
+                      - textbox "Question" [ref=e535]: ماهي حرية المعلومات؟
+                    - generic [ref=e537]:
+                      - generic [ref=e538]: Answer
+                      - application [ref=e541]:
+                        - generic [ref=e542]:
+                          - group [ref=e544]:
+                            - group [ref=e545]:
+                              - toolbar [ref=e546]:
+                                - button "Undo" [disabled] [ref=e547]:
+                                  - img [ref=e549]
+                                - button "Redo" [disabled] [ref=e551]:
+                                  - img [ref=e553]
+                              - toolbar [ref=e555]:
+                                - button "Block Paragraph" [ref=e556]:
+                                  - generic [ref=e557]: Paragraph
+                                  - img [ref=e559]
+                                - button "Font Roboto,Arial,sans-serif" [ref=e561]:
+                                  - generic [ref=e562]: Roboto,Arial,sans-serif
+                                  - img [ref=e564]
+                                - button "Font size 14px" [ref=e566]:
+                                  - generic [ref=e567]: 14px
+                                  - img [ref=e569]
+                              - toolbar [ref=e571]:
+                                - button "Bold" [ref=e572]:
+                                  - img [ref=e574]
+                                - button "Italic" [ref=e576]:
+                                  - img [ref=e578]
+                                - button "Underline" [ref=e580]:
+                                  - img [ref=e582]
+                                - button "Strikethrough" [ref=e584]:
+                                  - img [ref=e586]
+                              - toolbar [ref=e590]:
+                                - button "Reveal or hide additional toolbar items" [ref=e591]:
+                                  - img [ref=e593]
+                          - iframe [ref=e597]:
+                            - generic "Rich Text Area. Press ALT-0 for help." [active] [ref=f3e1]:
+                              - paragraph [ref=f3e2]: مجموعة من الأحكام والإجراءات التي تنظم ممارسة حق الاطلاع على المعلومات العامة المتعلقة بأعمال الجهات أو الحصول عليها، وتعزيز مبدأ الشفافية وحرية تداول هذه المعلومات.
+                        - generic [ref=e598]:
+                          - generic [ref=e599]:
+                            - navigation [ref=e600]:
+                              - button "p" [ref=e601]
+                            - button "25 words" [ref=e603]
+                          - generic "Press the Up and Down arrow keys to resize the editor." [ref=e604]:
+                            - img [ref=e605]
+                  - button "Save Arabic" [ref=e608]:
+                    - generic [ref=e609]: Save Arabic
+              - tabpanel [ref=e612]

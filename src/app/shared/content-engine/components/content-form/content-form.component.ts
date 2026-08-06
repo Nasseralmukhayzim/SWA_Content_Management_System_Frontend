@@ -201,6 +201,10 @@ export class ContentFormComponent implements OnInit {
       next: () => {
         this.savingBase.set(false);
         this.snackBar.open('Saved', 'Dismiss', { duration: 3000 });
+        // Mirrors LocalizedContent.MarkEdited(): editing anything past Draft drops it back to
+        // Draft server-side, so the workflow buttons must reflect that immediately, not just
+        // after the next full reload.
+        this.status.set(ContentStatus.Draft);
       },
       error: (error: AppError) => {
         this.savingBase.set(false);
@@ -225,6 +229,9 @@ export class ContentFormComponent implements OnInit {
         if (!this.translationLanguages().includes(language)) {
           this.translationLanguages.update((langs) => [...langs, language]);
         }
+        // Mirrors LocalizedContent.MarkEdited(): editing a translation past Draft drops it back
+        // to Draft server-side, so the workflow buttons must reflect that immediately.
+        this.status.set(ContentStatus.Draft);
       },
       error: (error: AppError) => {
         this.savingTranslation.set(null);
