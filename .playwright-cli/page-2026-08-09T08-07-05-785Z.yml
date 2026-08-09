@@ -1,0 +1,33 @@
+- generic [ref=e4]:
+  - generic [ref=e6]:
+    - img "Saudi Water Authority" [ref=e8]
+    - heading "SWA Content Management System" [level=1] [ref=e9]
+    - paragraph [ref=e10]: One secure gateway to publish, review and organize every page, story and service of the Saudi Water Authority.
+  - generic [ref=e13]:
+    - heading "Welcome back · Sign in" [level=2] [ref=e14]
+    - paragraph [ref=e15]: Use your Authority account to continue
+    - generic [ref=e18]:
+      - generic [ref=e19]:
+        - text: Email
+        - generic [ref=e20]: "*"
+      - img [ref=e22]: mail
+      - textbox "Email" [ref=e24]
+    - generic [ref=e28]:
+      - generic [ref=e29]:
+        - text: Password
+        - generic [ref=e30]: "*"
+      - img [ref=e32]: lock
+      - textbox "Password" [ref=e34]
+      - button "Show password" [ref=e36] [cursor=pointer]:
+        - img [ref=e37]: visibility
+    - generic [ref=e41]:
+      - generic [ref=e43]:
+        - generic [ref=e44] [cursor=pointer]:
+          - checkbox "Remember me" [checked] [ref=e46]
+          - generic:
+            - img
+        - generic [ref=e47] [cursor=pointer]: Remember me
+      - button "Forgot password?" [ref=e48] [cursor=pointer]
+    - button "Sign in" [ref=e49]:
+      - generic [ref=e50]: Sign in
+    - paragraph [ref=e53]: Saudi Water Authority — CMS

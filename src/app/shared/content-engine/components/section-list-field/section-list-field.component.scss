@@ -44,11 +44,38 @@
 
 .section-list__item {
   display: flex;
+  flex-wrap: wrap;
   align-items: flex-start;
   gap: 8px;
   padding: 8px;
   border: 1px solid rgba(0, 0, 0, 0.12);
   border-radius: 8px;
+}
+
+.section-list__card-media {
+  display: flex;
+  flex-basis: 100%;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.section-list__media-picker {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+}
+
+.section-list__media-label {
+  font-weight: 500;
+}
+
+.section-list__media-value {
+  color: rgba(0, 0, 0, 0.6);
+  max-width: 180px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .section-list__item-actions {

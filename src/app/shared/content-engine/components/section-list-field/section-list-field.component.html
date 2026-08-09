@@ -62,6 +62,40 @@
                   (ngModelChange)="updateItem(sectionIndex, itemIndex, { description: $event })"
                 ></textarea>
               </mat-form-field>
+
+              @if (section.kind === 'CardGrid') {
+                <div class="section-list__card-media">
+                  <div class="section-list__media-picker">
+                    <span class="section-list__media-label">Icon</span>
+                    <span class="section-list__media-value">{{ mediaLabelFor(item.iconId) ?? 'None' }}</span>
+                    <button mat-stroked-button type="button" (click)="chooseIcon(sectionIndex, itemIndex)">Choose</button>
+                    @if (item.iconId) {
+                      <button mat-icon-button type="button" (click)="clearIcon(sectionIndex, itemIndex)" aria-label="Remove icon">
+                        <mat-icon>close</mat-icon>
+                      </button>
+                    }
+                  </div>
+                  <div class="section-list__media-picker">
+                    <span class="section-list__media-label">Image</span>
+                    <span class="section-list__media-value">{{ mediaLabelFor(item.imageId) ?? 'None' }}</span>
+                    <button mat-stroked-button type="button" (click)="chooseImage(sectionIndex, itemIndex)">Choose</button>
+                    @if (item.imageId) {
+                      <button mat-icon-button type="button" (click)="clearImage(sectionIndex, itemIndex)" aria-label="Remove image">
+                        <mat-icon>close</mat-icon>
+                      </button>
+                    }
+                  </div>
+                </div>
+                <mat-form-field appearance="outline" class="section-list__field section-list__field--wide">
+                  <mat-label>Link URL</mat-label>
+                  <input
+                    matInput
+                    [ngModel]="item.linkUrl"
+                    (ngModelChange)="updateItem(sectionIndex, itemIndex, { linkUrl: $event })"
+                  />
+                </mat-form-field>
+              }
+
               <div class="section-list__item-actions">
                 <button mat-icon-button type="button" [disabled]="itemFirst" (click)="moveItem(sectionIndex, itemIndex, -1)" aria-label="Move item up">
                   <mat-icon>arrow_upward</mat-icon>

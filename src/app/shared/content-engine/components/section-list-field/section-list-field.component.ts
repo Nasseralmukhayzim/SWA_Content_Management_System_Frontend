@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, forwardRef, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, forwardRef, inject, signal } from '@angular/core';
 import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -6,6 +6,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { MediaKind } from '../../../media/models/media-asset.model';
+import { MediaPickerService } from '../../../ui/media-picker/media-picker.service';
 import {
   ITEM_LABELS,
   PageSection,
@@ -40,9 +42,13 @@ import {
 export class SectionListFieldComponent implements ControlValueAccessor {
   @Input() dir: 'ltr' | 'rtl' = 'ltr';
 
+  private readonly mediaPicker = inject(MediaPickerService);
+
   protected readonly sections = signal<PageSection[]>([]);
   protected readonly kindOptions = SECTION_KIND_OPTIONS;
   protected readonly newSectionKind = signal<SectionKind>('Text');
+  protected readonly mediaPreview = signal<Record<string, string>>({});
+  protected readonly MediaKind = MediaKind;
 
   private isDisabled = false;
   private onChange: (value: PageSection[]) => void = () => {};
@@ -112,6 +118,41 @@ export class SectionListFieldComponent implements ControlValueAccessor {
           : section,
       ),
     );
+  }
+
+  protected mediaLabelFor(id: string | null | undefined): string | null {
+    if (!id) {
+      return null;
+    }
+    return this.mediaPreview()[id] ?? id;
+  }
+
+  protected chooseIcon(sectionIndex: number, itemIndex: number): void {
+    this.mediaPicker.pick(MediaKind.Image).subscribe((asset) => {
+      if (!asset) {
+        return;
+      }
+      this.mediaPreview.update((current) => ({ ...current, [asset.id]: asset.originalFileName }));
+      this.updateItem(sectionIndex, itemIndex, { iconId: asset.id });
+    });
+  }
+
+  protected chooseImage(sectionIndex: number, itemIndex: number): void {
+    this.mediaPicker.pick(MediaKind.Image).subscribe((asset) => {
+      if (!asset) {
+        return;
+      }
+      this.mediaPreview.update((current) => ({ ...current, [asset.id]: asset.originalFileName }));
+      this.updateItem(sectionIndex, itemIndex, { imageId: asset.id });
+    });
+  }
+
+  protected clearIcon(sectionIndex: number, itemIndex: number): void {
+    this.updateItem(sectionIndex, itemIndex, { iconId: null });
+  }
+
+  protected clearImage(sectionIndex: number, itemIndex: number): void {
+    this.updateItem(sectionIndex, itemIndex, { imageId: null });
   }
 
   private mutate(update: (sections: PageSection[]) => PageSection[]): void {

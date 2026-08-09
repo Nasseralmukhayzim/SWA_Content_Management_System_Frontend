@@ -1,0 +1,787 @@
+- generic [ref=e4]:
+  - generic [ref=e7]:
+    - img "Saudi Water Authority" [ref=e9]
+    - navigation [ref=e10]:
+      - link "Dashboard" [ref=e11] [cursor=pointer]:
+        - /url: /dashboard
+        - img [ref=e13]: dashboard
+        - generic [ref=e14]: Dashboard
+      - link "Pages" [ref=e15] [cursor=pointer]:
+        - /url: /pages
+        - img [ref=e17]: description
+        - generic [ref=e18]: Pages
+      - link "News" [ref=e19] [cursor=pointer]:
+        - /url: /news
+        - img [ref=e21]: article
+        - generic [ref=e22]: News
+      - link "Events" [ref=e23] [cursor=pointer]:
+        - /url: /events
+        - img [ref=e25]: event
+        - generic [ref=e26]: Events
+      - link "FAQs" [ref=e27] [cursor=pointer]:
+        - /url: /faqs
+        - img [ref=e29]: help
+        - generic [ref=e30]: FAQs
+      - link "Documents" [ref=e31] [cursor=pointer]:
+        - /url: /documents
+        - img [ref=e33]: folder
+        - generic [ref=e34]: Documents
+      - link "Services" [ref=e35] [cursor=pointer]:
+        - /url: /services
+        - img [ref=e37]: design_services
+        - generic [ref=e38]: Services
+      - link "Media" [ref=e39] [cursor=pointer]:
+        - /url: /media
+        - img [ref=e41]: perm_media
+        - generic [ref=e42]: Media
+      - link "Categories" [ref=e43] [cursor=pointer]:
+        - /url: /categories
+        - img [ref=e45]: sell
+        - generic [ref=e46]: Categories
+      - link "Users" [ref=e47] [cursor=pointer]:
+        - /url: /users
+        - img [ref=e49]: group
+        - generic [ref=e50]: Users
+  - generic [ref=e52]:
+    - banner [ref=e53]:
+      - generic [ref=e54]:
+        - heading "Good afternoon, Seeder" [level=1] [ref=e55]
+        - paragraph [ref=e56]: SWA Content Management · Sunday, Aug 9, 2026
+      - button "seeder@swa.gov.sa S" [ref=e57]:
+        - generic [ref=e58]:
+          - generic [ref=e59]: seeder@swa.gov.sa
+          - generic [ref=e60]: S
+    - main [ref=e63]:
+      - generic [ref=e65]:
+        - link "Back to Page" [ref=e66] [cursor=pointer]:
+          - /url: /pages
+          - img [ref=e67]: arrow_back
+          - generic [ref=e68]: Back to Page
+        - generic [ref=e71]:
+          - generic [ref=e72]:
+            - button "Submit for review" [ref=e73]:
+              - generic [ref=e74]: Submit for review
+            - button "Archive" [ref=e77]:
+              - generic [ref=e78]: Archive
+          - button "Request deletion" [ref=e82]:
+            - generic [ref=e83]: Request deletion
+        - generic [ref=e86]:
+          - generic [ref=e89]: Details
+          - generic [ref=e91]:
+            - generic [ref=e92]:
+              - generic [ref=e94]:
+                - generic [ref=e95]:
+                  - text: Slug
+                  - generic [ref=e96]: "*"
+                - textbox "Slug" [ref=e98]: home
+              - generic [ref=e101]: Lowercase letters, numbers, and hyphens only
+            - generic [ref=e103]:
+              - generic [ref=e105] [cursor=pointer]:
+                - generic [ref=e106]: Parent page
+                - combobox "Parent page" [ref=e108]:
+                  - img [ref=e114]
+              - generic [ref=e118]: Optional — nests this page under another page
+            - generic [ref=e120]:
+              - generic [ref=e121]: Hero image
+              - generic [ref=e122]: 019fe5c0-3d58-795e-af41-78178fb9c933
+              - button "Choose" [ref=e123]:
+                - generic [ref=e124]: Choose
+              - button "Clear" [ref=e127] [cursor=pointer]:
+                - img [ref=e128]: close
+            - generic [ref=e132]:
+              - generic [ref=e133] [cursor=pointer]:
+                - checkbox "Show in navigation" [ref=e135]
+                - generic:
+                  - img
+              - generic [ref=e136] [cursor=pointer]: Show in navigation
+            - generic [ref=e139]:
+              - generic [ref=e140]:
+                - text: Sort order
+                - generic [ref=e141]: "*"
+              - spinbutton "Sort order" [ref=e143]: "0"
+          - button "Save" [ref=e146]:
+            - generic [ref=e147]: Save
+        - generic [ref=e150]:
+          - generic [ref=e153]: Translations
+          - generic [ref=e156]:
+            - tablist [ref=e159]:
+              - generic [ref=e160]:
+                - tab "العربية" [selected] [ref=e161] [cursor=pointer]:
+                  - generic [ref=e163]: العربية
+                - tab "English" [ref=e164] [cursor=pointer]:
+                  - generic [ref=e166]: English
+            - generic [ref=e167]:
+              - tabpanel "العربية" [ref=e168]:
+                - generic [ref=e169]:
+                  - generic [ref=e170]:
+                    - generic [ref=e173]:
+                      - generic [ref=e174]:
+                        - text: Title
+                        - generic [ref=e175]: "*"
+                      - textbox "Title" [ref=e177]: الهيئة السعودية للمياه
+                    - generic [ref=e181]:
+                      - generic [ref=e182]: Summary
+                      - textbox "Summary" [ref=e184]: استدامة وابتكار
+                    - generic [ref=e188]:
+                      - generic [ref=e189]:
+                        - text: Body
+                        - generic [ref=e190]: "*"
+                      - textbox "Body" [ref=e192]: تعمل الهيئة السعودية للمياه على تنظيم الأنشطة والخدمات المرتبطة بقطاع المياه، وتختص بتطوير الإطار التنظيمي والرقابة على القطاع، وتسعى من خلال ذلك إلى تحقيق أهداف الاستراتيجية الوطنية للمياه بما يتوافق مع مستهدفات رؤية المملكة 2030.
+                    - generic [ref=e196]:
+                      - generic [ref=e197]: SEO title
+                      - textbox "SEO title" [ref=e199]: الهيئة السعودية للمياه
+                    - generic [ref=e203]:
+                      - generic [ref=e204]: SEO description
+                      - textbox "SEO description" [ref=e206]: "الموقع الرسمي للهيئة السعودية للمياه: خدمات، أرقام القطاع، الجهات التابعة، وآخر الأخبار."
+                    - generic [ref=e208]:
+                      - generic [ref=e209]: Page sections
+                      - generic [ref=e211]:
+                        - generic [ref=e212]:
+                          - generic [ref=e213]:
+                            - generic [ref=e216] [cursor=pointer]:
+                              - generic [ref=e217]: Kind
+                              - combobox "Kind" [ref=e219]:
+                                - generic [ref=e220]:
+                                  - generic [ref=e222]: Text
+                                  - img [ref=e225]
+                            - generic [ref=e228]:
+                              - button "Move section up" [disabled]:
+                                - img: arrow_upward
+                              - button "Move section down" [ref=e229] [cursor=pointer]:
+                                - img [ref=e230]: arrow_downward
+                              - button "Remove section" [ref=e233] [cursor=pointer]:
+                                - img [ref=e234]: delete
+                          - generic [ref=e239]:
+                            - generic [ref=e240]: Heading
+                            - textbox "Heading" [ref=e242]: عن الهيئة
+                          - generic [ref=e246]:
+                            - generic [ref=e247]: Body
+                            - textbox "Body" [ref=e249]: تعمل الهيئة السعودية للمياه على تنظيم الأنشطة والخدمات المرتبطة بقطاع المياه، وتختص بتطوير الإطار التنظيمي والرقابة على القطاع، وتسعى من خلال ذلك إلى تحقيق أهداف الاستراتيجية الوطنية للمياه بما يتوافق مع مستهدفات رؤية المملكة 2030.
+                        - generic [ref=e251]:
+                          - generic [ref=e252]:
+                            - generic [ref=e255] [cursor=pointer]:
+                              - generic [ref=e256]: Kind
+                              - combobox "Kind" [ref=e258]:
+                                - generic [ref=e259]:
+                                  - generic [ref=e261]: Card grid
+                                  - img [ref=e264]
+                            - generic [ref=e267]:
+                              - button "Move section up" [ref=e268] [cursor=pointer]:
+                                - img [ref=e269]: arrow_upward
+                              - button "Move section down" [ref=e272] [cursor=pointer]:
+                                - img [ref=e273]: arrow_downward
+                              - button "Remove section" [ref=e276] [cursor=pointer]:
+                                - img [ref=e277]: delete
+                          - generic [ref=e282]:
+                            - generic [ref=e283]: Heading
+                            - textbox "Heading" [ref=e285]: أبرز الخدمات
+                          - generic [ref=e289]:
+                            - generic [ref=e290]: Intro (optional)
+                            - textbox "Intro (optional)" [ref=e292]: أهم الخدمات الرقمية المقدمة للمستفيدين
+                          - generic [ref=e294]:
+                            - generic [ref=e295]:
+                              - generic [ref=e298]:
+                                - generic [ref=e299]: Card title
+                                - textbox "Card title" [active] [ref=e301]: حاسبة فاتورة قياس المياه
+                              - generic [ref=e305]:
+                                - generic [ref=e306]: Card description
+                                - textbox "Card description" [ref=e308]: تتيح هذه الخدمة للمستفيد احتساب القيمة التقديرية لفاتورة المياه الخاصة به وفق نمط استهلاكه.
+                              - generic [ref=e310]:
+                                - generic [ref=e311]:
+                                  - generic [ref=e312]: Icon
+                                  - generic [ref=e313]: None
+                                  - button "Choose" [ref=e314]:
+                                    - generic [ref=e315]: Choose
+                                - generic [ref=e318]:
+                                  - generic [ref=e319]: Image
+                                  - generic [ref=e320]: None
+                                  - button "Choose" [ref=e321]:
+                                    - generic [ref=e322]: Choose
+                              - generic [ref=e327]:
+                                - generic [ref=e328]: Link URL
+                                - textbox "Link URL" [ref=e330]
+                              - generic [ref=e332]:
+                                - button "Move item up" [disabled]:
+                                  - img: arrow_upward
+                                - button "Move item down" [ref=e333] [cursor=pointer]:
+                                  - img [ref=e334]: arrow_downward
+                                - button "Remove item" [ref=e337] [cursor=pointer]:
+                                  - img [ref=e338]: delete
+                            - generic [ref=e341]:
+                              - generic [ref=e344]:
+                                - generic [ref=e345]: Card title
+                                - textbox "Card title" [ref=e347]: تصعيد الشكاوى
+                              - generic [ref=e351]:
+                                - generic [ref=e352]: Card description
+                                - textbox "Card description" [ref=e354]: تتيح هذه الخدمة للمستفيد تصعيد الشكوى إلى الهيئة في حال عدم استجابة مقدم الخدمة خلال المدة النظامية.
+                              - generic [ref=e356]:
+                                - generic [ref=e357]:
+                                  - generic [ref=e358]: Icon
+                                  - generic [ref=e359]: None
+                                  - button "Choose" [ref=e360]:
+                                    - generic [ref=e361]: Choose
+                                - generic [ref=e364]:
+                                  - generic [ref=e365]: Image
+                                  - generic [ref=e366]: None
+                                  - button "Choose" [ref=e367]:
+                                    - generic [ref=e368]: Choose
+                              - generic [ref=e373]:
+                                - generic [ref=e374]: Link URL
+                                - textbox "Link URL" [ref=e376]
+                              - generic [ref=e378]:
+                                - button "Move item up" [ref=e379] [cursor=pointer]:
+                                  - img [ref=e380]: arrow_upward
+                                - button "Move item down" [ref=e383] [cursor=pointer]:
+                                  - img [ref=e384]: arrow_downward
+                                - button "Remove item" [ref=e387] [cursor=pointer]:
+                                  - img [ref=e388]: delete
+                            - generic [ref=e391]:
+                              - generic [ref=e394]:
+                                - generic [ref=e395]: Card title
+                                - textbox "Card title" [ref=e397]: تقديم البلاغات
+                              - generic [ref=e401]:
+                                - generic [ref=e402]: Card description
+                                - textbox "Card description" [ref=e404]: تتيح هذه الخدمة للمستفيد إبلاغ الهيئة عن المخالفات المرصودة في قطاع المياه.
+                              - generic [ref=e406]:
+                                - generic [ref=e407]:
+                                  - generic [ref=e408]: Icon
+                                  - generic [ref=e409]: None
+                                  - button "Choose" [ref=e410]:
+                                    - generic [ref=e411]: Choose
+                                - generic [ref=e414]:
+                                  - generic [ref=e415]: Image
+                                  - generic [ref=e416]: None
+                                  - button "Choose" [ref=e417]:
+                                    - generic [ref=e418]: Choose
+                              - generic [ref=e423]:
+                                - generic [ref=e424]: Link URL
+                                - textbox "Link URL" [ref=e426]
+                              - generic [ref=e428]:
+                                - button "Move item up" [ref=e429] [cursor=pointer]:
+                                  - img [ref=e430]: arrow_upward
+                                - button "Move item down" [disabled]:
+                                  - img: arrow_downward
+                                - button "Remove item" [ref=e433] [cursor=pointer]:
+                                  - img [ref=e434]: delete
+                            - button "Add card title" [ref=e437]:
+                              - img [ref=e438]: add
+                              - generic [ref=e439]: Add card title
+                        - generic [ref=e442]:
+                          - generic [ref=e443]:
+                            - generic [ref=e446] [cursor=pointer]:
+                              - generic [ref=e447]: Kind
+                              - combobox "Kind" [ref=e449]:
+                                - generic [ref=e450]:
+                                  - generic [ref=e452]: Card grid
+                                  - img [ref=e455]
+                            - generic [ref=e458]:
+                              - button "Move section up" [ref=e459] [cursor=pointer]:
+                                - img [ref=e460]: arrow_upward
+                              - button "Move section down" [ref=e463] [cursor=pointer]:
+                                - img [ref=e464]: arrow_downward
+                              - button "Remove section" [ref=e467] [cursor=pointer]:
+                                - img [ref=e468]: delete
+                          - generic [ref=e473]:
+                            - generic [ref=e474]: Heading
+                            - textbox "Heading" [ref=e476]: محاور التركيز الاستراتيجية
+                          - generic [ref=e480]:
+                            - generic [ref=e481]: Intro (optional)
+                            - textbox "Intro (optional)" [ref=e483]: ترتكز الهيئة في عملها على محاور استراتيجية رئيسية تسهم في تطوير قطاع المياه واستدامته
+                          - generic [ref=e485]:
+                            - generic [ref=e486]:
+                              - generic [ref=e489]:
+                                - generic [ref=e490]: Card title
+                                - textbox "Card title" [ref=e492]: بناء القدرات
+                              - generic [ref=e496]:
+                                - generic [ref=e497]: Card description
+                                - textbox "Card description" [ref=e499]: تطوير الكوادر الوطنية وتعزيز منظومة الابتكار لتحقيق النمو المستدام في قطاع المياه.
+                              - generic [ref=e501]:
+                                - generic [ref=e502]:
+                                  - generic [ref=e503]: Icon
+                                  - generic [ref=e504]: None
+                                  - button "Choose" [ref=e505]:
+                                    - generic [ref=e506]: Choose
+                                - generic [ref=e509]:
+                                  - generic [ref=e510]: Image
+                                  - generic [ref=e511]: None
+                                  - button "Choose" [ref=e512]:
+                                    - generic [ref=e513]: Choose
+                              - generic [ref=e518]:
+                                - generic [ref=e519]: Link URL
+                                - textbox "Link URL" [ref=e521]
+                              - generic [ref=e523]:
+                                - button "Move item up" [disabled]:
+                                  - img: arrow_upward
+                                - button "Move item down" [ref=e524] [cursor=pointer]:
+                                  - img [ref=e525]: arrow_downward
+                                - button "Remove item" [ref=e528] [cursor=pointer]:
+                                  - img [ref=e529]: delete
+                            - generic [ref=e532]:
+                              - generic [ref=e535]:
+                                - generic [ref=e536]: Card title
+                                - textbox "Card title" [ref=e538]: تمكين التنمية الاقتصادية
+                              - generic [ref=e542]:
+                                - generic [ref=e543]: Card description
+                                - textbox "Card description" [ref=e545]: تنمية الاقتصاد المرتبط بقطاع المياه وتوفير بيئة استثمارية جاذبة.
+                              - generic [ref=e547]:
+                                - generic [ref=e548]:
+                                  - generic [ref=e549]: Icon
+                                  - generic [ref=e550]: None
+                                  - button "Choose" [ref=e551]:
+                                    - generic [ref=e552]: Choose
+                                - generic [ref=e555]:
+                                  - generic [ref=e556]: Image
+                                  - generic [ref=e557]: None
+                                  - button "Choose" [ref=e558]:
+                                    - generic [ref=e559]: Choose
+                              - generic [ref=e564]:
+                                - generic [ref=e565]: Link URL
+                                - textbox "Link URL" [ref=e567]
+                              - generic [ref=e569]:
+                                - button "Move item up" [ref=e570] [cursor=pointer]:
+                                  - img [ref=e571]: arrow_upward
+                                - button "Move item down" [ref=e574] [cursor=pointer]:
+                                  - img [ref=e575]: arrow_downward
+                                - button "Remove item" [ref=e578] [cursor=pointer]:
+                                  - img [ref=e579]: delete
+                            - generic [ref=e582]:
+                              - generic [ref=e585]:
+                                - generic [ref=e586]: Card title
+                                - textbox "Card title" [ref=e588]: مصالح المستفيدين
+                              - generic [ref=e592]:
+                                - generic [ref=e593]: Card description
+                                - textbox "Card description" [ref=e595]: الارتقاء بجودة الخدمات المقدمة للمستفيدين وتعزيز رضاهم.
+                              - generic [ref=e597]:
+                                - generic [ref=e598]:
+                                  - generic [ref=e599]: Icon
+                                  - generic [ref=e600]: None
+                                  - button "Choose" [ref=e601]:
+                                    - generic [ref=e602]: Choose
+                                - generic [ref=e605]:
+                                  - generic [ref=e606]: Image
+                                  - generic [ref=e607]: None
+                                  - button "Choose" [ref=e608]:
+                                    - generic [ref=e609]: Choose
+                              - generic [ref=e614]:
+                                - generic [ref=e615]: Link URL
+                                - textbox "Link URL" [ref=e617]
+                              - generic [ref=e619]:
+                                - button "Move item up" [ref=e620] [cursor=pointer]:
+                                  - img [ref=e621]: arrow_upward
+                                - button "Move item down" [ref=e624] [cursor=pointer]:
+                                  - img [ref=e625]: arrow_downward
+                                - button "Remove item" [ref=e628] [cursor=pointer]:
+                                  - img [ref=e629]: delete
+                            - generic [ref=e632]:
+                              - generic [ref=e635]:
+                                - generic [ref=e636]: Card title
+                                - textbox "Card title" [ref=e638]: الالتزام والامتثال
+                              - generic [ref=e642]:
+                                - generic [ref=e643]: Card description
+                                - textbox "Card description" [ref=e645]: تعزيز الرقابة والامتثال لضمان جودة الخدمات المقدمة في القطاع.
+                              - generic [ref=e647]:
+                                - generic [ref=e648]:
+                                  - generic [ref=e649]: Icon
+                                  - generic [ref=e650]: None
+                                  - button "Choose" [ref=e651]:
+                                    - generic [ref=e652]: Choose
+                                - generic [ref=e655]:
+                                  - generic [ref=e656]: Image
+                                  - generic [ref=e657]: None
+                                  - button "Choose" [ref=e658]:
+                                    - generic [ref=e659]: Choose
+                              - generic [ref=e664]:
+                                - generic [ref=e665]: Link URL
+                                - textbox "Link URL" [ref=e667]
+                              - generic [ref=e669]:
+                                - button "Move item up" [ref=e670] [cursor=pointer]:
+                                  - img [ref=e671]: arrow_upward
+                                - button "Move item down" [ref=e674] [cursor=pointer]:
+                                  - img [ref=e675]: arrow_downward
+                                - button "Remove item" [ref=e678] [cursor=pointer]:
+                                  - img [ref=e679]: delete
+                            - generic [ref=e682]:
+                              - generic [ref=e685]:
+                                - generic [ref=e686]: Card title
+                                - textbox "Card title" [ref=e688]: إدارة المياه المستدامة
+                              - generic [ref=e692]:
+                                - generic [ref=e693]: Card description
+                                - textbox "Card description" [ref=e695]: ضمان استدامة إمدادات المياه وحماية الموارد المائية للأجيال القادمة.
+                              - generic [ref=e697]:
+                                - generic [ref=e698]:
+                                  - generic [ref=e699]: Icon
+                                  - generic [ref=e700]: None
+                                  - button "Choose" [ref=e701]:
+                                    - generic [ref=e702]: Choose
+                                - generic [ref=e705]:
+                                  - generic [ref=e706]: Image
+                                  - generic [ref=e707]: None
+                                  - button "Choose" [ref=e708]:
+                                    - generic [ref=e709]: Choose
+                              - generic [ref=e714]:
+                                - generic [ref=e715]: Link URL
+                                - textbox "Link URL" [ref=e717]
+                              - generic [ref=e719]:
+                                - button "Move item up" [ref=e720] [cursor=pointer]:
+                                  - img [ref=e721]: arrow_upward
+                                - button "Move item down" [disabled]:
+                                  - img: arrow_downward
+                                - button "Remove item" [ref=e724] [cursor=pointer]:
+                                  - img [ref=e725]: delete
+                            - button "Add card title" [ref=e728]:
+                              - img [ref=e729]: add
+                              - generic [ref=e730]: Add card title
+                        - generic [ref=e733]:
+                          - generic [ref=e734]:
+                            - generic [ref=e737] [cursor=pointer]:
+                              - generic [ref=e738]: Kind
+                              - combobox "Kind" [ref=e740]:
+                                - generic [ref=e741]:
+                                  - generic [ref=e743]: Stat group
+                                  - img [ref=e746]
+                            - generic [ref=e749]:
+                              - button "Move section up" [ref=e750] [cursor=pointer]:
+                                - img [ref=e751]: arrow_upward
+                              - button "Move section down" [ref=e754] [cursor=pointer]:
+                                - img [ref=e755]: arrow_downward
+                              - button "Remove section" [ref=e758] [cursor=pointer]:
+                                - img [ref=e759]: delete
+                          - generic [ref=e764]:
+                            - generic [ref=e765]: Heading
+                            - textbox "Heading" [ref=e767]: أبرز أرقام الهيئة
+                          - generic [ref=e771]:
+                            - generic [ref=e772]: Intro (optional)
+                            - textbox "Intro (optional)" [ref=e774]
+                          - generic [ref=e776]:
+                            - generic [ref=e777]:
+                              - generic [ref=e780]:
+                                - generic [ref=e781]: Number
+                                - textbox "Number" [ref=e783]: "+330"
+                              - generic [ref=e787]:
+                                - generic [ref=e788]: Label
+                                - textbox "Label" [ref=e790]: تقرير ومنشور علمي
+                              - generic [ref=e792]:
+                                - button "Move item up" [disabled]:
+                                  - img: arrow_upward
+                                - button "Move item down" [ref=e793] [cursor=pointer]:
+                                  - img [ref=e794]: arrow_downward
+                                - button "Remove item" [ref=e797] [cursor=pointer]:
+                                  - img [ref=e798]: delete
+                            - generic [ref=e801]:
+                              - generic [ref=e804]:
+                                - generic [ref=e805]: Number
+                                - textbox "Number" [ref=e807]: "+67.000"
+                              - generic [ref=e811]:
+                                - generic [ref=e812]: Label
+                                - textbox "Label" [ref=e814]: مكالمة مستلمة
+                              - generic [ref=e816]:
+                                - button "Move item up" [ref=e817] [cursor=pointer]:
+                                  - img [ref=e818]: arrow_upward
+                                - button "Move item down" [ref=e821] [cursor=pointer]:
+                                  - img [ref=e822]: arrow_downward
+                                - button "Remove item" [ref=e825] [cursor=pointer]:
+                                  - img [ref=e826]: delete
+                            - generic [ref=e829]:
+                              - generic [ref=e832]:
+                                - generic [ref=e833]: Number
+                                - textbox "Number" [ref=e835]: "+59.000"
+                              - generic [ref=e839]:
+                                - generic [ref=e840]: Label
+                                - textbox "Label" [ref=e842]: زيارة رقابية
+                              - generic [ref=e844]:
+                                - button "Move item up" [ref=e845] [cursor=pointer]:
+                                  - img [ref=e846]: arrow_upward
+                                - button "Move item down" [ref=e849] [cursor=pointer]:
+                                  - img [ref=e850]: arrow_downward
+                                - button "Remove item" [ref=e853] [cursor=pointer]:
+                                  - img [ref=e854]: delete
+                            - generic [ref=e857]:
+                              - generic [ref=e860]:
+                                - generic [ref=e861]: Number
+                                - textbox "Number" [ref=e863]: "+12.285"
+                              - generic [ref=e867]:
+                                - generic [ref=e868]: Label
+                                - textbox "Label" [ref=e870]: مستفيد من برامج بناء القدرات
+                              - generic [ref=e872]:
+                                - button "Move item up" [ref=e873] [cursor=pointer]:
+                                  - img [ref=e874]: arrow_upward
+                                - button "Move item down" [ref=e877] [cursor=pointer]:
+                                  - img [ref=e878]: arrow_downward
+                                - button "Remove item" [ref=e881] [cursor=pointer]:
+                                  - img [ref=e882]: delete
+                            - generic [ref=e885]:
+                              - generic [ref=e888]:
+                                - generic [ref=e889]: Number
+                                - textbox "Number" [ref=e891]: "76"
+                              - generic [ref=e895]:
+                                - generic [ref=e896]: Label
+                                - textbox "Label" [ref=e898]: براءة اختراع مسجلة
+                              - generic [ref=e900]:
+                                - button "Move item up" [ref=e901] [cursor=pointer]:
+                                  - img [ref=e902]: arrow_upward
+                                - button "Move item down" [disabled]:
+                                  - img: arrow_downward
+                                - button "Remove item" [ref=e905] [cursor=pointer]:
+                                  - img [ref=e906]: delete
+                            - button "Add number" [ref=e909]:
+                              - img [ref=e910]: add
+                              - generic [ref=e911]: Add number
+                        - generic [ref=e914]:
+                          - generic [ref=e915]:
+                            - generic [ref=e918] [cursor=pointer]:
+                              - generic [ref=e919]: Kind
+                              - combobox "Kind" [ref=e921]:
+                                - generic [ref=e922]:
+                                  - generic [ref=e924]: Stat group
+                                  - img [ref=e927]
+                            - generic [ref=e930]:
+                              - button "Move section up" [ref=e931] [cursor=pointer]:
+                                - img [ref=e932]: arrow_upward
+                              - button "Move section down" [ref=e935] [cursor=pointer]:
+                                - img [ref=e936]: arrow_downward
+                              - button "Remove section" [ref=e939] [cursor=pointer]:
+                                - img [ref=e940]: delete
+                          - generic [ref=e945]:
+                            - generic [ref=e946]: Heading
+                            - textbox "Heading" [ref=e948]: أبرز أرقام قطاع المياه
+                          - generic [ref=e952]:
+                            - generic [ref=e953]: Intro (optional)
+                            - textbox "Intro (optional)" [ref=e955]
+                          - generic [ref=e957]:
+                            - generic [ref=e958]:
+                              - generic [ref=e961]:
+                                - generic [ref=e962]: Number
+                                - textbox "Number" [ref=e964]: +135 ألف كم
+                              - generic [ref=e968]:
+                                - generic [ref=e969]: Label
+                                - textbox "Label" [ref=e971]: أطوال شبكات التوزيع
+                              - generic [ref=e973]:
+                                - button "Move item up" [disabled]:
+                                  - img: arrow_upward
+                                - button "Move item down" [ref=e974] [cursor=pointer]:
+                                  - img [ref=e975]: arrow_downward
+                                - button "Remove item" [ref=e978] [cursor=pointer]:
+                                  - img [ref=e979]: delete
+                            - generic [ref=e982]:
+                              - generic [ref=e985]:
+                                - generic [ref=e986]: Number
+                                - textbox "Number" [ref=e988]: 18.5 ألف كم
+                              - generic [ref=e992]:
+                                - generic [ref=e993]: Label
+                                - textbox "Label" [ref=e995]: أطوال شبكات النقل
+                              - generic [ref=e997]:
+                                - button "Move item up" [ref=e998] [cursor=pointer]:
+                                  - img [ref=e999]: arrow_upward
+                                - button "Move item down" [ref=e1002] [cursor=pointer]:
+                                  - img [ref=e1003]: arrow_downward
+                                - button "Remove item" [ref=e1006] [cursor=pointer]:
+                                  - img [ref=e1007]: delete
+                            - generic [ref=e1010]:
+                              - generic [ref=e1013]:
+                                - generic [ref=e1014]: Number
+                                - textbox "Number" [ref=e1016]: +16.14 مليون م³ يومياً
+                              - generic [ref=e1020]:
+                                - generic [ref=e1021]: Label
+                                - textbox "Label" [ref=e1023]: القدرة الإنتاجية الإجمالية للمياه بالمملكة
+                              - generic [ref=e1025]:
+                                - button "Move item up" [ref=e1026] [cursor=pointer]:
+                                  - img [ref=e1027]: arrow_upward
+                                - button "Move item down" [ref=e1030] [cursor=pointer]:
+                                  - img [ref=e1031]: arrow_downward
+                                - button "Remove item" [ref=e1034] [cursor=pointer]:
+                                  - img [ref=e1035]: delete
+                            - generic [ref=e1038]:
+                              - generic [ref=e1041]:
+                                - generic [ref=e1042]: Number
+                                - textbox "Number" [ref=e1044]: 287 لتر يومياً
+                              - generic [ref=e1048]:
+                                - generic [ref=e1049]: Label
+                                - textbox "Label" [ref=e1051]: متوسط استهلاك الفرد من المياه
+                              - generic [ref=e1053]:
+                                - button "Move item up" [ref=e1054] [cursor=pointer]:
+                                  - img [ref=e1055]: arrow_upward
+                                - button "Move item down" [ref=e1058] [cursor=pointer]:
+                                  - img [ref=e1059]: arrow_downward
+                                - button "Remove item" [ref=e1062] [cursor=pointer]:
+                                  - img [ref=e1063]: delete
+                            - generic [ref=e1066]:
+                              - generic [ref=e1069]:
+                                - generic [ref=e1070]: Number
+                                - textbox "Number" [ref=e1072]: +33%
+                              - generic [ref=e1076]:
+                                - generic [ref=e1077]: Label
+                                - textbox "Label" [ref=e1079]: نسبة إعادة استخدام المياه المعالجة
+                              - generic [ref=e1081]:
+                                - button "Move item up" [ref=e1082] [cursor=pointer]:
+                                  - img [ref=e1083]: arrow_upward
+                                - button "Move item down" [ref=e1086] [cursor=pointer]:
+                                  - img [ref=e1087]: arrow_downward
+                                - button "Remove item" [ref=e1090] [cursor=pointer]:
+                                  - img [ref=e1091]: delete
+                            - generic [ref=e1094]:
+                              - generic [ref=e1097]:
+                                - generic [ref=e1098]: Number
+                                - textbox "Number" [ref=e1100]: +65%
+                              - generic [ref=e1104]:
+                                - generic [ref=e1105]: Label
+                                - textbox "Label" [ref=e1107]: نسبة المحتوى المحلي
+                              - generic [ref=e1109]:
+                                - button "Move item up" [ref=e1110] [cursor=pointer]:
+                                  - img [ref=e1111]: arrow_upward
+                                - button "Move item down" [disabled]:
+                                  - img: arrow_downward
+                                - button "Remove item" [ref=e1114] [cursor=pointer]:
+                                  - img [ref=e1115]: delete
+                            - button "Add number" [ref=e1118]:
+                              - img [ref=e1119]: add
+                              - generic [ref=e1120]: Add number
+                        - generic [ref=e1123]:
+                          - generic [ref=e1124]:
+                            - generic [ref=e1127] [cursor=pointer]:
+                              - generic [ref=e1128]: Kind
+                              - combobox "Kind" [ref=e1130]:
+                                - generic [ref=e1131]:
+                                  - generic [ref=e1133]: Card grid
+                                  - img [ref=e1136]
+                            - generic [ref=e1139]:
+                              - button "Move section up" [ref=e1140] [cursor=pointer]:
+                                - img [ref=e1141]: arrow_upward
+                              - button "Move section down" [disabled]:
+                                - img: arrow_downward
+                              - button "Remove section" [ref=e1144] [cursor=pointer]:
+                                - img [ref=e1145]: delete
+                          - generic [ref=e1150]:
+                            - generic [ref=e1151]: Heading
+                            - textbox "Heading" [ref=e1153]: الجهات التابعة للهيئة
+                          - generic [ref=e1157]:
+                            - generic [ref=e1158]: Intro (optional)
+                            - textbox "Intro (optional)" [ref=e1160]
+                          - generic [ref=e1162]:
+                            - generic [ref=e1163]:
+                              - generic [ref=e1166]:
+                                - generic [ref=e1167]: Card title
+                                - textbox "Card title" [ref=e1169]: معهد وتيرا
+                              - generic [ref=e1173]:
+                                - generic [ref=e1174]: Card description
+                                - textbox "Card description" [ref=e1176]: معهد وطني متخصص في أبحاث وتقنيات المياه، تأسس عام 1987 لدعم الابتكار وتطوير الكوادر الوطنية في القطاع.
+                              - generic [ref=e1178]:
+                                - generic [ref=e1179]:
+                                  - generic [ref=e1180]: Icon
+                                  - generic [ref=e1181]: None
+                                  - button "Choose" [ref=e1182]:
+                                    - generic [ref=e1183]: Choose
+                                - generic [ref=e1186]:
+                                  - generic [ref=e1187]: Image
+                                  - generic [ref=e1188]: None
+                                  - button "Choose" [ref=e1189]:
+                                    - generic [ref=e1190]: Choose
+                              - generic [ref=e1195]:
+                                - generic [ref=e1196]: Link URL
+                                - textbox "Link URL" [ref=e1198]
+                              - generic [ref=e1200]:
+                                - button "Move item up" [disabled]:
+                                  - img: arrow_upward
+                                - button "Move item down" [ref=e1201] [cursor=pointer]:
+                                  - img [ref=e1202]: arrow_downward
+                                - button "Remove item" [ref=e1205] [cursor=pointer]:
+                                  - img [ref=e1206]: delete
+                            - generic [ref=e1209]:
+                              - generic [ref=e1212]:
+                                - generic [ref=e1213]: Card title
+                                - textbox "Card title" [ref=e1215]: مركز الابتكار السعودي لتقنيات المياه
+                              - generic [ref=e1219]:
+                                - generic [ref=e1220]: Card description
+                                - textbox "Card description" [ref=e1222]: مركز يُعنى بتطوير وريادة الابتكار في تقنيات قطاع المياه وتحفيز الحلول الواعدة.
+                              - generic [ref=e1224]:
+                                - generic [ref=e1225]:
+                                  - generic [ref=e1226]: Icon
+                                  - generic [ref=e1227]: None
+                                  - button "Choose" [ref=e1228]:
+                                    - generic [ref=e1229]: Choose
+                                - generic [ref=e1232]:
+                                  - generic [ref=e1233]: Image
+                                  - generic [ref=e1234]: None
+                                  - button "Choose" [ref=e1235]:
+                                    - generic [ref=e1236]: Choose
+                              - generic [ref=e1241]:
+                                - generic [ref=e1242]: Link URL
+                                - textbox "Link URL" [ref=e1244]
+                              - generic [ref=e1246]:
+                                - button "Move item up" [ref=e1247] [cursor=pointer]:
+                                  - img [ref=e1248]: arrow_upward
+                                - button "Move item down" [ref=e1251] [cursor=pointer]:
+                                  - img [ref=e1252]: arrow_downward
+                                - button "Remove item" [ref=e1255] [cursor=pointer]:
+                                  - img [ref=e1256]: delete
+                            - generic [ref=e1259]:
+                              - generic [ref=e1262]:
+                                - generic [ref=e1263]: Card title
+                                - textbox "Card title" [ref=e1265]: أكاديمية المياه
+                              - generic [ref=e1269]:
+                                - generic [ref=e1270]: Card description
+                                - textbox "Card description" [ref=e1272]: أكاديمية متخصصة تأسست عام 1982 لتأهيل وتدريب الكوادر العاملة في قطاع المياه.
+                              - generic [ref=e1274]:
+                                - generic [ref=e1275]:
+                                  - generic [ref=e1276]: Icon
+                                  - generic [ref=e1277]: None
+                                  - button "Choose" [ref=e1278]:
+                                    - generic [ref=e1279]: Choose
+                                - generic [ref=e1282]:
+                                  - generic [ref=e1283]: Image
+                                  - generic [ref=e1284]: None
+                                  - button "Choose" [ref=e1285]:
+                                    - generic [ref=e1286]: Choose
+                              - generic [ref=e1291]:
+                                - generic [ref=e1292]: Link URL
+                                - textbox "Link URL" [ref=e1294]
+                              - generic [ref=e1296]:
+                                - button "Move item up" [ref=e1297] [cursor=pointer]:
+                                  - img [ref=e1298]: arrow_upward
+                                - button "Move item down" [ref=e1301] [cursor=pointer]:
+                                  - img [ref=e1302]: arrow_downward
+                                - button "Remove item" [ref=e1305] [cursor=pointer]:
+                                  - img [ref=e1306]: delete
+                            - generic [ref=e1309]:
+                              - generic [ref=e1312]:
+                                - generic [ref=e1313]: Card title
+                                - textbox "Card title" [ref=e1315]: تحلية المياه
+                              - generic [ref=e1319]:
+                                - generic [ref=e1320]: Card description
+                                - textbox "Card description" [ref=e1322]: الجهة المعنية بتشغيل وتطوير محطات تحلية المياه لتأمين إمدادات المياه في مناطق المملكة.
+                              - generic [ref=e1324]:
+                                - generic [ref=e1325]:
+                                  - generic [ref=e1326]: Icon
+                                  - generic [ref=e1327]: None
+                                  - button "Choose" [ref=e1328]:
+                                    - generic [ref=e1329]: Choose
+                                - generic [ref=e1332]:
+                                  - generic [ref=e1333]: Image
+                                  - generic [ref=e1334]: None
+                                  - button "Choose" [ref=e1335]:
+                                    - generic [ref=e1336]: Choose
+                              - generic [ref=e1341]:
+                                - generic [ref=e1342]: Link URL
+                                - textbox "Link URL" [ref=e1344]
+                              - generic [ref=e1346]:
+                                - button "Move item up" [ref=e1347] [cursor=pointer]:
+                                  - img [ref=e1348]: arrow_upward
+                                - button "Move item down" [disabled]:
+                                  - img: arrow_downward
+                                - button "Remove item" [ref=e1351] [cursor=pointer]:
+                                  - img [ref=e1352]: delete
+                            - button "Add card title" [ref=e1355]:
+                              - img [ref=e1356]: add
+                              - generic [ref=e1357]: Add card title
+                        - generic [ref=e1360]:
+                          - generic [ref=e1363] [cursor=pointer]:
+                            - generic [ref=e1364]: New section kind
+                            - combobox "New section kind" [ref=e1366]:
+                              - generic [ref=e1367]:
+                                - generic [ref=e1369]: Text
+                                - img [ref=e1372]
+                          - button "Add section" [ref=e1375]:
+                            - img [ref=e1376]: add
+                            - generic [ref=e1377]: Add section
+                  - button "Save Arabic" [ref=e1380]:
+                    - generic [ref=e1381]: Save Arabic
+              - tabpanel [ref=e1384]

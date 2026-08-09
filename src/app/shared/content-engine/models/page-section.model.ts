@@ -6,6 +6,10 @@ export interface PageSectionItem {
   id?: string;
   title: string;
   description?: string | null;
+  /** Card-grid only: a small pictogram, a larger illustrative image, and an optional "read more" link. */
+  iconId?: string | null;
+  imageId?: string | null;
+  linkUrl?: string | null;
 }
 
 export interface PageSection {
@@ -37,5 +41,5 @@ export function emptySection(kind: SectionKind): PageSection {
 }
 
 export function emptyItem(): PageSectionItem {
-  return { title: '', description: '' };
+  return { title: '', description: '', iconId: null, imageId: null, linkUrl: '' };
 }
