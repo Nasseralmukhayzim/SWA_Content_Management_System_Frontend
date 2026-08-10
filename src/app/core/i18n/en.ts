@@ -41,8 +41,6 @@ export const EN: Record<string, string> = {
   'login.footer': 'Saudi Water Authority — CMS',
 
   // ---- dashboard ----
-  'dashboard.recentActivity': 'Recent activity',
-  'dashboard.updatedAgo': 'Updated {seconds}s ago',
   'dashboard.manageSections': 'Manage sections',
   'dashboard.section.pages.description': 'Static site pages',
   'dashboard.section.news.description': 'Announcements & press',
@@ -69,6 +67,7 @@ export const EN: Record<string, string> = {
   'common.none': '— None —',
   'common.choose': 'Choose',
   'common.clear': 'Clear',
+  'common.time': 'Time',
   'common.field.title': 'Title',
   'common.field.status': 'Status',
   'common.field.slug': 'Slug',

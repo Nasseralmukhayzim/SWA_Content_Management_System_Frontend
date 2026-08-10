@@ -40,8 +40,6 @@ export const AR: Record<string, string> = {
   'login.footer': 'هيئة المياه السعودية — نظام إدارة المحتوى',
 
   // ---- dashboard ----
-  'dashboard.recentActivity': 'أحدث الأنشطة',
-  'dashboard.updatedAgo': 'آخر تحديث منذ {seconds} ثانية',
   'dashboard.manageSections': 'إدارة الأقسام',
   'dashboard.section.pages.description': 'صفحات الموقع الثابتة',
   'dashboard.section.news.description': 'الإعلانات والأخبار الصحفية',
@@ -68,6 +66,7 @@ export const AR: Record<string, string> = {
   'common.none': '— بلا —',
   'common.choose': 'اختيار',
   'common.clear': 'إزالة',
+  'common.time': 'الوقت',
   'common.field.title': 'العنوان',
   'common.field.status': 'الحالة',
   'common.field.slug': 'الرابط المختصر',

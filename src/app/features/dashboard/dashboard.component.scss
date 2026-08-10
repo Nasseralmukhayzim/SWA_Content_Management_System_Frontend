@@ -26,33 +26,6 @@
   border: 2px solid var(--mat-sys-tertiary);
 }
 
-.dashboard__live-indicator {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  margin-inline-start: auto;
-  font-size: 12px;
-  font-weight: 500;
-  color: var(--mat-sys-on-surface-variant);
-}
-
-.dashboard__live-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: brand.$swa-success;
-  animation: dashboard-pulse 2s ease-in-out infinite;
-}
-
-@keyframes dashboard-pulse {
-  0%, 100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.3;
-  }
-}
-
 // ---- section cards -------------------------------------------------------
 
 .dashboard__grid {

@@ -3,6 +3,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
 import { switchMap, timer } from 'rxjs';
+import { LocalizedDatePipe } from '../../core/i18n/localized-date.pipe';
 import { TranslatePipe } from '../../core/i18n/translate.pipe';
 import { AuthService } from '../../core/services/auth.service';
 import { ContentStatus } from '../../shared/content-engine/models/content-status.model';
@@ -101,7 +102,7 @@ const SECTION_LABEL_KEYS: Record<string, string> = {
 
 @Component({
   selector: 'app-dashboard',
-  imports: [RouterLink, MatIconModule, StatusBadgeComponent, TranslatePipe],
+  imports: [RouterLink, MatIconModule, StatusBadgeComponent, TranslatePipe, LocalizedDatePipe],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -125,15 +126,7 @@ export class DashboardComponent implements OnInit {
     ? undefined
     : [...new Set(this.auth.roles().flatMap((role) => statusesActionableByRole(role)))];
 
-  /** Ticks every second so "Updated Xs ago" visibly counts up — proof the poll is alive even
-   *  on refreshes where the underlying data happens not to have changed. */
-  protected readonly secondsSinceUpdate = signal(0);
-
   ngOnInit(): void {
-    timer(0, 1000)
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe(() => this.secondsSinceUpdate.update((seconds) => seconds + 1));
-
     // Refresh on load, then again every REFRESH_INTERVAL_MS — no manual page reload needed to
     // see activity that happened elsewhere while this dashboard is open.
     timer(0, REFRESH_INTERVAL_MS)
@@ -142,10 +135,7 @@ export class DashboardComponent implements OnInit {
         takeUntilDestroyed(this.destroyRef),
       )
       .subscribe({
-        next: (items) => {
-          this.recentActivity.set(items.map(toActivityItem));
-          this.secondsSinceUpdate.set(0);
-        },
+        next: (items) => this.recentActivity.set(items.map(toActivityItem)),
         error: () => this.recentActivity.set([]),
       });
 
@@ -174,7 +164,7 @@ function toActivityItem(item: RecentActivityApiItem): ActivityItem {
   return {
     title: item.title,
     section: SECTION_LABEL_KEYS[item.contentType] ?? item.contentType,
-    date: new Date(item.occurredAtUtc).toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' }),
+    date: item.occurredAtUtc,
     status: item.status,
     icon: isPublished ? 'check' : 'more_horiz',
     iconClass: isPublished ? 'dashboard__activity-icon--done' : 'dashboard__activity-icon--pending',

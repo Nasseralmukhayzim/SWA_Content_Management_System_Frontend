@@ -185,7 +185,23 @@
     @case ('datetime') {
       <mat-form-field appearance="outline" class="content-form__field">
         <mat-label>{{ (field.labelKey ?? field.label) | translate }}</mat-label>
-        <input matInput type="datetime-local" [formControl]="fieldControl(group, field.key)" />
+        <input
+          matInput
+          [matDatepicker]="picker"
+          [value]="dateInputValue(group, field.key)"
+          (dateChange)="onDatetimeDateChange(group, field.key, $event.value)"
+        />
+        <mat-datepicker-toggle matIconSuffix [for]="picker" />
+        <mat-datepicker #picker />
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="content-form__field content-form__field--time">
+        <mat-label>{{ 'common.time' | translate }}</mat-label>
+        <input
+          matInput
+          type="time"
+          [value]="timeInputValue(group, field.key)"
+          (change)="onDatetimeTimeChange(group, field.key, $any($event.target).value)"
+        />
       </mat-form-field>
     }
     @case ('media-picker') {
