@@ -1,7 +1,7 @@
 <div class="media-edit">
   <a mat-button routerLink="..">
     <mat-icon>arrow_back</mat-icon>
-    Back to Media
+    {{ 'common.backTo' | translate }} {{ 'nav.media' | translate }}
   </a>
 
   @if (loading()) {
@@ -20,30 +20,30 @@
 
         <a mat-stroked-button [href]="a.url" target="_blank" rel="noopener noreferrer" class="media-edit__download">
           <mat-icon>download</mat-icon>
-          Download {{ a.originalFileName }}
+          {{ 'media.download' | translate }} {{ a.originalFileName }}
         </a>
 
         <form [formGroup]="form" class="media-edit__grid">
           <mat-form-field appearance="outline">
-            <mat-label>Title (Arabic)</mat-label>
+            <mat-label>{{ 'media.titleAr' | translate }}</mat-label>
             <input matInput formControlName="titleAr" />
           </mat-form-field>
           <mat-form-field appearance="outline">
-            <mat-label>Title (English)</mat-label>
+            <mat-label>{{ 'media.titleEn' | translate }}</mat-label>
             <input matInput formControlName="titleEn" />
           </mat-form-field>
           <mat-form-field appearance="outline">
-            <mat-label>Alt text (Arabic)</mat-label>
+            <mat-label>{{ 'media.altTextAr' | translate }}</mat-label>
             <input matInput formControlName="altTextAr" />
           </mat-form-field>
           <mat-form-field appearance="outline">
-            <mat-label>Alt text (English)</mat-label>
+            <mat-label>{{ 'media.altTextEn' | translate }}</mat-label>
             <input matInput formControlName="altTextEn" />
           </mat-form-field>
         </form>
       </mat-card-content>
       <mat-card-actions>
-        <button mat-flat-button color="primary" [disabled]="saving()" (click)="save()">Save</button>
+        <button mat-flat-button color="primary" [disabled]="saving()" (click)="save()">{{ 'common.save' | translate }}</button>
       </mat-card-actions>
     </mat-card>
   }

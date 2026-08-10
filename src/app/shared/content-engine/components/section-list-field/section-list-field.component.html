@@ -6,7 +6,7 @@
           <mat-label>Kind</mat-label>
           <mat-select [value]="section.kind" (selectionChange)="updateSection(sectionIndex, { kind: $event.value })">
             @for (option of kindOptions; track option.value) {
-              <mat-option [value]="option.value">{{ option.label }}</mat-option>
+              <mat-option [value]="option.value">{{ (option.labelKey ?? option.label) | translate }}</mat-option>
             }
           </mat-select>
         </mat-form-field>
@@ -123,7 +123,7 @@
       <mat-label>New section kind</mat-label>
       <mat-select [ngModel]="newSectionKind()" (ngModelChange)="newSectionKind.set($event)">
         @for (option of kindOptions; track option.value) {
-          <mat-option [value]="option.value">{{ option.label }}</mat-option>
+          <mat-option [value]="option.value">{{ (option.labelKey ?? option.label) | translate }}</mat-option>
         }
       </mat-select>
     </mat-form-field>

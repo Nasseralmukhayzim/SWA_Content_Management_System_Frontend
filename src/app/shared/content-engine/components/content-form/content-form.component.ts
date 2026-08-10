@@ -12,6 +12,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { map } from 'rxjs';
+import { TranslatePipe } from '../../../../core/i18n/translate.pipe';
 import { AppError } from '../../../../core/models/problem-details.models';
 import { AuthService } from '../../../../core/services/auth.service';
 import { LookupApiService } from '../../../lookups/services/lookup-api.service';
@@ -56,6 +57,7 @@ const LANGUAGES: LanguageOption[] = [
     WorkflowActionsComponent,
     RichTextEditorComponent,
     SectionListFieldComponent,
+    TranslatePipe,
   ],
   templateUrl: './content-form.component.html',
   styleUrl: './content-form.component.scss',

@@ -1,7 +1,7 @@
 <div class="user-form">
   <a mat-button routerLink="..">
     <mat-icon>arrow_back</mat-icon>
-    Back to Users
+    {{ 'common.backTo' | translate }} {{ 'nav.users' | translate }}
   </a>
 
   @if (loading()) {
@@ -13,12 +13,12 @@
 
     <mat-card>
       <mat-card-header>
-        <mat-card-title>Details</mat-card-title>
+        <mat-card-title>{{ 'common.details' | translate }}</mat-card-title>
       </mat-card-header>
       <mat-card-content>
         <form [formGroup]="form" class="user-form__grid">
           <mat-form-field appearance="outline">
-            <mat-label>Email</mat-label>
+            <mat-label>{{ 'users.email' | translate }}</mat-label>
             <input matInput formControlName="email" />
             @if (form.get('email')?.hasError('server')) {
               <mat-error>{{ form.get('email')?.getError('server') }}</mat-error>
@@ -27,7 +27,7 @@
 
           @if (isCreate) {
             <mat-form-field appearance="outline">
-              <mat-label>Password</mat-label>
+              <mat-label>{{ 'users.password' | translate }}</mat-label>
               <input matInput type="password" formControlName="password" />
               @if (form.get('password')?.hasError('server')) {
                 <mat-error>{{ form.get('password')?.getError('server') }}</mat-error>
@@ -36,34 +36,34 @@
           }
 
           <mat-form-field appearance="outline">
-            <mat-label>First name</mat-label>
+            <mat-label>{{ 'users.firstName' | translate }}</mat-label>
             <input matInput formControlName="firstName" />
           </mat-form-field>
 
           <mat-form-field appearance="outline">
-            <mat-label>Last name</mat-label>
+            <mat-label>{{ 'users.lastName' | translate }}</mat-label>
             <input matInput formControlName="lastName" />
           </mat-form-field>
         </form>
       </mat-card-content>
       <mat-card-actions>
         <button mat-flat-button color="primary" [disabled]="saving()" (click)="save()">
-          {{ isCreate ? 'Create' : 'Save' }}
+          {{ (isCreate ? 'common.create' : 'common.save') | translate }}
         </button>
       </mat-card-actions>
     </mat-card>
 
     <mat-card>
       <mat-card-header>
-        <mat-card-title>Roles</mat-card-title>
+        <mat-card-title>{{ 'users.roles' | translate }}</mat-card-title>
       </mat-card-header>
       <mat-card-content class="user-form__roles">
         @for (role of availableRoles(); track role) {
           @if (isCreate) {
-            <mat-checkbox (change)="toggleInitialRole(role, $event)">{{ role }}</mat-checkbox>
+            <mat-checkbox (change)="toggleInitialRole(role, $event)">{{ ('role.' + role) | translate }}</mat-checkbox>
           } @else {
             <mat-checkbox [checked]="hasRole(role)" (change)="toggleUserRole(role, $event)">
-              {{ role }}
+              {{ ('role.' + role) | translate }}
             </mat-checkbox>
           }
         }

@@ -6,6 +6,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
 import { RouterLink } from '@angular/router';
+import { TranslatePipe } from '../../../core/i18n/translate.pipe';
 import { AppError } from '../../../core/models/problem-details.models';
 import { ConfirmDialogService } from '../../../shared/ui/confirm-dialog/confirm-dialog.service';
 import { UserSummary } from '../models/user.model';
@@ -13,7 +14,15 @@ import { UsersApiService } from '../users-api.service';
 
 @Component({
   selector: 'app-user-list',
-  imports: [RouterLink, MatTableModule, MatButtonModule, MatIconModule, MatChipsModule, MatProgressSpinnerModule],
+  imports: [
+    RouterLink,
+    MatTableModule,
+    MatButtonModule,
+    MatIconModule,
+    MatChipsModule,
+    MatProgressSpinnerModule,
+    TranslatePipe,
+  ],
   templateUrl: './user-list.component.html',
   styleUrl: './user-list.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

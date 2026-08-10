@@ -9,6 +9,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { TranslatePipe } from '../../../core/i18n/translate.pipe';
 import { AppError } from '../../../core/models/problem-details.models';
 import { UserSummary } from '../models/user.model';
 import { UsersApiService } from '../users-api.service';
@@ -25,6 +26,7 @@ import { UsersApiService } from '../users-api.service';
     MatIconModule,
     MatInputModule,
     MatProgressSpinnerModule,
+    TranslatePipe,
   ],
   templateUrl: './user-form.component.html',
   styleUrl: './user-form.component.scss',

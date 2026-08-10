@@ -15,8 +15,8 @@
             <span class="dashboard__card-count">{{ countFor(link) }}</span>
           }
         </div>
-        <span class="dashboard__card-label">{{ link.label }}</span>
-        <span class="dashboard__card-description">{{ link.description }}</span>
+        <span class="dashboard__card-label">{{ link.labelKey | translate }}</span>
+        <span class="dashboard__card-description">{{ link.descriptionKey | translate }}</span>
       </a>
     }
   </div>
@@ -38,7 +38,7 @@
         </span>
         <div class="dashboard__activity-text">
           <span class="dashboard__activity-title">{{ item.title }}</span>
-          <span class="dashboard__activity-meta">{{ item.section }} &middot; {{ item.date }}</span>
+          <span class="dashboard__activity-meta">{{ item.section | translate }} &middot; {{ item.date }}</span>
         </div>
         <app-status-badge [status]="item.status" />
       </a>

@@ -9,6 +9,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
 import { ActivatedRoute, RouterLink } from '@angular/router';
+import { TranslatePipe } from '../../../../core/i18n/translate.pipe';
 import { AppError } from '../../../../core/models/problem-details.models';
 import { AuthService } from '../../../../core/services/auth.service';
 import { ConfirmDialogService } from '../../../ui/confirm-dialog/confirm-dialog.service';
@@ -28,6 +29,7 @@ import { LookupApiService } from '../../services/lookup-api.service';
     MatButtonModule,
     MatIconModule,
     MatProgressSpinnerModule,
+    TranslatePipe,
   ],
   templateUrl: './lookup-list.component.html',
   styleUrl: './lookup-list.component.scss',

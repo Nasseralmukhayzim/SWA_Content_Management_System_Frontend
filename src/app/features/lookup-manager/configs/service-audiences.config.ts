@@ -4,4 +4,5 @@ export const serviceAudiencesConfig: LookupTypeConfig = {
   key: 'service-audiences',
   basePath: 'service-audiences',
   displayName: 'Service Audience',
+  displayNameKey: 'content.service-audiences.displayName',
 };

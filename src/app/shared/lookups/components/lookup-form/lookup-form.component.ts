@@ -10,6 +10,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { TranslatePipe } from '../../../../core/i18n/translate.pipe';
 import { AppError } from '../../../../core/models/problem-details.models';
 import { AuthService } from '../../../../core/services/auth.service';
 import { SLUG_MAX_LENGTH, SLUG_PATTERN } from '../../../content-engine/models/content-type-config';
@@ -38,6 +39,7 @@ const LANGUAGES: LanguageOption[] = [
     MatSelectModule,
     LanguageTabsComponent,
     LanguageTabDirective,
+    TranslatePipe,
   ],
   templateUrl: './lookup-form.component.html',
   styleUrl: './lookup-form.component.scss',

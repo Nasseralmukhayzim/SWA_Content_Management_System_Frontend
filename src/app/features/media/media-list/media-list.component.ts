@@ -11,10 +11,16 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
 import { RouterLink } from '@angular/router';
 import { debounceTime, distinctUntilChanged } from 'rxjs';
+import { TranslatePipe } from '../../../core/i18n/translate.pipe';
 import { AppError } from '../../../core/models/problem-details.models';
 import { AuthService } from '../../../core/services/auth.service';
 import { ConfirmDialogService } from '../../../shared/ui/confirm-dialog/confirm-dialog.service';
-import { MEDIA_KIND_LABELS, MediaAssetResponse, MediaKind } from '../../../shared/media/models/media-asset.model';
+import {
+  MEDIA_KIND_LABEL_KEYS,
+  MEDIA_KIND_LABELS,
+  MediaAssetResponse,
+  MediaKind,
+} from '../../../shared/media/models/media-asset.model';
 import { MediaApiService } from '../../../shared/media/services/media-api.service';
 
 @Component({
@@ -30,6 +36,7 @@ import { MediaApiService } from '../../../shared/media/services/media-api.servic
     MatButtonModule,
     MatIconModule,
     MatProgressSpinnerModule,
+    TranslatePipe,
   ],
   templateUrl: './media-list.component.html',
   styleUrl: './media-list.component.scss',
@@ -50,6 +57,7 @@ export class MediaListComponent implements OnInit {
   protected readonly kindOptions = Object.entries(MEDIA_KIND_LABELS).map(([value, label]) => ({
     value: Number(value),
     label,
+    labelKey: MEDIA_KIND_LABEL_KEYS[Number(value) as MediaKind],
   }));
 
   protected readonly items = signal<MediaAssetResponse[]>([]);
@@ -80,7 +88,7 @@ export class MediaListComponent implements OnInit {
   }
 
   protected kindLabel(item: MediaAssetResponse): string {
-    return this.kindLabels[item.kind];
+    return MEDIA_KIND_LABEL_KEYS[item.kind];
   }
 
   protected formatDate(value?: string): string {

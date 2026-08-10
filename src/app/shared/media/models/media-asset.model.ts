@@ -12,6 +12,13 @@ export const MEDIA_KIND_LABELS: Record<MediaKind, string> = {
   [MediaKind.Other]: 'Other',
 };
 
+export const MEDIA_KIND_LABEL_KEYS: Record<MediaKind, string> = {
+  [MediaKind.Image]: 'media.kind.image',
+  [MediaKind.Document]: 'media.kind.document',
+  [MediaKind.Video]: 'media.kind.video',
+  [MediaKind.Other]: 'media.kind.other',
+};
+
 export interface MediaAssetResponse {
   id: string;
   url: string;

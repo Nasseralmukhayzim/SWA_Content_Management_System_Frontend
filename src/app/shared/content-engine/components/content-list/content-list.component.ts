@@ -11,6 +11,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs';
+import { TranslatePipe } from '../../../../core/i18n/translate.pipe';
 import { AppError } from '../../../../core/models/problem-details.models';
 import { AuthService } from '../../../../core/services/auth.service';
 import { LookupApiService } from '../../../lookups/services/lookup-api.service';
@@ -34,6 +35,7 @@ import { ContentApiService } from '../../services/content-api.service';
     MatIconModule,
     MatProgressSpinnerModule,
     StatusBadgeComponent,
+    TranslatePipe,
   ],
   templateUrl: './content-list.component.html',
   styleUrl: './content-list.component.scss',
