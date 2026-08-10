@@ -6,8 +6,28 @@
 }
 
 .login {
+  position: relative;
   display: flex;
   min-height: 100vh;
+}
+
+.login__lang-toggle {
+  position: absolute;
+  top: 20px;
+  inset-inline-end: 20px;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.92);
+  text-transform: none;
+
+  .mat-icon {
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+  }
 }
 
 // ---- left brand panel ------------------------------------------------------

@@ -20,7 +20,7 @@
           <span matListItemIcon class="shell__nav-icon">
             <mat-icon>{{ item.icon }}</mat-icon>
           </span>
-          <span matListItemTitle>{{ item.label }}</span>
+          <span matListItemTitle>{{ item.labelKey | translate }}</span>
         </a>
       }
     </mat-nav-list>
@@ -33,18 +33,31 @@
           mat-icon-button
           class="shell__menu-toggle"
           (click)="sidenav.toggle()"
-          aria-label="Toggle navigation"
+          [attr.aria-label]="'shell.menuToggle' | translate"
         >
           <mat-icon>menu</mat-icon>
         </button>
       }
 
       <div class="shell__greeting">
-        <h1>{{ greeting() }}, <span class="shell__greeting-name">{{ displayName() }}</span></h1>
-        <p>SWA Content Management &middot; {{ today() }}</p>
+        <h1>{{ greetingKey() | translate }}, <span class="shell__greeting-name">{{ displayName() }}</span></h1>
+        <p>{{ 'shell.title' | translate }} &middot; {{ today() }}</p>
       </div>
 
       <span class="shell__spacer"></span>
+
+      <button
+        mat-button
+        class="shell__lang-toggle"
+        (click)="languageService.toggle()"
+        [attr.aria-label]="'shell.langToggle.ariaLabel' | translate"
+      >
+        <mat-icon>translate</mat-icon>
+        <span class="shell__lang-toggle-label">{{
+          (languageService.language() === 'en' ? 'shell.langToggle.toArabic' : 'shell.langToggle.toEnglish')
+            | translate
+        }}</span>
+      </button>
 
       <button mat-button class="shell__user" [matMenuTriggerFor]="userMenu">
         <span class="shell__user-email">{{ auth.userEmail() }}</span>
@@ -52,20 +65,20 @@
       </button>
       <mat-menu #userMenu="matMenu" xPosition="before">
         <div class="shell__user-menu-header">
-          <span class="shell__user-menu-title">Administrator</span>
+          <span class="shell__user-menu-title">{{ 'shell.userMenu.administrator' | translate }}</span>
           <span class="shell__user-menu-email">{{ auth.userEmail() }}</span>
         </div>
         <button mat-menu-item>
           <mat-icon>person</mat-icon>
-          <span>My profile</span>
+          <span>{{ 'shell.userMenu.profile' | translate }}</span>
         </button>
         <button mat-menu-item>
           <mat-icon>settings</mat-icon>
-          <span>Settings</span>
+          <span>{{ 'shell.userMenu.settings' | translate }}</span>
         </button>
         <button mat-menu-item class="shell__user-menu-signout" (click)="logout()">
           <mat-icon>logout</mat-icon>
-          <span>Sign out</span>
+          <span>{{ 'shell.userMenu.signOut' | translate }}</span>
         </button>
       </mat-menu>
     </header>

@@ -7,8 +7,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { Router } from '@angular/router';
+import { TranslatePipe } from '../../../core/i18n/translate.pipe';
 import { AppError } from '../../../core/models/problem-details.models';
 import { AuthService } from '../../../core/services/auth.service';
+import { LanguageService } from '../../../core/services/language.service';
 
 @Component({
   selector: 'app-login',
@@ -20,6 +22,7 @@ import { AuthService } from '../../../core/services/auth.service';
     MatIconModule,
     MatInputModule,
     MatProgressSpinnerModule,
+    TranslatePipe,
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
@@ -29,6 +32,7 @@ export class LoginComponent {
   private readonly auth = inject(AuthService);
   private readonly router = inject(Router);
   private readonly fb = inject(FormBuilder);
+  protected readonly languageService = inject(LanguageService);
 
   protected readonly submitting = signal(false);
   protected readonly error = signal<string | null>(null);

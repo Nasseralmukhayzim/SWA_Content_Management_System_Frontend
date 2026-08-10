@@ -158,6 +158,35 @@
   flex: 1 1 auto;
 }
 
+.shell__lang-toggle {
+  display: inline-flex;
+  align-items: center;
+  min-width: 0;
+  padding: 4px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(brand.$swa-bright-navy, 0.2);
+  background: #fff;
+  text-transform: none;
+  flex: none;
+
+  .mat-icon {
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+  }
+
+  ::ng-deep .mdc-button__label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+}
+
+.shell__lang-toggle-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--mat-sys-on-surface);
+}
 
 .shell__user {
   display: flex;

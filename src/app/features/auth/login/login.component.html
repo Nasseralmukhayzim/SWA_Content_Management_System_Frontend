@@ -1,4 +1,17 @@
 <div class="login">
+  <button
+    type="button"
+    mat-stroked-button
+    class="login__lang-toggle"
+    (click)="languageService.toggle()"
+    [attr.aria-label]="'shell.langToggle.ariaLabel' | translate"
+  >
+    <mat-icon>translate</mat-icon>
+    <span>{{
+      (languageService.language() === 'en' ? 'shell.langToggle.toArabic' : 'shell.langToggle.toEnglish') | translate
+    }}</span>
+  </button>
+
   <div class="login__brand">
     <div class="login__brand-decor" aria-hidden="true">
       <span class="login__brand-dot login__brand-dot--1"></span>
@@ -10,10 +23,9 @@
       <div class="login__logo-badge">
         <img src="logo.png" alt="Saudi Water Authority" class="login__logo" />
       </div>
-      <h1 class="login__brand-title">SWA Content Management System</h1>
+      <h1 class="login__brand-title">{{ 'login.title' | translate }}</h1>
       <p class="login__brand-subtitle">
-        One secure gateway to publish, review and organize every page, story and service of the Saudi Water
-        Authority.
+        {{ 'login.subtitle' | translate }}
       </p>
     </div>
 
@@ -22,17 +34,17 @@
 
   <div class="login__panel">
     <form class="login__form" [formGroup]="form" (ngSubmit)="submit()">
-      <h2 class="login__form-title">Welcome back &middot; Sign in</h2>
-      <p class="login__form-subtitle">Use your Authority account to continue</p>
+      <h2 class="login__form-title">{{ 'login.welcomeBack' | translate }}</h2>
+      <p class="login__form-subtitle">{{ 'login.useAccount' | translate }}</p>
 
       <mat-form-field appearance="outline" class="login__field">
-        <mat-label>Email</mat-label>
+        <mat-label>{{ 'login.email' | translate }}</mat-label>
         <mat-icon matPrefix>mail</mat-icon>
         <input matInput formControlName="email" autocomplete="username" />
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="login__field">
-        <mat-label>Password</mat-label>
+        <mat-label>{{ 'login.password' | translate }}</mat-label>
         <mat-icon matPrefix>lock</mat-icon>
         <input
           matInput
@@ -45,15 +57,17 @@
           matSuffix
           type="button"
           (click)="togglePasswordVisibility()"
-          [attr.aria-label]="passwordVisible() ? 'Hide password' : 'Show password'"
+          [attr.aria-label]="(passwordVisible() ? 'login.hidePassword' : 'login.showPassword') | translate"
         >
           <mat-icon>{{ passwordVisible() ? 'visibility_off' : 'visibility' }}</mat-icon>
         </button>
       </mat-form-field>
 
       <div class="login__row">
-        <mat-checkbox formControlName="rememberMe" class="login__remember">Remember me</mat-checkbox>
-        <button type="button" class="login__forgot">Forgot password?</button>
+        <mat-checkbox formControlName="rememberMe" class="login__remember">{{
+          'login.rememberMe' | translate
+        }}</mat-checkbox>
+        <button type="button" class="login__forgot">{{ 'login.forgotPassword' | translate }}</button>
       </div>
 
       @if (error()) {
@@ -64,13 +78,13 @@
         @if (submitting()) {
           <mat-progress-spinner mode="indeterminate" diameter="20" />
         } @else {
-          Sign in
+          {{ 'login.signIn' | translate }}
         }
       </button>
 
       <p class="login__footer">
         <img src="logo.png" alt="" class="login__footer-logo" />
-        Saudi Water Authority &mdash; CMS
+        {{ 'login.footer' | translate }}
       </p>
     </form>
   </div>
