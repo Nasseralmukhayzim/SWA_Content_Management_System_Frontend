@@ -2,23 +2,24 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { RouterLink } from '@angular/router';
+import { TranslatePipe } from '../../../core/i18n/translate.pipe';
 
 interface LookupLink {
-  label: string;
+  labelKey: string;
   path: string;
 }
 
 const LOOKUP_LINKS: LookupLink[] = [
-  { label: 'Event Types', path: 'event-types' },
-  { label: 'FAQ Categories', path: 'faq-categories' },
-  { label: 'Document Categories', path: 'document-categories' },
-  { label: 'Service Audiences', path: 'service-audiences' },
-  { label: 'Service Channels', path: 'service-channels' },
+  { labelKey: 'lookupHome.eventTypes', path: 'event-types' },
+  { labelKey: 'lookupHome.faqCategories', path: 'faq-categories' },
+  { labelKey: 'lookupHome.documentCategories', path: 'document-categories' },
+  { labelKey: 'lookupHome.serviceAudiences', path: 'service-audiences' },
+  { labelKey: 'lookupHome.serviceChannels', path: 'service-channels' },
 ];
 
 @Component({
   selector: 'app-lookup-home',
-  imports: [RouterLink, MatListModule, MatIconModule],
+  imports: [RouterLink, MatListModule, MatIconModule, TranslatePipe],
   templateUrl: './lookup-home.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

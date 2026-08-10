@@ -3,9 +3,14 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { TranslatePipe } from '../../../../core/i18n/translate.pipe';
 import { AuthService } from '../../../../core/services/auth.service';
 import { AppError } from '../../../../core/models/problem-details.models';
-import { ContentStatus, DELETION_STATUS_LABELS, DeletionRequestStatus } from '../../models/content-status.model';
+import {
+  ContentStatus,
+  DELETION_STATUS_LABEL_KEYS,
+  DeletionRequestStatus,
+} from '../../models/content-status.model';
 import {
   DeletionActionDef,
   WorkflowActionDef,
@@ -16,7 +21,7 @@ import { ContentApiService } from '../../services/content-api.service';
 
 @Component({
   selector: 'app-workflow-actions',
-  imports: [MatButtonModule, MatIconModule, MatTooltipModule],
+  imports: [MatButtonModule, MatIconModule, MatTooltipModule, TranslatePipe],
   templateUrl: './workflow-actions.component.html',
   styleUrl: './workflow-actions.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -38,7 +43,7 @@ export class WorkflowActionsComponent {
   protected readonly pending = signal(false);
   protected readonly actions = computed(() => allowedActionsFor(this.status()));
   protected readonly deletionActions = computed(() => allowedDeletionActionsFor(this.deletionStatus()));
-  protected readonly deletionStatusLabel = computed(() => DELETION_STATUS_LABELS[this.deletionStatus()]);
+  protected readonly deletionStatusLabelKey = computed(() => DELETION_STATUS_LABEL_KEYS[this.deletionStatus()]);
   protected readonly isDeletionPending = computed(() => this.deletionStatus() !== DeletionRequestStatus.None);
 
   protected canRun(action: WorkflowActionDef): boolean {
@@ -48,9 +53,10 @@ export class WorkflowActionsComponent {
     return this.auth.hasAnyRole('Admin', ...action.roles);
   }
 
+  /** Returns an i18n dictionary key (or '' for no tooltip) — resolved in the template via `| translate`. */
   protected tooltipFor(action: WorkflowActionDef): string {
     if (action.key === 'publish' && !this.hasAllTranslations()) {
-      return 'Both languages must be filled in before publishing';
+      return 'workflow.tooltip.publishRequiresTranslations';
     }
     return '';
   }

@@ -16,6 +16,8 @@ export type WorkflowActionKey =
 export interface WorkflowActionDef {
   key: WorkflowActionKey;
   label: string;
+  /** i18n dictionary key preferred over `label` — see core/i18n. Always set below. */
+  labelKey: string;
   roles: string[];
   fromStatuses: ContentStatus[];
 }
@@ -26,24 +28,56 @@ export interface WorkflowActionDef {
  * Publish additionally requires HasAllTranslations, checked separately by the caller.
  */
 export const WORKFLOW_ACTIONS: WorkflowActionDef[] = [
-  { key: 'submit', label: 'Submit for review', roles: ['Writer'], fromStatuses: [ContentStatus.Draft] },
+  {
+    key: 'submit',
+    label: 'Submit for review',
+    labelKey: 'workflow.action.submit',
+    roles: ['Writer'],
+    fromStatuses: [ContentStatus.Draft],
+  },
   // Publisher can approve too, alongside Reviewer — not just Reviewer alone.
-  { key: 'approve', label: 'Approve', roles: ['Reviewer', 'Publisher'], fromStatuses: [ContentStatus.InReview] },
+  {
+    key: 'approve',
+    label: 'Approve',
+    labelKey: 'workflow.action.approve',
+    roles: ['Reviewer', 'Publisher'],
+    fromStatuses: [ContentStatus.InReview],
+  },
   {
     key: 'request-changes',
     label: 'Request changes',
+    labelKey: 'workflow.action.requestChanges',
     roles: ['Reviewer'],
     fromStatuses: [ContentStatus.InReview, ContentStatus.Approved],
   },
-  { key: 'publish', label: 'Publish', roles: ['Publisher'], fromStatuses: [ContentStatus.Approved] },
-  { key: 'unpublish', label: 'Unpublish', roles: ['Publisher'], fromStatuses: [ContentStatus.Published] },
+  {
+    key: 'publish',
+    label: 'Publish',
+    labelKey: 'workflow.action.publish',
+    roles: ['Publisher'],
+    fromStatuses: [ContentStatus.Approved],
+  },
+  {
+    key: 'unpublish',
+    label: 'Unpublish',
+    labelKey: 'workflow.action.unpublish',
+    roles: ['Publisher'],
+    fromStatuses: [ContentStatus.Published],
+  },
   {
     key: 'archive',
     label: 'Archive',
+    labelKey: 'workflow.action.archive',
     roles: ['Publisher'],
     fromStatuses: [ContentStatus.Published, ContentStatus.Approved, ContentStatus.Draft],
   },
-  { key: 'restore', label: 'Restore', roles: ['Publisher'], fromStatuses: [ContentStatus.Archived] },
+  {
+    key: 'restore',
+    label: 'Restore',
+    labelKey: 'workflow.action.restore',
+    roles: ['Publisher'],
+    fromStatuses: [ContentStatus.Archived],
+  },
 ];
 
 export function allowedActionsFor(status: ContentStatus): WorkflowActionDef[] {
@@ -76,6 +110,8 @@ export type DeletionActionKey = 'request-deletion' | 'approve-deletion' | 'cance
 export interface DeletionActionDef {
   key: DeletionActionKey;
   label: string;
+  /** i18n dictionary key preferred over `label` — see core/i18n. Always set below. */
+  labelKey: string;
   /** 'Any' means all four content roles (Admin/Writer/Reviewer/Publisher) may run it. */
   role: string | 'Any';
   fromDeletionStatuses: DeletionRequestStatus[];
@@ -85,18 +121,21 @@ export const DELETION_ACTIONS: DeletionActionDef[] = [
   {
     key: 'request-deletion',
     label: 'Request deletion',
+    labelKey: 'workflow.deletion.request',
     role: 'Writer',
     fromDeletionStatuses: [DeletionRequestStatus.None],
   },
   {
     key: 'approve-deletion',
     label: 'Approve deletion',
+    labelKey: 'workflow.deletion.approve',
     role: 'Reviewer',
     fromDeletionStatuses: [DeletionRequestStatus.Requested],
   },
   {
     key: 'cancel-deletion',
     label: 'Cancel deletion request',
+    labelKey: 'workflow.deletion.cancel',
     role: 'Any',
     fromDeletionStatuses: [DeletionRequestStatus.Requested, DeletionRequestStatus.Approved],
   },

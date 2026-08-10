@@ -6,6 +6,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { TranslatePipe } from '../../../../core/i18n/translate.pipe';
 import { MediaKind } from '../../../media/models/media-asset.model';
 import { MediaPickerService } from '../../../ui/media-picker/media-picker.service';
 import {
@@ -27,7 +28,7 @@ import {
 @Component({
   selector: 'app-section-list-field',
   standalone: true,
-  imports: [FormsModule, MatButtonModule, MatCardModule, MatFormFieldModule, MatIconModule, MatInputModule, MatSelectModule],
+  imports: [FormsModule, MatButtonModule, MatCardModule, MatFormFieldModule, MatIconModule, MatInputModule, MatSelectModule, TranslatePipe],
   templateUrl: './section-list-field.component.html',
   styleUrl: './section-list-field.component.scss',
   providers: [

@@ -9,26 +9,28 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { map } from 'rxjs';
+import { TranslatePipe } from '../../core/i18n/translate.pipe';
 import { AuthService } from '../../core/services/auth.service';
+import { LanguageService } from '../../core/services/language.service';
 
 interface NavItem {
-  label: string;
+  labelKey: string;
   path: string;
   icon: string;
   roles?: string[];
 }
 
 const NAV_ITEMS: NavItem[] = [
-  { label: 'Dashboard', path: '/dashboard', icon: 'dashboard' },
-  { label: 'Pages', path: '/pages', icon: 'description' },
-  { label: 'News', path: '/news', icon: 'article' },
-  { label: 'Events', path: '/events', icon: 'event' },
-  { label: 'FAQs', path: '/faqs', icon: 'help' },
-  { label: 'Documents', path: '/documents', icon: 'folder' },
-  { label: 'Services', path: '/services', icon: 'design_services' },
-  { label: 'Media', path: '/media', icon: 'perm_media' },
-  { label: 'Categories', path: '/categories', icon: 'sell' },
-  { label: 'Users', path: '/users', icon: 'group', roles: ['Admin'] },
+  { labelKey: 'nav.dashboard', path: '/dashboard', icon: 'dashboard' },
+  { labelKey: 'nav.pages', path: '/pages', icon: 'description' },
+  { labelKey: 'nav.news', path: '/news', icon: 'article' },
+  { labelKey: 'nav.events', path: '/events', icon: 'event' },
+  { labelKey: 'nav.faqs', path: '/faqs', icon: 'help' },
+  { labelKey: 'nav.documents', path: '/documents', icon: 'folder' },
+  { labelKey: 'nav.services', path: '/services', icon: 'design_services' },
+  { labelKey: 'nav.media', path: '/media', icon: 'perm_media' },
+  { labelKey: 'nav.categories', path: '/categories', icon: 'sell' },
+  { labelKey: 'nav.users', path: '/users', icon: 'group', roles: ['Admin'] },
 ];
 
 @Component({
@@ -43,6 +45,7 @@ const NAV_ITEMS: NavItem[] = [
     MatIconModule,
     MatButtonModule,
     MatMenuModule,
+    TranslatePipe,
   ],
   templateUrl: './app-shell.component.html',
   styleUrl: './app-shell.component.scss',
@@ -50,6 +53,7 @@ const NAV_ITEMS: NavItem[] = [
 })
 export class AppShellComponent {
   protected readonly auth = inject(AuthService);
+  protected readonly languageService = inject(LanguageService);
   private readonly breakpointObserver = inject(BreakpointObserver);
 
   protected readonly navItems = computed(() =>
@@ -74,11 +78,11 @@ export class AppShellComponent {
 
   protected readonly initial = computed(() => this.displayName().charAt(0).toUpperCase());
 
-  protected readonly greeting = computed(() => {
+  protected readonly greetingKey = computed(() => {
     const hour = new Date().getHours();
-    if (hour < 12) return 'Good morning';
-    if (hour < 18) return 'Good afternoon';
-    return 'Good evening';
+    if (hour < 12) return 'shell.greeting.morning';
+    if (hour < 18) return 'shell.greeting.afternoon';
+    return 'shell.greeting.evening';
   });
 
   protected readonly today = signal(

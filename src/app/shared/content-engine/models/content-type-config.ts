@@ -18,11 +18,21 @@ export type FieldControlType =
 export interface FieldOption {
   value: string | number;
   label: string;
+  /** Translation key for static enum-backed options; dynamic (lookup/content) options leave this unset. */
+  labelKey?: string;
 }
 
 export interface FieldDef {
   key: string;
   label: string;
+  /**
+   * Optional i18n dictionary key (see core/i18n) that, when present, is preferred over `label`.
+   * Additive/backward-compatible: fields that don't set this keep rendering their plain-English
+   * `label` untouched (TranslatePipe falls back to the raw key it's given when the key is
+   * missing from the dictionary — so passing `label` itself through the pipe round-trips to the
+   * original English text).
+   */
+  labelKey?: string;
   type: FieldControlType;
   validators?: ValidatorFn[];
   /** Resolves select options at runtime from a `LookupDependency` with the same key. */
@@ -32,6 +42,8 @@ export interface FieldDef {
   /** Restricts the media-picker dialog to a `MediaKind`, e.g. `MediaKind.Image`. */
   mediaKindFilter?: MediaKind;
   hint?: string;
+  /** Optional i18n dictionary key for `hint`, same additive/fallback pattern as `labelKey`. */
+  hintKey?: string;
   /**
    * Overrides the control's initial value (default: false for checkbox, [] for multiselect,
    * null otherwise). Needed for fields backed by a non-nullable server type — e.g. SortOrder is
@@ -45,6 +57,8 @@ export type FilterControlType = 'text' | 'select' | 'checkbox';
 export interface FilterFieldDef {
   key: string;
   label: string;
+  /** Same additive/fallback pattern as `FieldDef.labelKey`. */
+  labelKey?: string;
   type: FilterControlType;
   lookupKey?: string;
   options?: FieldOption[];
@@ -53,6 +67,8 @@ export interface FilterFieldDef {
 export interface ColumnDef<TListItem = Record<string, unknown>> {
   key: string;
   label: string;
+  /** Same additive/fallback pattern as `FieldDef.labelKey`. */
+  labelKey?: string;
   value?: (item: TListItem) => string;
 }
 
@@ -71,6 +87,8 @@ export interface LookupDependency {
 export interface ExtraActionDef {
   key: string;
   label: string;
+  /** Same additive/fallback pattern as `FieldDef.labelKey`. */
+  labelKey?: string;
   fields: FieldDef[];
   save: (api: ContentApiService, basePath: string, id: string, value: Record<string, unknown>) => Observable<void>;
   /** Reads the current values back out of the detail response to seed the extra-action form. */
@@ -81,6 +99,8 @@ export interface ContentTypeConfig<TListItem = Record<string, unknown>> {
   key: string;
   basePath: string;
   displayName: string;
+  /** Same additive/fallback pattern as `FieldDef.labelKey`, applied to `displayName`. */
+  displayNameKey?: string;
   listColumns: ColumnDef<TListItem>[];
   filterFields: FilterFieldDef[];
   baseFieldControls: FieldDef[];
@@ -133,9 +153,11 @@ export function slugField(): FieldDef {
   return {
     key: 'slug',
     label: 'Slug',
+    labelKey: 'common.field.slug',
     type: 'text',
     validators: [Validators.required, Validators.pattern(SLUG_PATTERN), Validators.maxLength(SLUG_MAX_LENGTH)],
     hint: 'Lowercase letters, numbers, and hyphens only',
+    hintKey: 'common.hint.slug',
   };
 }
 
@@ -147,6 +169,7 @@ export function sortOrderField(): FieldDef {
   return {
     key: 'sortOrder',
     label: 'Sort order',
+    labelKey: 'common.field.sortOrder',
     type: 'number',
     validators: [Validators.required, Validators.min(0)],
     defaultValue: 0,

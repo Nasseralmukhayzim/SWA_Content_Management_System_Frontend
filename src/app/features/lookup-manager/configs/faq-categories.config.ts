@@ -4,4 +4,5 @@ export const faqCategoriesConfig: LookupTypeConfig = {
   key: 'faq-categories',
   basePath: 'faq-categories',
   displayName: 'FAQ Category',
+  displayNameKey: 'content.faq-categories.displayName',
 };

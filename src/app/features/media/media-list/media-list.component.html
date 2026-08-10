@@ -1,23 +1,23 @@
 <div class="media-list">
   <div class="media-list__header">
-    <h1>Media</h1>
+    <h1>{{ 'nav.media' | translate }}</h1>
     <a mat-flat-button color="primary" routerLink="upload">
       <mat-icon>upload</mat-icon>
-      Upload
+      {{ 'media.uploadAction' | translate }}
     </a>
   </div>
 
   <div class="media-list__filters">
     <mat-form-field appearance="outline" subscriptSizing="dynamic">
-      <mat-label>Search</mat-label>
+      <mat-label>{{ 'common.search' | translate }}</mat-label>
       <input matInput [formControl]="searchFilter" />
     </mat-form-field>
     <mat-form-field appearance="outline" subscriptSizing="dynamic">
-      <mat-label>Kind</mat-label>
+      <mat-label>{{ 'media.kind' | translate }}</mat-label>
       <mat-select [formControl]="kindFilter">
-        <mat-option [value]="null">Any</mat-option>
+        <mat-option [value]="null">{{ 'common.any' | translate }}</mat-option>
         @for (option of kindOptions; track option.value) {
-        <mat-option [value]="option.value">{{ option.label }}</mat-option>
+        <mat-option [value]="option.value">{{ option.labelKey | translate }}</mat-option>
         }
       </mat-select>
     </mat-form-field>
@@ -41,19 +41,19 @@
     </ng-container>
 
     <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef>File</th>
+      <th mat-header-cell *matHeaderCellDef>{{ 'media.file' | translate }}</th>
       <td mat-cell *matCellDef="let row">
         <a [href]="row.url" target="_blank" rel="noopener noreferrer" class="media-list__name-link">{{ row.originalFileName }}</a>
       </td>
     </ng-container>
 
     <ng-container matColumnDef="kind">
-      <th mat-header-cell *matHeaderCellDef>Kind</th>
-      <td mat-cell *matCellDef="let row">{{ kindLabel(row) }}</td>
+      <th mat-header-cell *matHeaderCellDef>{{ 'media.kind' | translate }}</th>
+      <td mat-cell *matCellDef="let row">{{ kindLabel(row) | translate }}</td>
     </ng-container>
 
     <ng-container matColumnDef="size">
-      <th mat-header-cell *matHeaderCellDef>Size</th>
+      <th mat-header-cell *matHeaderCellDef>{{ 'media.size' | translate }}</th>
       <td mat-cell *matCellDef="let row">{{ (row.sizeInBytes / 1024).toFixed(0) }} KB</td>
     </ng-container>
 

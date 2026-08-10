@@ -7,6 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { TranslatePipe } from '../../../core/i18n/translate.pipe';
 import { AppError } from '../../../core/models/problem-details.models';
 import { MAX_MEDIA_UPLOAD_BYTES } from '../../../shared/media/models/media-asset.model';
 import { MediaApiService } from '../../../shared/media/services/media-api.service';
@@ -21,6 +22,7 @@ import { MediaApiService } from '../../../shared/media/services/media-api.servic
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
+    TranslatePipe,
   ],
   templateUrl: './media-upload.component.html',
   styleUrl: './media-upload.component.scss',

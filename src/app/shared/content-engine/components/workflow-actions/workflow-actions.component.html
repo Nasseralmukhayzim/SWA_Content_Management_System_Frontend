@@ -5,10 +5,10 @@
         mat-stroked-button
         type="button"
         [disabled]="!canRun(action) || pending()"
-        [matTooltip]="tooltipFor(action)"
+        [matTooltip]="tooltipFor(action) | translate"
         (click)="run(action)"
       >
-        {{ action.label }}
+        {{ action.labelKey | translate }}
       </button>
     }
   </div>
@@ -17,7 +17,7 @@
 @if (isDeletionPending()) {
   <div class="workflow-actions__deletion-banner">
     <mat-icon aria-hidden="true">warning</mat-icon>
-    <span>{{ deletionStatusLabel() }}</span>
+    <span>{{ deletionStatusLabelKey() | translate }}</span>
   </div>
 }
 
@@ -31,7 +31,7 @@
         [disabled]="!canRunDeletion(action) || pending()"
         (click)="runDeletion(action)"
       >
-        {{ action.label }}
+        {{ action.labelKey | translate }}
       </button>
     }
   </div>
