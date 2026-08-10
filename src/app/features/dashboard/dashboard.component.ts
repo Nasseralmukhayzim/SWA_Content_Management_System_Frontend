@@ -3,6 +3,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
 import { switchMap, timer } from 'rxjs';
+import { TranslatePipe } from '../../core/i18n/translate.pipe';
 import { AuthService } from '../../core/services/auth.service';
 import { ContentStatus } from '../../shared/content-engine/models/content-status.model';
 import { ContentApiService, RecentActivityApiItem } from '../../shared/content-engine/services/content-api.service';
@@ -50,7 +51,7 @@ const SECTION_LABELS: Record<string, string> = {
 
 @Component({
   selector: 'app-dashboard',
-  imports: [RouterLink, MatIconModule, StatusBadgeComponent],
+  imports: [RouterLink, MatIconModule, StatusBadgeComponent, TranslatePipe],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

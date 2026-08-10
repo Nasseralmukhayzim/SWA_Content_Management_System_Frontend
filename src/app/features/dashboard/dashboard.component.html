@@ -1,7 +1,7 @@
 <div class="dashboard">
   <div class="dashboard__section-title">
     <span class="dashboard__bullet"></span>
-    <h2>Manage sections</h2>
+    <h2>{{ 'dashboard.manageSections' | translate }}</h2>
   </div>
 
   <div class="dashboard__grid">
@@ -23,10 +23,10 @@
 
   <div class="dashboard__section-title">
     <span class="dashboard__bullet"></span>
-    <h2>Recent activity</h2>
+    <h2>{{ 'dashboard.recentActivity' | translate }}</h2>
     <span class="dashboard__live-indicator">
       <span class="dashboard__live-dot"></span>
-      Updated {{ secondsSinceUpdate() }}s ago
+      {{ 'dashboard.updatedAgo' | translate: { seconds: secondsSinceUpdate() } }}
     </span>
   </div>
 
