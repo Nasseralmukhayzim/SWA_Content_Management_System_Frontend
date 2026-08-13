@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
@@ -85,9 +85,12 @@ export class AppShellComponent {
     return 'shell.greeting.evening';
   });
 
-  protected readonly today = signal(
-    new Date().toLocaleDateString('en-US', { weekday: 'long', day: 'numeric', month: 'short', year: 'numeric' }),
-  );
+  protected readonly today = computed(() => {
+    // Force Gregorian explicitly — the bare 'ar-SA' locale defaults to the Hijri calendar,
+    // which would silently change the actual date shown, not just its language.
+    const locale = this.languageService.language() === 'ar' ? 'ar-SA-u-ca-gregory' : 'en-US';
+    return new Date().toLocaleDateString(locale, { weekday: 'long', day: 'numeric', month: 'short', year: 'numeric' });
+  });
 
   logout(): void {
     this.auth.logout();

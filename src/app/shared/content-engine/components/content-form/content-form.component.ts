@@ -1,6 +1,8 @@
 import { Location, NgTemplateOutlet } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit, computed, inject, signal } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -12,6 +14,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { map } from 'rxjs';
+import { LOCALIZED_DATE_FORMATS, LocalizedDateAdapter } from '../../../../core/i18n/localized-date-adapter';
 import { TranslatePipe } from '../../../../core/i18n/translate.pipe';
 import { AppError } from '../../../../core/models/problem-details.models';
 import { AuthService } from '../../../../core/services/auth.service';
@@ -47,6 +50,7 @@ const LANGUAGES: LanguageOption[] = [
     MatButtonModule,
     MatCardModule,
     MatCheckboxModule,
+    MatDatepickerModule,
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
@@ -58,6 +62,10 @@ const LANGUAGES: LanguageOption[] = [
     RichTextEditorComponent,
     SectionListFieldComponent,
     TranslatePipe,
+  ],
+  providers: [
+    { provide: DateAdapter, useClass: LocalizedDateAdapter },
+    { provide: MAT_DATE_FORMATS, useValue: LOCALIZED_DATE_FORMATS },
   ],
   templateUrl: './content-form.component.html',
   styleUrl: './content-form.component.scss',
@@ -168,6 +176,41 @@ export class ContentFormComponent implements OnInit {
 
   protected clearMedia(field: FieldDef, group: FormGroup): void {
     group.get(field.key)?.setValue(null);
+  }
+
+  /** The datepicker owns the date portion only — reads/writes the shared "yyyy-MM-ddTHH:mm"
+   *  control value alongside a plain time input, so buildControl/toIsoPayload/isoToLocalInput
+   *  stay untouched. */
+  protected dateInputValue(group: FormGroup, key: string): Date | null {
+    const raw = group.get(key)?.value as string | null;
+    if (!raw) return null;
+    const [year, month, day] = raw.split('T')[0].split('-').map(Number);
+    return new Date(year, month - 1, day);
+  }
+
+  protected timeInputValue(group: FormGroup, key: string): string {
+    const raw = group.get(key)?.value as string | null;
+    return raw?.split('T')[1] ?? '';
+  }
+
+  protected onDatetimeDateChange(group: FormGroup, key: string, date: Date | null): void {
+    const control = group.get(key);
+    if (!date) {
+      control?.setValue(null);
+      return;
+    }
+    const pad = (value: number) => String(value).padStart(2, '0');
+    const datePart = `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`;
+    const timePart = this.timeInputValue(group, key) || '00:00';
+    control?.setValue(`${datePart}T${timePart}`);
+  }
+
+  protected onDatetimeTimeChange(group: FormGroup, key: string, time: string): void {
+    const currentDate = this.dateInputValue(group, key);
+    if (!currentDate) return;
+    const pad = (value: number) => String(value).padStart(2, '0');
+    const datePart = `${currentDate.getFullYear()}-${pad(currentDate.getMonth() + 1)}-${pad(currentDate.getDate())}`;
+    group.get(key)?.setValue(`${datePart}T${time || '00:00'}`);
   }
 
   saveBase(): void {

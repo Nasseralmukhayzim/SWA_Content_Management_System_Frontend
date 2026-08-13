@@ -20,7 +20,8 @@
   max-width: 82vw;
   background: #fff;
   border: none;
-  margin: 16px 0 16px 16px;
+  margin-block: 16px;
+  margin-inline: 16px 0;
   border-radius: 20px;
   box-shadow: 0 4px 24px rgba(16, 32, 58, 0.06);
   padding: 20px 16px;
@@ -193,7 +194,8 @@
   align-items: center;
   flex-wrap: nowrap;
   gap: 10px;
-  padding: 4px 8px 4px 16px;
+  padding-block: 4px;
+  padding-inline: 16px 8px;
   border-radius: 999px;
   background: #fff;
   border: 1px solid rgba(brand.$swa-bright-navy, 0.2);

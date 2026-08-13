@@ -21,15 +21,6 @@
     }
   </div>
 
-  <div class="dashboard__section-title">
-    <span class="dashboard__bullet"></span>
-    <h2>{{ 'dashboard.recentActivity' | translate }}</h2>
-    <span class="dashboard__live-indicator">
-      <span class="dashboard__live-dot"></span>
-      {{ 'dashboard.updatedAgo' | translate: { seconds: secondsSinceUpdate() } }}
-    </span>
-  </div>
-
   <div class="dashboard__activity">
     @for (item of recentActivity(); track item.title) {
       <a [routerLink]="item.path" class="dashboard__activity-row">
@@ -38,7 +29,7 @@
         </span>
         <div class="dashboard__activity-text">
           <span class="dashboard__activity-title">{{ item.title }}</span>
-          <span class="dashboard__activity-meta">{{ item.section | translate }} &middot; {{ item.date }}</span>
+          <span class="dashboard__activity-meta">{{ item.section | translate }} &middot; {{ item.date | localizedDate }}</span>
         </div>
         <app-status-badge [status]="item.status" />
       </a>
