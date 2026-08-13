@@ -1,7 +1,7 @@
 import { HttpErrorResponse, HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { catchError, throwError } from 'rxjs';
-import { AppError, ValidationProblemDetails } from '../models/problem-details.models';
+import { AppError, ResultError, ValidationProblemDetails } from '../models/problem-details.models';
 import { AuthService } from '../services/auth.service';
 
 export const errorInterceptor: HttpInterceptorFn = (req, next) => {
@@ -17,9 +17,9 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
         auth.logout();
       }
 
-      const body = error.error as Partial<ValidationProblemDetails> | null;
+      const body = error.error as (Partial<ValidationProblemDetails> & Partial<ResultError>) | null;
       const appError: AppError = {
-        title: body?.title ?? defaultTitleFor(error.status),
+        title: body?.title ?? body?.description ?? defaultTitleFor(error.status),
         detail: body?.detail,
         status: error.status,
         fieldErrors: body?.errors,
