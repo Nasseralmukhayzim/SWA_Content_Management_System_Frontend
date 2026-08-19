@@ -52,7 +52,13 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SectionListFieldComponent implements ControlValueAccessor {
-  @Input() dir: 'ltr' | 'rtl' = 'ltr';
+  // Named contentDir, not dir: an `[dir]` binding on this element also reflects onto the host's
+  // native `dir` attribute (browsers treat `dir` as a real global attribute alongside any
+  // same-named @Input), which then flips `direction` for this whole subtree via CSS inheritance —
+  // including every mat-form-field inside it. Angular Material's floating-label/notched-outline
+  // positioning reads that inherited direction and mismatches the document's actual rtl/ltr
+  // context, clipping the label. A differently-named input can't collide with the native attribute.
+  @Input() contentDir: 'ltr' | 'rtl' = 'ltr';
 
   private readonly mediaPicker = inject(MediaPickerService);
 

@@ -1,11 +1,15 @@
 <!--
-  The wrapper deliberately carries no `dir`. `dir` here is the *content* language being edited,
-  which is independent of the UI language driving document direction. Setting it on this element
-  put an opposite-direction subtree inside the document, and Angular Material targets its RTL
-  styles with `[dir=rtl] …` ancestor selectors — so the floating labels kept right-anchored
-  positioning while their boxes laid out left-to-right, and the labels were clipped by the
-  notched outline. Direction now applies only to the editable controls, where the content
-  actually lives; Material's chrome follows the document consistently.
+  Direction applies only to the editable controls via the `contentDir` input, never as a `[dir]`
+  binding on this component's host or on the wrapper below. `contentDir` is the *content* language
+  being edited, independent of the UI language driving document direction — and a `[dir]` binding
+  on a host element also reflects onto its native `dir` attribute (browsers treat `dir` as a real
+  global attribute alongside any same-named @Input), which flips `direction` for that whole
+  subtree via CSS inheritance. Angular Material targets its RTL styles with `[dir=rtl] …` ancestor
+  selectors, so a subtree whose inherited direction disagrees with the document's actual dir
+  breaks the floating-label/notched-outline positioning: labels kept right-anchored while their
+  boxes laid out left-to-right, and the labels were clipped by the notch. Naming the input
+  `contentDir` instead of `dir` prevents that reflection; Material's chrome then follows the
+  document consistently while typed content still reads in the content language's direction.
 -->
 <div class="section-list">
   @for (section of sections(); track section.id ?? $index; let sectionIndex = $index; let first = $first; let last = $last) {
@@ -35,13 +39,13 @@
 
       <mat-form-field appearance="outline" class="section-list__field section-list__field--wide">
         <mat-label>{{ 'sectionEditor.heading' | translate }}</mat-label>
-        <input matInput [attr.dir]="dir" [ngModel]="section.heading" (ngModelChange)="updateSection(sectionIndex, { heading: $event })" />
+        <input matInput [attr.dir]="contentDir" [ngModel]="section.heading" (ngModelChange)="updateSection(sectionIndex, { heading: $event })" />
       </mat-form-field>
 
       @if (section.kind !== 'Text') {
         <mat-form-field appearance="outline" class="section-list__field section-list__field--wide">
           <mat-label>{{ 'sectionEditor.intro' | translate }}</mat-label>
-          <textarea matInput rows="2" [attr.dir]="dir" [ngModel]="section.intro" (ngModelChange)="updateSection(sectionIndex, { intro: $event })"></textarea>
+          <textarea matInput rows="2" [attr.dir]="contentDir" [ngModel]="section.intro" (ngModelChange)="updateSection(sectionIndex, { intro: $event })"></textarea>
         </mat-form-field>
       }
 
@@ -50,7 +54,7 @@
           <span class="section-list__body-label">{{ 'sectionEditor.body' | translate }}</span>
           <app-rich-text-editor
             [height]="260"
-            [dir]="dir"
+            [dir]="contentDir"
             [ngModel]="section.body"
             (ngModelChange)="updateSection(sectionIndex, { body: $event })"
           />
@@ -63,21 +67,20 @@
                 <mat-label>{{ labelsFor(section.kind).title | translate }}</mat-label>
                 <input
                   matInput
-                  [attr.dir]="dir"
+                  [attr.dir]="contentDir"
                   [ngModel]="item.title"
                   (ngModelChange)="updateItem(sectionIndex, itemIndex, { title: $event })"
                 />
               </mat-form-field>
-              <mat-form-field appearance="outline" class="section-list__field section-list__field--wide">
-                <mat-label>{{ labelsFor(section.kind).description | translate }}</mat-label>
-                <textarea
-                  matInput
-                  rows="2"
-                  [attr.dir]="dir"
+              <div class="section-list__body section-list__field--wide">
+                <span class="section-list__body-label">{{ labelsFor(section.kind).description | translate }}</span>
+                <app-rich-text-editor
+                  [height]="180"
+                  [dir]="contentDir"
                   [ngModel]="item.description"
                   (ngModelChange)="updateItem(sectionIndex, itemIndex, { description: $event })"
-                ></textarea>
-              </mat-form-field>
+                />
+              </div>
 
               @if (section.kind === 'CardGrid') {
                 <div class="section-list__card-media">
