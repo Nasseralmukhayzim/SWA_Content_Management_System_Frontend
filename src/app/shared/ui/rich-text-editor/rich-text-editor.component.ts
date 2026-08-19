@@ -123,7 +123,13 @@ export class RichTextEditorComponent implements OnInit, OnDestroy, ControlValueA
         'wordcount',
       ],
       toolbar:
-        'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | forecolor backcolor | alignleft aligncenter alignright alignjustify | ltr rtl | numlist bullist | table link image media | removeformat code fullscreen',
+        'undo redo | code | blocks fontfamily fontsize | bold italic underline strikethrough | forecolor backcolor | alignleft aligncenter alignright alignjustify | ltr rtl | numlist bullist | table link image media | removeformat fullscreen',
+      // 'wrap' instead of the default 'floating': the toolbar has too many groups to fit one row
+      // at this editor's typical rendered width, and the default mode hides the overflow behind a
+      // "⋯" button whose drawer can itself run out of room and clip trailing groups — burying
+      // "code" (the HTML source view) behind a click that doesn't reliably reveal it. Wrapping
+      // onto as many rows as needed keeps every button, including source view, always visible.
+      toolbar_mode: 'wrap',
       content_style: 'body { font-family: Roboto, Arial, sans-serif; font-size: 14px; line-height: 1.6; }',
       promotion: false,
       branding: false,
