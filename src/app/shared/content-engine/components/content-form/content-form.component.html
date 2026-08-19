@@ -142,7 +142,7 @@
     @case ('section-list') {
       <div class="content-form__field content-form__field--wide">
         <label class="content-form__section-list-label">{{ (field.labelKey ?? field.label) | translate }}</label>
-        <app-section-list-field [formControl]="fieldControl(group, field.key)" [dir]="lang === 'en' ? 'ltr' : 'rtl'" />
+        <app-section-list-field [formControl]="fieldControl(group, field.key)" [contentDir]="lang === 'en' ? 'ltr' : 'rtl'" />
       </div>
     }
     @case ('checkbox') {

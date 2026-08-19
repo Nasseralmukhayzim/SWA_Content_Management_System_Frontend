@@ -1,9 +1,22 @@
-<div class="section-list" [dir]="dir">
+<!--
+  Direction applies only to the editable controls via the `contentDir` input, never as a `[dir]`
+  binding on this component's host or on the wrapper below. `contentDir` is the *content* language
+  being edited, independent of the UI language driving document direction — and a `[dir]` binding
+  on a host element also reflects onto its native `dir` attribute (browsers treat `dir` as a real
+  global attribute alongside any same-named @Input), which flips `direction` for that whole
+  subtree via CSS inheritance. Angular Material targets its RTL styles with `[dir=rtl] …` ancestor
+  selectors, so a subtree whose inherited direction disagrees with the document's actual dir
+  breaks the floating-label/notched-outline positioning: labels kept right-anchored while their
+  boxes laid out left-to-right, and the labels were clipped by the notch. Naming the input
+  `contentDir` instead of `dir` prevents that reflection; Material's chrome then follows the
+  document consistently while typed content still reads in the content language's direction.
+-->
+<div class="section-list">
   @for (section of sections(); track section.id ?? $index; let sectionIndex = $index; let first = $first; let last = $last) {
     <mat-card class="section-list__card">
       <div class="section-list__card-header">
         <mat-form-field appearance="outline" class="section-list__kind">
-          <mat-label>Kind</mat-label>
+          <mat-label>{{ 'sectionEditor.kind' | translate }}</mat-label>
           <mat-select [value]="section.kind" (selectionChange)="updateSection(sectionIndex, { kind: $event.value })">
             @for (option of kindOptions; track option.value) {
               <mat-option [value]="option.value">{{ (option.labelKey ?? option.label) | translate }}</mat-option>
@@ -12,84 +25,91 @@
         </mat-form-field>
 
         <div class="section-list__card-actions">
-          <button mat-icon-button type="button" [disabled]="first" (click)="moveSection(sectionIndex, -1)" aria-label="Move section up">
+          <button mat-icon-button type="button" [disabled]="first" (click)="moveSection(sectionIndex, -1)" [attr.aria-label]="'sectionEditor.moveUp' | translate">
             <mat-icon>arrow_upward</mat-icon>
           </button>
-          <button mat-icon-button type="button" [disabled]="last" (click)="moveSection(sectionIndex, 1)" aria-label="Move section down">
+          <button mat-icon-button type="button" [disabled]="last" (click)="moveSection(sectionIndex, 1)" [attr.aria-label]="'sectionEditor.moveDown' | translate">
             <mat-icon>arrow_downward</mat-icon>
           </button>
-          <button mat-icon-button type="button" (click)="removeSection(sectionIndex)" aria-label="Remove section">
+          <button mat-icon-button type="button" (click)="removeSection(sectionIndex)" [attr.aria-label]="'sectionEditor.removeSection' | translate">
             <mat-icon>delete</mat-icon>
           </button>
         </div>
       </div>
 
       <mat-form-field appearance="outline" class="section-list__field section-list__field--wide">
-        <mat-label>Heading</mat-label>
-        <input matInput [ngModel]="section.heading" (ngModelChange)="updateSection(sectionIndex, { heading: $event })" />
+        <mat-label>{{ 'sectionEditor.heading' | translate }}</mat-label>
+        <input matInput [attr.dir]="contentDir" [ngModel]="section.heading" (ngModelChange)="updateSection(sectionIndex, { heading: $event })" />
       </mat-form-field>
 
       @if (section.kind !== 'Text') {
         <mat-form-field appearance="outline" class="section-list__field section-list__field--wide">
-          <mat-label>Intro (optional)</mat-label>
-          <textarea matInput rows="2" [ngModel]="section.intro" (ngModelChange)="updateSection(sectionIndex, { intro: $event })"></textarea>
+          <mat-label>{{ 'sectionEditor.intro' | translate }}</mat-label>
+          <textarea matInput rows="2" [attr.dir]="contentDir" [ngModel]="section.intro" (ngModelChange)="updateSection(sectionIndex, { intro: $event })"></textarea>
         </mat-form-field>
       }
 
       @if (section.kind === 'Text') {
-        <mat-form-field appearance="outline" class="section-list__field section-list__field--wide">
-          <mat-label>Body</mat-label>
-          <textarea matInput rows="4" [ngModel]="section.body" (ngModelChange)="updateSection(sectionIndex, { body: $event })"></textarea>
-        </mat-form-field>
+        <div class="section-list__body">
+          <span class="section-list__body-label">{{ 'sectionEditor.body' | translate }}</span>
+          <app-rich-text-editor
+            [height]="260"
+            [dir]="contentDir"
+            [ngModel]="section.body"
+            (ngModelChange)="updateSection(sectionIndex, { body: $event })"
+          />
+        </div>
       } @else {
         <div class="section-list__items">
           @for (item of section.items; track item.id ?? $index; let itemIndex = $index; let itemFirst = $first; let itemLast = $last) {
             <div class="section-list__item">
               <mat-form-field appearance="outline" class="section-list__field">
-                <mat-label>{{ labelsFor(section.kind).title }}</mat-label>
+                <mat-label>{{ labelsFor(section.kind).title | translate }}</mat-label>
                 <input
                   matInput
+                  [attr.dir]="contentDir"
                   [ngModel]="item.title"
                   (ngModelChange)="updateItem(sectionIndex, itemIndex, { title: $event })"
                 />
               </mat-form-field>
-              <mat-form-field appearance="outline" class="section-list__field section-list__field--wide">
-                <mat-label>{{ labelsFor(section.kind).description }}</mat-label>
-                <textarea
-                  matInput
-                  rows="2"
+              <div class="section-list__body section-list__field--wide">
+                <span class="section-list__body-label">{{ labelsFor(section.kind).description | translate }}</span>
+                <app-rich-text-editor
+                  [height]="180"
+                  [dir]="contentDir"
                   [ngModel]="item.description"
                   (ngModelChange)="updateItem(sectionIndex, itemIndex, { description: $event })"
-                ></textarea>
-              </mat-form-field>
+                />
+              </div>
 
               @if (section.kind === 'CardGrid') {
                 <div class="section-list__card-media">
                   <div class="section-list__media-picker">
-                    <span class="section-list__media-label">Icon</span>
-                    <span class="section-list__media-value">{{ mediaLabelFor(item.iconId) ?? 'None' }}</span>
-                    <button mat-stroked-button type="button" (click)="chooseIcon(sectionIndex, itemIndex)">Choose</button>
+                    <span class="section-list__media-label">{{ 'sectionEditor.icon' | translate }}</span>
+                    <span class="section-list__media-value">{{ mediaLabelFor(item.iconId) ?? ('sectionEditor.none' | translate) }}</span>
+                    <button mat-stroked-button type="button" (click)="chooseIcon(sectionIndex, itemIndex)">{{ 'sectionEditor.choose' | translate }}</button>
                     @if (item.iconId) {
-                      <button mat-icon-button type="button" (click)="clearIcon(sectionIndex, itemIndex)" aria-label="Remove icon">
+                      <button mat-icon-button type="button" (click)="clearIcon(sectionIndex, itemIndex)" [attr.aria-label]="'sectionEditor.removeIcon' | translate">
                         <mat-icon>close</mat-icon>
                       </button>
                     }
                   </div>
                   <div class="section-list__media-picker">
-                    <span class="section-list__media-label">Image</span>
-                    <span class="section-list__media-value">{{ mediaLabelFor(item.imageId) ?? 'None' }}</span>
-                    <button mat-stroked-button type="button" (click)="chooseImage(sectionIndex, itemIndex)">Choose</button>
+                    <span class="section-list__media-label">{{ 'sectionEditor.image' | translate }}</span>
+                    <span class="section-list__media-value">{{ mediaLabelFor(item.imageId) ?? ('sectionEditor.none' | translate) }}</span>
+                    <button mat-stroked-button type="button" (click)="chooseImage(sectionIndex, itemIndex)">{{ 'sectionEditor.choose' | translate }}</button>
                     @if (item.imageId) {
-                      <button mat-icon-button type="button" (click)="clearImage(sectionIndex, itemIndex)" aria-label="Remove image">
+                      <button mat-icon-button type="button" (click)="clearImage(sectionIndex, itemIndex)" [attr.aria-label]="'sectionEditor.removeImage' | translate">
                         <mat-icon>close</mat-icon>
                       </button>
                     }
                   </div>
                 </div>
                 <mat-form-field appearance="outline" class="section-list__field section-list__field--wide">
-                  <mat-label>Link URL</mat-label>
+                  <mat-label>{{ 'sectionEditor.linkUrl' | translate }}</mat-label>
                   <input
                     matInput
+                    dir="ltr"
                     [ngModel]="item.linkUrl"
                     (ngModelChange)="updateItem(sectionIndex, itemIndex, { linkUrl: $event })"
                   />
@@ -97,13 +117,13 @@
               }
 
               <div class="section-list__item-actions">
-                <button mat-icon-button type="button" [disabled]="itemFirst" (click)="moveItem(sectionIndex, itemIndex, -1)" aria-label="Move item up">
+                <button mat-icon-button type="button" [disabled]="itemFirst" (click)="moveItem(sectionIndex, itemIndex, -1)" [attr.aria-label]="'sectionEditor.moveUp' | translate">
                   <mat-icon>arrow_upward</mat-icon>
                 </button>
-                <button mat-icon-button type="button" [disabled]="itemLast" (click)="moveItem(sectionIndex, itemIndex, 1)" aria-label="Move item down">
+                <button mat-icon-button type="button" [disabled]="itemLast" (click)="moveItem(sectionIndex, itemIndex, 1)" [attr.aria-label]="'sectionEditor.moveDown' | translate">
                   <mat-icon>arrow_downward</mat-icon>
                 </button>
-                <button mat-icon-button type="button" (click)="removeItem(sectionIndex, itemIndex)" aria-label="Remove item">
+                <button mat-icon-button type="button" (click)="removeItem(sectionIndex, itemIndex)" [attr.aria-label]="'sectionEditor.removeItem' | translate">
                   <mat-icon>delete</mat-icon>
                 </button>
               </div>
@@ -111,7 +131,7 @@
           }
           <button mat-stroked-button type="button" (click)="addItem(sectionIndex)">
             <mat-icon>add</mat-icon>
-            Add {{ labelsFor(section.kind).title.toLowerCase() }}
+            {{ labelsFor(section.kind).add | translate }}
           </button>
         </div>
       }
@@ -120,7 +140,7 @@
 
   <div class="section-list__add">
     <mat-form-field appearance="outline" class="section-list__kind">
-      <mat-label>New section kind</mat-label>
+      <mat-label>{{ 'sectionEditor.newSectionKind' | translate }}</mat-label>
       <mat-select [ngModel]="newSectionKind()" (ngModelChange)="newSectionKind.set($event)">
         @for (option of kindOptions; track option.value) {
           <mat-option [value]="option.value">{{ (option.labelKey ?? option.label) | translate }}</mat-option>
@@ -129,7 +149,7 @@
     </mat-form-field>
     <button mat-stroked-button type="button" (click)="addSection()">
       <mat-icon>add</mat-icon>
-      Add section
+      {{ 'sectionEditor.addSection' | translate }}
     </button>
   </div>
 </div>

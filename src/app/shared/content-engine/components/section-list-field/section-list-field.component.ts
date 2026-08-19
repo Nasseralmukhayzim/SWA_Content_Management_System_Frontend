@@ -9,6 +9,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { TranslatePipe } from '../../../../core/i18n/translate.pipe';
 import { MediaKind } from '../../../media/models/media-asset.model';
 import { MediaPickerService } from '../../../ui/media-picker/media-picker.service';
+import { RichTextEditorComponent } from '../../../ui/rich-text-editor/rich-text-editor.component';
 import {
   ITEM_LABELS,
   PageSection,
@@ -28,7 +29,17 @@ import {
 @Component({
   selector: 'app-section-list-field',
   standalone: true,
-  imports: [FormsModule, MatButtonModule, MatCardModule, MatFormFieldModule, MatIconModule, MatInputModule, MatSelectModule, TranslatePipe],
+  imports: [
+    FormsModule,
+    MatButtonModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    MatSelectModule,
+    RichTextEditorComponent,
+    TranslatePipe,
+  ],
   templateUrl: './section-list-field.component.html',
   styleUrl: './section-list-field.component.scss',
   providers: [
@@ -41,7 +52,13 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SectionListFieldComponent implements ControlValueAccessor {
-  @Input() dir: 'ltr' | 'rtl' = 'ltr';
+  // Named contentDir, not dir: an `[dir]` binding on this element also reflects onto the host's
+  // native `dir` attribute (browsers treat `dir` as a real global attribute alongside any
+  // same-named @Input), which then flips `direction` for this whole subtree via CSS inheritance —
+  // including every mat-form-field inside it. Angular Material's floating-label/notched-outline
+  // positioning reads that inherited direction and mismatches the document's actual rtl/ltr
+  // context, clipping the label. A differently-named input can't collide with the native attribute.
+  @Input() contentDir: 'ltr' | 'rtl' = 'ltr';
 
   private readonly mediaPicker = inject(MediaPickerService);
 
