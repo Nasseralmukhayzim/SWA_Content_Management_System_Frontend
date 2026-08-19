@@ -22,18 +22,33 @@ export interface PageSection {
 }
 
 export const SECTION_KIND_OPTIONS: FieldOption[] = [
-  { value: 'Text', label: 'Text' },
-  { value: 'CardGrid', label: 'Card grid' },
-  { value: 'StatGroup', label: 'Stat group' },
-  { value: 'Timeline', label: 'Timeline' },
+  { value: 'Text', label: 'Text', labelKey: 'sectionKind.Text' },
+  { value: 'CardGrid', label: 'Card grid', labelKey: 'sectionKind.CardGrid' },
+  { value: 'StatGroup', label: 'Stat group', labelKey: 'sectionKind.StatGroup' },
+  { value: 'Timeline', label: 'Timeline', labelKey: 'sectionKind.Timeline' },
 ];
 
-/** Item rows are labelled per kind so the editor reads naturally (a stat's "title" is really its number). */
-export const ITEM_LABELS: Record<SectionKind, { title: string; description: string }> = {
-  Text: { title: 'Title', description: 'Description' },
-  CardGrid: { title: 'Card title', description: 'Card description' },
-  StatGroup: { title: 'Number', description: 'Label' },
-  Timeline: { title: 'Year', description: 'Label' },
+/**
+ * Item rows are labelled per kind so the editor reads naturally (a stat's "title" is really its
+ * number). Values are translation keys — the editor runs in both UI languages.
+ */
+export const ITEM_LABELS: Record<SectionKind, { title: string; description: string; add: string }> = {
+  Text: { title: 'sectionItem.Text.title', description: 'sectionItem.Text.description', add: 'sectionEditor.addItem.Text' },
+  CardGrid: {
+    title: 'sectionItem.CardGrid.title',
+    description: 'sectionItem.CardGrid.description',
+    add: 'sectionEditor.addItem.CardGrid',
+  },
+  StatGroup: {
+    title: 'sectionItem.StatGroup.title',
+    description: 'sectionItem.StatGroup.description',
+    add: 'sectionEditor.addItem.StatGroup',
+  },
+  Timeline: {
+    title: 'sectionItem.Timeline.title',
+    description: 'sectionItem.Timeline.description',
+    add: 'sectionEditor.addItem.Timeline',
+  },
 };
 
 export function emptySection(kind: SectionKind): PageSection {

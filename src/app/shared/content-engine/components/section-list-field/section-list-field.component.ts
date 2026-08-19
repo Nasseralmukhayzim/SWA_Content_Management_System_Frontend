@@ -9,6 +9,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { TranslatePipe } from '../../../../core/i18n/translate.pipe';
 import { MediaKind } from '../../../media/models/media-asset.model';
 import { MediaPickerService } from '../../../ui/media-picker/media-picker.service';
+import { RichTextEditorComponent } from '../../../ui/rich-text-editor/rich-text-editor.component';
 import {
   ITEM_LABELS,
   PageSection,
@@ -28,7 +29,17 @@ import {
 @Component({
   selector: 'app-section-list-field',
   standalone: true,
-  imports: [FormsModule, MatButtonModule, MatCardModule, MatFormFieldModule, MatIconModule, MatInputModule, MatSelectModule, TranslatePipe],
+  imports: [
+    FormsModule,
+    MatButtonModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    MatSelectModule,
+    RichTextEditorComponent,
+    TranslatePipe,
+  ],
   templateUrl: './section-list-field.component.html',
   styleUrl: './section-list-field.component.scss',
   providers: [
