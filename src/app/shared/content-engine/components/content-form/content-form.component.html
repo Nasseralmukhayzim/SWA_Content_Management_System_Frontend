@@ -22,10 +22,10 @@
       />
 
       @if (config.hasPreview) {
-        <button mat-stroked-button type="button" (click)="openPreview()">
+        <a mat-stroked-button [href]="previewHref()" target="_blank" rel="noopener">
           <mat-icon>visibility</mat-icon>
           {{ 'common.preview' | translate }}
-        </button>
+        </a>
       }
     }
 

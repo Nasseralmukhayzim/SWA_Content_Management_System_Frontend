@@ -141,9 +141,9 @@ export class ContentFormComponent implements OnInit {
     return group.get(key) as FormControl;
   }
 
-  protected openPreview(): void {
-    window.open(`/${this.config.basePath}/${this.id()}/preview`, '_blank', 'noopener');
-  }
+  // A real anchor with target="_blank" — not a script-driven window.open() — so the browser
+  // treats opening it as ordinary link navigation and never blocks it as a popup.
+  protected readonly previewHref = computed(() => `/${this.config.basePath}/${this.id()}/preview`);
 
   protected optionsFor(field: FieldDef): FieldOption[] {
     if (field.options) {
