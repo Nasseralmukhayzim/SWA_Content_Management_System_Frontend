@@ -61,6 +61,7 @@ export const AR: Record<string, string> = {
   'common.translations': 'الترجمات',
   'common.create': 'إنشاء',
   'common.save': 'حفظ',
+  'common.preview': 'معاينة',
   'common.saveArabic': 'حفظ العربية',
   'common.saveEnglish': 'حفظ الإنجليزية',
   'common.none': '— بلا —',

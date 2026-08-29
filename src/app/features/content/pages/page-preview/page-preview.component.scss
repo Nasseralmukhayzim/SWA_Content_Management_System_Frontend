@@ -1,0 +1,262 @@
+@use 'brand';
+
+.page-preview {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.page-preview__toolbar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding: 12px 0 20px;
+}
+
+.page-preview__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: brand.$swa-warning-bg;
+  color: brand.$swa-warning;
+  font-size: 13px;
+  font-weight: 600;
+
+  mat-icon {
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+  }
+}
+
+.page-preview__lang-toggle {
+  display: flex;
+  margin-inline-start: auto;
+  border: 1px solid brand.$swa-surface-wash-strong;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.page-preview__lang-btn {
+  border: none;
+  background: #fff;
+  color: brand.$swa-text-secondary;
+  padding: 6px 16px;
+  cursor: pointer;
+  font-size: 14px;
+
+  &.is-active {
+    background: brand.$swa-cobalt-blue;
+    color: #fff;
+  }
+}
+
+.page-preview__state {
+  display: flex;
+  justify-content: center;
+  padding: 64px 0;
+}
+
+// ---- the preview canvas itself: deliberately distinct from the Material admin chrome ----
+
+.preview-canvas {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 1px 3px rgba(16, 32, 58, 0.08);
+  overflow: hidden;
+  font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+  color: brand.$swa-text-primary;
+}
+
+.preview-hero {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  padding: 48px;
+  background: linear-gradient(135deg, brand.$swa-surface-wash 0%, brand.$swa-surface-wash-strong 100%);
+
+  @media (max-width: 700px) {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 32px 20px;
+  }
+}
+
+.preview-hero__text {
+  flex: 1 1 auto;
+}
+
+.preview-hero__title {
+  margin: 0 0 12px;
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 700;
+  color: brand.$swa-navy-blue;
+}
+
+.preview-hero__summary {
+  margin: 0;
+  font-size: 17px;
+  line-height: 1.6;
+  color: brand.$swa-text-secondary;
+  max-width: 60ch;
+}
+
+.preview-hero__figure {
+  flex: 0 0 auto;
+  margin: 0;
+  width: 260px;
+
+  img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    display: block;
+  }
+
+  @media (max-width: 700px) {
+    width: 100%;
+  }
+}
+
+.preview-block {
+  padding: 32px 48px;
+  border-top: 1px solid brand.$swa-surface-wash;
+
+  @media (max-width: 700px) {
+    padding: 24px 20px;
+  }
+}
+
+.preview-block__heading {
+  margin: 0 0 12px;
+  font-size: 24px;
+  font-weight: 700;
+  color: brand.$swa-navy-blue;
+}
+
+.preview-block__intro {
+  margin: 0 0 16px;
+  font-size: 16px;
+  color: brand.$swa-text-secondary;
+}
+
+.preview-block__body {
+  font-size: 16px;
+  line-height: 1.75;
+
+  // [innerHTML] content isn't processed by Angular's view encapsulation, so styling it needs
+  // ::ng-deep to reach past the scoping attribute this component's other rules rely on.
+  ::ng-deep p {
+    margin: 0 0 1em;
+  }
+}
+
+.preview-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+  margin-top: 8px;
+}
+
+.preview-card {
+  padding: 20px;
+  border-radius: 12px;
+  background: brand.$swa-surface-wash;
+}
+
+.preview-card__image {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+.preview-card__icon {
+  width: 40px;
+  height: 40px;
+  margin-bottom: 12px;
+}
+
+.preview-card__title {
+  margin: 0 0 6px;
+  font-size: 17px;
+  font-weight: 700;
+  color: brand.$swa-navy-blue;
+}
+
+.preview-card__description {
+  margin: 0;
+  font-size: 14px;
+  color: brand.$swa-text-secondary;
+  line-height: 1.6;
+}
+
+.preview-card__link {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  color: brand.$swa-bright-navy;
+}
+
+.preview-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 24px;
+  margin-top: 8px;
+  text-align: center;
+}
+
+.preview-stat__number {
+  font-size: 36px;
+  font-weight: 800;
+  color: brand.$swa-cobalt-blue;
+}
+
+.preview-stat__label {
+  margin-top: 6px;
+  font-size: 14px;
+  color: brand.$swa-text-secondary;
+}
+
+.preview-timeline {
+  list-style: none;
+  margin: 8px 0 0;
+  padding: 0;
+  border-inline-start: 3px solid brand.$swa-surface-wash-strong;
+}
+
+.preview-timeline__item {
+  position: relative;
+  padding: 0 0 20px 20px;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset-inline-start: -8px;
+    top: 4px;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background: brand.$swa-robin-egg;
+  }
+}
+
+.preview-timeline__year {
+  display: block;
+  font-weight: 700;
+  color: brand.$swa-navy-blue;
+}
+
+.preview-timeline__label {
+  color: brand.$swa-text-secondary;
+}
+
+.preview-list {
+  margin: 8px 0 0;
+  padding-inline-start: 20px;
+  line-height: 1.8;
+}

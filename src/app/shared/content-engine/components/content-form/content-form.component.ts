@@ -141,6 +141,10 @@ export class ContentFormComponent implements OnInit {
     return group.get(key) as FormControl;
   }
 
+  protected openPreview(): void {
+    window.open(`/${this.config.basePath}/${this.id()}/preview`, '_blank', 'noopener');
+  }
+
   protected optionsFor(field: FieldDef): FieldOption[] {
     if (field.options) {
       return field.options;

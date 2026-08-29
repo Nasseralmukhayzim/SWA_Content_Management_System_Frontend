@@ -20,6 +20,13 @@
         [deletionStatus]="deletionStatus()"
         (actionCompleted)="onWorkflowActionCompleted()"
       />
+
+      @if (config.hasPreview) {
+        <button mat-stroked-button type="button" (click)="openPreview()">
+          <mat-icon>visibility</mat-icon>
+          {{ 'common.preview' | translate }}
+        </button>
+      }
     }
 
     <mat-card>

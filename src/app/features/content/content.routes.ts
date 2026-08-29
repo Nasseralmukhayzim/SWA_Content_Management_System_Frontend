@@ -7,6 +7,7 @@ import { eventsConfig } from './configs/events.config';
 import { faqsConfig } from './configs/faqs.config';
 import { newsConfig } from './configs/news.config';
 import { pagesConfig } from './configs/pages.config';
+import { PagePreviewComponent } from './pages/page-preview/page-preview.component';
 import { servicesConfig } from './configs/services.config';
 
 function buildContentRoutes(config: ContentTypeConfig): Routes {
@@ -19,7 +20,10 @@ function buildContentRoutes(config: ContentTypeConfig): Routes {
 }
 
 export const contentRoutes: Routes = [
-  { path: 'pages', children: buildContentRoutes(pagesConfig) },
+  {
+    path: 'pages',
+    children: [...buildContentRoutes(pagesConfig), { path: ':id/preview', component: PagePreviewComponent }],
+  },
   { path: 'news', children: buildContentRoutes(newsConfig) },
   { path: 'events', children: buildContentRoutes(eventsConfig) },
   { path: 'faqs', children: buildContentRoutes(faqsConfig) },
