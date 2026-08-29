@@ -76,7 +76,7 @@
                     }
                     <h3 class="preview-card__title">{{ item.title }}</h3>
                     @if (item.description) {
-                      <p class="preview-card__description">{{ item.description }}</p>
+                      <div class="preview-card__description" [innerHTML]="item.description"></div>
                     }
                     @if (item.linkUrl) {
                       <a class="preview-card__link" [href]="item.linkUrl" target="_blank" rel="noopener">
@@ -92,7 +92,7 @@
                 @for (item of section.items; track $index) {
                   <div class="preview-stat">
                     <div class="preview-stat__number">{{ item.title }}</div>
-                    <div class="preview-stat__label">{{ item.description }}</div>
+                    <div class="preview-stat__label" [innerHTML]="item.description"></div>
                   </div>
                 }
               </div>
@@ -102,7 +102,7 @@
                 @for (item of section.items; track $index) {
                   <li class="preview-timeline__item">
                     <span class="preview-timeline__year">{{ item.title }}</span>
-                    <span class="preview-timeline__label">{{ item.description }}</span>
+                    <div class="preview-timeline__label" [innerHTML]="item.description"></div>
                   </li>
                 }
               </ol>
@@ -114,7 +114,7 @@
                     <li>
                       <strong>{{ item.title }}</strong>
                       @if (item.description) {
-                        <span> — {{ item.description }}</span>
+                        <div class="preview-list__description" [innerHTML]="item.description"></div>
                       }
                     </li>
                   }

@@ -192,6 +192,12 @@
   font-size: 14px;
   color: brand.$swa-text-secondary;
   line-height: 1.6;
+
+  // Card/stat/timeline descriptions come from the rich-text editor, which always wraps even a
+  // short label in a <p> — reset it away from the outer margin this container already sets.
+  ::ng-deep p {
+    margin: 0;
+  }
 }
 
 .preview-card__link {
@@ -220,6 +226,10 @@
   margin-top: 6px;
   font-size: 14px;
   color: brand.$swa-text-secondary;
+
+  ::ng-deep p {
+    margin: 0;
+  }
 }
 
 .preview-timeline {
@@ -253,10 +263,28 @@
 
 .preview-timeline__label {
   color: brand.$swa-text-secondary;
+
+  ::ng-deep p {
+    margin: 0;
+  }
 }
 
 .preview-list {
   margin: 8px 0 0;
   padding-inline-start: 20px;
   line-height: 1.8;
+}
+
+.preview-list__description {
+  display: inline;
+  color: brand.$swa-text-secondary;
+
+  ::ng-deep p {
+    display: inline;
+    margin: 0;
+  }
+
+  &::before {
+    content: ' — ';
+  }
 }
