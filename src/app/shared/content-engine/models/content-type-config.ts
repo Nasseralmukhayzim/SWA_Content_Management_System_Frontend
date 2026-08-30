@@ -109,6 +109,8 @@ export interface ContentTypeConfig<TListItem = Record<string, unknown>> {
   buildCreatePayload: (value: Record<string, unknown>) => Record<string, unknown>;
   buildUpdatePayload: (value: Record<string, unknown>) => Record<string, unknown>;
   extraActions?: ExtraActionDef[];
+  /** Shows a "Preview" button on the edit form, linking to this content type's own `:id/preview` route. */
+  hasPreview?: boolean;
 }
 
 export function defaultValueFor(field: FieldDef): unknown {

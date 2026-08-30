@@ -19,6 +19,8 @@ function buildContentRoutes(config: ContentTypeConfig): Routes {
 }
 
 export const contentRoutes: Routes = [
+  // Pages' :id/preview route lives at the top level (app.routes.ts), outside the shell layout —
+  // see the comment there for why.
   { path: 'pages', children: buildContentRoutes(pagesConfig) },
   { path: 'news', children: buildContentRoutes(newsConfig) },
   { path: 'events', children: buildContentRoutes(eventsConfig) },

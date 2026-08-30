@@ -9,6 +9,16 @@ export const routes: Routes = [
     loadChildren: () => import('./features/auth/auth.routes').then((m) => m.authRoutes),
   },
   {
+    // Outside AppShellComponent on purpose: the preview is meant to fill the whole tab with no
+    // sidebar/header, so it can't be a child of the shell layout route below. Must stay ahead of
+    // that route in this array — otherwise the shell's own (shell-wrapped) `pages/:id` match would
+    // win first since Angular takes the first route that matches the full URL.
+    path: 'pages/:id/preview',
+    loadComponent: () =>
+      import('./features/content/pages/page-preview/page-preview.component').then((m) => m.PagePreviewComponent),
+    canActivate: [authGuard],
+  },
+  {
     path: '',
     component: AppShellComponent,
     canActivate: [authGuard],

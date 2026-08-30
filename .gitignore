@@ -42,3 +42,6 @@ __screenshots__/
 # System files
 .DS_Store
 Thumbs.db
+
+# Local playwright-cli debug artifacts (snapshots, screenshots, console logs)
+.playwright-cli/

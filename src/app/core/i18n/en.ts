@@ -62,6 +62,7 @@ export const EN: Record<string, string> = {
   'common.translations': 'Translations',
   'common.create': 'Create',
   'common.save': 'Save',
+  'common.preview': 'Preview',
   'common.saveArabic': 'Save Arabic',
   'common.saveEnglish': 'Save English',
   'common.none': '— None —',

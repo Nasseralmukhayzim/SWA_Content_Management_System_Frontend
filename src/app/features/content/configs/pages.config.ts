@@ -38,4 +38,5 @@ export const pagesConfig: ContentTypeConfig = {
   lookups: [{ key: 'parent-page', basePath: 'pages', source: 'content' }],
   buildCreatePayload: (value) => pickFields(value, BASE_FIELD_KEYS),
   buildUpdatePayload: (value) => pickFields(value, BASE_FIELD_KEYS),
+  hasPreview: true,
 };
