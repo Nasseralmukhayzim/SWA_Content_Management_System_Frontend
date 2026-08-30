@@ -1,12 +1,12 @@
 <div class="page-preview">
-  <header class="page-preview__toolbar">
-    <a mat-button [routerLink]="['/pages', pageId]">
+  <div class="page-preview__toolbar">
+    <a class="page-preview__back" [routerLink]="['/pages', pageId]">
       <mat-icon>arrow_back</mat-icon>
       Back to edit
     </a>
     <span class="page-preview__badge">
       <mat-icon>visibility</mat-icon>
-      Preview — not the live site
+      Preview
     </span>
     <div class="page-preview__lang-toggle">
       @for (lang of languages; track lang.code) {
@@ -20,7 +20,7 @@
         </button>
       }
     </div>
-  </header>
+  </div>
 
   @if (loading()) {
     <div class="page-preview__state">
@@ -33,97 +33,101 @@
   } @else {
     <article class="preview-canvas" [attr.dir]="dir()">
       <section class="preview-hero">
-        <div class="preview-hero__text">
-          <h1 class="preview-hero__title">{{ translation()!.title }}</h1>
-          @if (translation()!.summary) {
-            <p class="preview-hero__summary">{{ translation()!.summary }}</p>
+        <div class="preview-hero__inner">
+          <div class="preview-hero__text">
+            <h1 class="preview-hero__title">{{ translation()!.title }}</h1>
+            @if (translation()!.summary) {
+              <p class="preview-hero__summary">{{ translation()!.summary }}</p>
+            }
+          </div>
+          @if (heroImageUrl(); as url) {
+            <figure class="preview-hero__figure">
+              <img [src]="url" [alt]="translation()!.title" />
+            </figure>
           }
         </div>
-        @if (heroImageUrl(); as url) {
-          <figure class="preview-hero__figure">
-            <img [src]="url" [alt]="translation()!.title" />
-          </figure>
-        }
       </section>
 
-      @if (translation()!.body) {
-        <section class="preview-block">
-          <div class="preview-block__body" [innerHTML]="translation()!.body"></div>
-        </section>
-      }
+      <div class="preview-body">
+        @if (translation()!.body) {
+          <section class="preview-block">
+            <div class="preview-block__body" [innerHTML]="translation()!.body"></div>
+          </section>
+        }
 
-      @for (section of translation()!.sections; track $index) {
-        <section class="preview-block">
-          @if (section.heading) {
-            <h2 class="preview-block__heading">{{ section.heading }}</h2>
-          }
-          @if (section.intro) {
-            <p class="preview-block__intro">{{ section.intro }}</p>
-          }
-          @if (section.body) {
-            <div class="preview-block__body" [innerHTML]="section.body"></div>
-          }
+        @for (section of translation()!.sections; track $index) {
+          <section class="preview-block">
+            @if (section.heading) {
+              <h2 class="preview-block__heading">{{ section.heading }}</h2>
+            }
+            @if (section.intro) {
+              <p class="preview-block__intro">{{ section.intro }}</p>
+            }
+            @if (section.body) {
+              <div class="preview-block__body" [innerHTML]="section.body"></div>
+            }
 
-          @switch (section.kind) {
-            @case ('CardGrid') {
-              <div class="preview-cards">
-                @for (item of section.items; track $index) {
-                  <div class="preview-card">
-                    @if (imageUrl(item.imageId); as url) {
-                      <img class="preview-card__image" [src]="url" alt="" />
-                    } @else if (imageUrl(item.iconId); as url) {
-                      <img class="preview-card__icon" [src]="url" alt="" />
-                    }
-                    <h3 class="preview-card__title">{{ item.title }}</h3>
-                    @if (item.description) {
-                      <div class="preview-card__description" [innerHTML]="item.description"></div>
-                    }
-                    @if (item.linkUrl) {
-                      <a class="preview-card__link" [href]="item.linkUrl" target="_blank" rel="noopener">
-                        {{ dir() === 'rtl' ? 'اقرأ المزيد' : 'Read more' }}
-                      </a>
-                    }
-                  </div>
-                }
-              </div>
-            }
-            @case ('StatGroup') {
-              <div class="preview-stats">
-                @for (item of section.items; track $index) {
-                  <div class="preview-stat">
-                    <div class="preview-stat__number">{{ item.title }}</div>
-                    <div class="preview-stat__label" [innerHTML]="item.description"></div>
-                  </div>
-                }
-              </div>
-            }
-            @case ('Timeline') {
-              <ol class="preview-timeline">
-                @for (item of section.items; track $index) {
-                  <li class="preview-timeline__item">
-                    <span class="preview-timeline__year">{{ item.title }}</span>
-                    <div class="preview-timeline__label" [innerHTML]="item.description"></div>
-                  </li>
-                }
-              </ol>
-            }
-            @case ('Text') {
-              @if (section.items.length) {
-                <ul class="preview-list">
+            @switch (section.kind) {
+              @case ('CardGrid') {
+                <div class="preview-cards">
                   @for (item of section.items; track $index) {
-                    <li>
-                      <strong>{{ item.title }}</strong>
-                      @if (item.description) {
-                        <div class="preview-list__description" [innerHTML]="item.description"></div>
+                    <div class="preview-card">
+                      @if (imageUrl(item.imageId); as url) {
+                        <img class="preview-card__image" [src]="url" alt="" />
+                      } @else if (imageUrl(item.iconId); as url) {
+                        <img class="preview-card__icon" [src]="url" alt="" />
                       }
+                      <h3 class="preview-card__title">{{ item.title }}</h3>
+                      @if (item.description) {
+                        <div class="preview-card__description" [innerHTML]="item.description"></div>
+                      }
+                      @if (item.linkUrl) {
+                        <a class="preview-card__link" [href]="item.linkUrl" target="_blank" rel="noopener">
+                          {{ dir() === 'rtl' ? 'اقرأ المزيد' : 'Read more' }}
+                        </a>
+                      }
+                    </div>
+                  }
+                </div>
+              }
+              @case ('StatGroup') {
+                <div class="preview-stats">
+                  @for (item of section.items; track $index) {
+                    <div class="preview-stat">
+                      <div class="preview-stat__number">{{ item.title }}</div>
+                      <div class="preview-stat__label" [innerHTML]="item.description"></div>
+                    </div>
+                  }
+                </div>
+              }
+              @case ('Timeline') {
+                <ol class="preview-timeline">
+                  @for (item of section.items; track $index) {
+                    <li class="preview-timeline__item">
+                      <span class="preview-timeline__year">{{ item.title }}</span>
+                      <div class="preview-timeline__label" [innerHTML]="item.description"></div>
                     </li>
                   }
-                </ul>
+                </ol>
+              }
+              @case ('Text') {
+                @if (section.items.length) {
+                  <ul class="preview-list">
+                    @for (item of section.items; track $index) {
+                      <li>
+                        <strong>{{ item.title }}</strong>
+                        @if (item.description) {
+                          <div class="preview-list__description" [innerHTML]="item.description"></div>
+                        }
+                      </li>
+                    }
+                  </ul>
+                }
               }
             }
-          }
-        </section>
-      }
+          </section>
+        }
+      </div>
     </article>
   }
 </div>

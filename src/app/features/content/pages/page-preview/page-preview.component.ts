@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit, computed, inject, signal } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ContentApiService } from '../../../../shared/content-engine/services/content-api.service';
@@ -35,7 +34,7 @@ const LANGUAGES: { code: 'ar' | 'en'; label: string }[] = [
  */
 @Component({
   selector: 'app-page-preview',
-  imports: [RouterLink, MatButtonModule, MatIconModule, MatProgressSpinnerModule],
+  imports: [RouterLink, MatIconModule, MatProgressSpinnerModule],
   templateUrl: './page-preview.component.html',
   styleUrl: './page-preview.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
