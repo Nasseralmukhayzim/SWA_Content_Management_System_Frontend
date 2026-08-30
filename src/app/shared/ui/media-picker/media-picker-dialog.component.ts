@@ -3,6 +3,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MediaUrlPipe } from '../../media/media-url.pipe';
 import { MediaAssetResponse, MediaKind } from '../../media/models/media-asset.model';
 import { MediaApiService } from '../../media/services/media-api.service';
 
@@ -12,7 +13,7 @@ export interface MediaPickerDialogData {
 
 @Component({
   selector: 'app-media-picker-dialog',
-  imports: [MatDialogModule, MatButtonModule, MatPaginatorModule, MatProgressSpinnerModule],
+  imports: [MatDialogModule, MatButtonModule, MatPaginatorModule, MatProgressSpinnerModule, MediaUrlPipe],
   templateUrl: './media-picker-dialog.component.html',
   styleUrl: './media-picker-dialog.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

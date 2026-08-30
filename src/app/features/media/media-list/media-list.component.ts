@@ -15,6 +15,7 @@ import { TranslatePipe } from '../../../core/i18n/translate.pipe';
 import { AppError } from '../../../core/models/problem-details.models';
 import { AuthService } from '../../../core/services/auth.service';
 import { ConfirmDialogService } from '../../../shared/ui/confirm-dialog/confirm-dialog.service';
+import { MediaUrlPipe } from '../../../shared/media/media-url.pipe';
 import {
   MEDIA_KIND_LABEL_KEYS,
   MEDIA_KIND_LABELS,
@@ -37,6 +38,7 @@ import { MediaApiService } from '../../../shared/media/services/media-api.servic
     MatIconModule,
     MatProgressSpinnerModule,
     TranslatePipe,
+    MediaUrlPipe,
   ],
   templateUrl: './media-list.component.html',
   styleUrl: './media-list.component.scss',

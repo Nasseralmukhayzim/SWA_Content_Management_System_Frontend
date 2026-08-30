@@ -10,6 +10,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { TranslatePipe } from '../../../core/i18n/translate.pipe';
+import { resolveMediaUrl } from '../../../core/utils/media-url.util';
+import { MediaUrlPipe } from '../../../shared/media/media-url.pipe';
 import { MediaAssetResponse, MediaKind } from '../../../shared/media/models/media-asset.model';
 import { MediaApiService } from '../../../shared/media/services/media-api.service';
 
@@ -25,6 +27,7 @@ import { MediaApiService } from '../../../shared/media/services/media-api.servic
     MatInputModule,
     MatProgressSpinnerModule,
     TranslatePipe,
+    MediaUrlPipe,
   ],
   templateUrl: './media-edit.component.html',
   styleUrl: './media-edit.component.scss',
@@ -50,7 +53,7 @@ export class MediaEditComponent implements OnInit {
 
   protected readonly pdfPreviewUrl = computed<SafeResourceUrl | null>(() => {
     const a = this.asset();
-    return a && this.isPdf() ? this.sanitizer.bypassSecurityTrustResourceUrl(a.url) : null;
+    return a && this.isPdf() ? this.sanitizer.bypassSecurityTrustResourceUrl(resolveMediaUrl(a.url)) : null;
   });
 
   protected readonly form = this.fb.group({
